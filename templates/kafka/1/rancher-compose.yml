@@ -44,8 +44,8 @@
       default: 60 
       type: "int"
     - variable: "kafka_pub_ip"
-      description: "Advertise local and host public ip" 
-      label: "Broker public ip:"
+      description: "Advertise host ip" 
+      label: "Advertise host ip:"
       required: false
       default: false 
       type: "boolean"
