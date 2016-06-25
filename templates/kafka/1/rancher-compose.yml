@@ -44,7 +44,7 @@
       default: 60 
       type: "int"
     - variable: "kafka_pub_ip"
-      description: "Advertise host ip" 
+      description: "Advertise host ip in zookeeper" 
       label: "Advertise host ip:"
       required: false
       default: false 
