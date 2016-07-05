@@ -19,7 +19,7 @@
         Vamp driver to use.
       default: rancher
       required: true
-      type: enum
+      type: "enum"
       options:
         - rancher
         - kubernetes
@@ -33,13 +33,13 @@
       default: "<XXXXX>"
       required: true
       type: "string"
-    - variable: "vamp_key_type 
+    - variable: "vamp_key_type"
       label: "Vamp key type:"
       description: |
         Vamp key type to use.
       default: zookeeper
       required: true
-      type: enum
+      type: "enum"
       options:
         - zookeeper
         - etcd
@@ -69,7 +69,7 @@
         Vamp db type to use.
       default: elasticsearch
       required: true
-      type: enum
+      type: "enum"
       options:
         - elasticsearch
     - variable: "vamp_db_port"

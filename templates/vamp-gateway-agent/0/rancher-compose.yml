@@ -13,13 +13,13 @@
       required: true
       default: 1
       type: "int"
-    - variable: "vga_key_type 
+    - variable: "vga_key_type"
       label: "Vga key type:"
       description: |
         Vga key type to use.
       default: zookeeper
       required: true
-      type: enum
+      type: "enum"
       options:
         - zookeeper
         - etcd
