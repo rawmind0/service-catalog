@@ -8,7 +8,7 @@
   uuid: zk-0
   questions:
       - variable: "zk_name"
-      description: "Name of zk rc and service."
+      description: "Name of zookeeper rc and service."
       label: "Zk name:"
       required: true
       default: "zookeeper"
