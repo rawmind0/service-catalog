@@ -1,18 +1,18 @@
 apiVersion: v1
 kind: ReplicationController
 metadata: 
-  name: "${stack_name}"
+  name: "${zk_name}"
   namespace: "default"
   labels:
-    name: "${stack_name}"
+    name: "${zk_name}"
 spec:
   replicas: ${zk_scale}
   selector:
-    name: "${stack_name}"
+    name: "${zk_name}"
   template:
     metadata: 
       labels:
-        name: "${stack_name}"
+        name: "${zk_name}"
     spec:
       containers:
         - name: "zk-conf"
