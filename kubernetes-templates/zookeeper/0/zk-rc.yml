@@ -24,9 +24,6 @@ spec:
             - mountPath: "/opt/tools"
               name: "zk-conf"
           ports: 
-          resources:
-            cpu: "10m"
-            memory: "4Mi"
           imagePullPolicy: "IfNotPresent"
         - name: "zk-service"
           image: "rawmind/alpine-zk:3.4.8-12"
@@ -58,9 +55,6 @@ spec:
             - containerPort: 3888
               name: "zk-leader"
               protocol: "TCP"
-          resources:
-            cpu: "1000m"
-            memory: "${zk_mem}Mi"
           imagePullPolicy: "IfNotPresent"
       restartPolicy: "Always"
       volumes:
