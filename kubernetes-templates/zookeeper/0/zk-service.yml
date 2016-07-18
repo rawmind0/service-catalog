@@ -16,7 +16,7 @@ spec:
     protocol: "TCP"
   - port: 3888
     targetPort: 3888
-    name: "zk-lead"
+    name: "zk-leader"
     protocol: "TCP"
   selector:
     name: "${zk_name}"

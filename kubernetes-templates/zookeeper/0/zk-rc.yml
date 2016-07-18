@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: "zk-conf"
-          image: "rawmind/k8s-zk:3.4.8-2"
+          image: "rawmind/k8s-zk:3.4.8-3"
           volumeMounts:
             - mountPath: "/opt/tools"
               name: "zk-conf"
