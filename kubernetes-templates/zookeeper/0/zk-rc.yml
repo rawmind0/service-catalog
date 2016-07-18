@@ -16,11 +16,10 @@ spec:
     spec:
       containers:
         - name: "zk-conf"
-          image: "rawmind/k8s-zk:3.4.8"
+          image: "rawmind/k8s-zk:3.4.8-1"
           volumeMounts:
             - mountPath: "/opt/tools"
               name: "zk-conf"
-              copyData: true
           ports: 
           imagePullPolicy: "IfNotPresent"
         - name: "zk-service"
