@@ -20,6 +20,7 @@ spec:
           volumeMounts:
             - mountPath: "/opt/tools"
               name: "zk-conf"
+              copyData: true
           ports: 
           imagePullPolicy: "IfNotPresent"
         - name: "zk-service"
