@@ -6,13 +6,13 @@ metadata:
   labels:
     name: "${stack_name}"
 spec:
-  replicas: "${zk_scale}"
+  replicas: ${zk_scale}
   selector:
     name: "${stack_name}"
   template:
     metadata: 
       labels:
-        name: ${stack_name}
+        name: "${stack_name}"
     spec:
       containers:
         - name: "zk-conf"
