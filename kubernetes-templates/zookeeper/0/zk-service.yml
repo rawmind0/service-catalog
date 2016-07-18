@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: $${stack_name}
+  name: ${stack_name}
   labels:
-    name: $${stack_name}
+    name: ${stack_name}
 spec:
   ports:
   - port: 2181
