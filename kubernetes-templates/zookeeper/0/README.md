@@ -2,23 +2,25 @@
 
 ### Info:
 
- This template creates, scale in and scale out a multinodes zk (zookeeper) cluster on top of Rancher. The configuration is generated with confd from Rancher metadata. 
- Cluster size are variable after deployment, and get reconfigured if refresh interval > 0.
+ This template creates, scale in and scale out a multinodes zk (zookeeper) cluster on top of k8s. The configuration is generated with confd watching k8s metadata. 
+ Cluster size are variable after deployment, and get reconfigured if you scale.
  
  
 ### Usage:
 
  Select Apache Zookeeper from catalog. 
- 
- Enter the number of nodes, mem and refresh interval for the zk cluster. (set refresh data to 0 to disable dinamic config)
 
  Change the following zookeeper default parameters, if you need:
 
-- ZK_DATA_DIR="/opt/zk/data"
-- ZK_INIT_LIMIT="10"
-- ZK_MAX_CLIENT_CXNS="500"
-- ZK_SYNC_LIMIT="5"
-- ZK_TICK_TIME="2000"
+- zk_name="zookeeper"			# Name of the k8s rc and service.
+- zk_namespace="default"		# Name of the k8s namespace
+- zk_scale="3"					# Number of zk replicas
+- zk_mem="512"					# Mem to configure zk.
+- zk_data_dir="/opt/zk/data"	# Zk dataDir param value
+- zk_init_limit="10"			# zk initLimit param value
+- zk_max_client_cxns="500"		# zk maxClientCnxns param value
+- zk_sync_limit="5"				# zk syncLimit param value
+- zk_tick_time="2000"			# zk tickTime param value
  
  Click deploy.
  

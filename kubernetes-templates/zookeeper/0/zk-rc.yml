@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ReplicationController
 metadata: 
   name: "${zk_name}"
-  namespace: "default"
+  namespace: "${zk_namespace}"
   labels:
     name: "${zk_name}"
 spec:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: "zk-conf"
-          image: "rawmind/k8s-zk:3.4.8-3"
+          image: "rawmind/k8s-zk:3.4.8-4"
           volumeMounts:
             - mountPath: "/opt/tools"
               name: "zk-conf"
@@ -37,6 +37,8 @@ spec:
               value: "${zk_sync_limit}"
             - name: ZK_TICK_TIME
               value: "${zk_tick_time}"
+            - name: POD_NAMESPACE
+              value: "${zk_namespace}"
           volumeMounts:
             - mountPath: "${zk_data_dir}"
               name: "zk-data"
