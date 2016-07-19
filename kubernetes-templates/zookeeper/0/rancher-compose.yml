@@ -9,13 +9,13 @@
   questions:
     - variable: "zk_name"
       description: "Name of zookeeper rc and service."
-      label: "Zk name:"
+      label: "K8s rc name:"
       required: true
       default: "zookeeper"
       type: "string"
     - variable: "zk_namespace"
       description: "Name of zookeeper namespace."
-      label: "Zk name:"
+      label: "K8s namespace:"
       required: true
       default: "default"
       type: "string"
