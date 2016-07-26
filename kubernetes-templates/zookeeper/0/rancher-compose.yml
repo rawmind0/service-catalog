@@ -59,7 +59,7 @@
       description: "Tick time length"
       label: "Zk tick time (ms):"
       required: true
-      default: 5
+      default: 2000
       type: "int"
 zk:
   scale: ${zk_scale}
