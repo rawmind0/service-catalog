@@ -13,7 +13,43 @@ spec:
     metadata: 
       labels:
         name: "${zk_name}"
-    spec:
+      annotations:
+        pod.alpha.kubernetes.io/init-containers: '[
+          {
+            "name": "zk-volume",
+            "image": "rawmind/alpine-volume:0.0.1-1",
+            "env": [
+              {
+                name: "SERVICE_USER"
+                value: "zookeeper"
+              },
+              {
+                name: "SERVICE_UID"
+                value: "1002"
+              },
+              {
+                name: "SERVICE_GROUP"
+                value: "zookeeper"
+              },
+             {
+                name: "SERVICE_GID"
+                value: "1002"
+              },
+              {
+                name: "SERVICE_VOLUME"
+                value: "${zk_data_dir}"
+              },
+            ]
+
+            "volumeMounts": [
+              {
+                "name": "zk-data",
+                "mountPath": "${zk_data_dir}"
+              }
+            ]
+          }
+        ]'
+        spec:
       containers:
         - name: "zk-conf"
           image: "rawmind/k8s-zk:3.4.8-7"
