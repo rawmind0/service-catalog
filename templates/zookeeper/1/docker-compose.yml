@@ -22,6 +22,8 @@ zk-conf:
     io.rancher.container.hostname_override: container_name
     io.rancher.container.start_once: true
   image: rawmind/rancher-zk:3.4.8-4
+  volumes:
+    - /opt/tools
 zk-volume:
   net: none
   labels:
