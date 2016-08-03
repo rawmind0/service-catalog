@@ -4,7 +4,7 @@ gocd-agent:
     io.rancher.container.hostname_override: container_name
     gocd.role: agent
   tty: true
-  image: rawmind/rancher-goagent:16.7.0
+  image: rawmind/rancher-goagent:16.7.0-2
   external_links:
   - ${goserver_ip}:gocd-server
   environment:
@@ -12,5 +12,6 @@ gocd-agent:
   - AGENT_MAX_MEM=${mem_max}m
   - GO_SERVER=gocd-server.rancher.internal
   - GO_SERVER_PORT=${goserver_port}
+  - DOCKER_VERSION=${docker_version}
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
