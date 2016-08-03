@@ -10,8 +10,6 @@
  Select gocd-agent from catalog. 
  
  Enter the mem parameters, gocd-server stack/service and port.
-
- Select docker client version to use.
  
  Click deploy.
  

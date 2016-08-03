@@ -38,17 +38,6 @@
       required: true
       default: 1
       type: "int"
-    - variable: "docker_version"
-      label: "Docker client version:"
-      description: |
-        Choose the docker client version to use.
-      default: 1.12.0
-      required: true
-      type: enum
-      options:
-        - 1.12.0
-        - 1.11.2
-        - 1.10.3
 gocd-agent:
   scale: ${scale}
   retain_ip: true
