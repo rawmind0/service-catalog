@@ -29,4 +29,6 @@ traefik-conf:
   log_opt: {}
   image: rawmind/rancher-traefik:0.3.4-3
   net: none
+  volumes:
+    - /opt/tools
 
