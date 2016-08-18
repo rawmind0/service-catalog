@@ -12,3 +12,4 @@ spec:
     protocol: "TCP"
   selector:
     name: "${kafka_name}"
+  clusterIP: "None"
