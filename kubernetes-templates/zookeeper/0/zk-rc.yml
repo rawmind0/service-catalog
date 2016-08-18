@@ -17,19 +17,11 @@ spec:
         pod.alpha.kubernetes.io/init-containers: '[
           {
             "name": "zk-volume",
-            "image": "rawmind/alpine-volume:0.0.1-1",
+            "image": "rawmind/alpine-volume:0.0.2-1",
             "env": [
-              {
-                name: "SERVICE_USER"
-                value: "zookeeper"
-              },
               {
                 name: "SERVICE_UID"
                 value: "1002"
-              },
-              {
-                name: "SERVICE_GROUP"
-                value: "zookeeper"
               },
              {
                 name: "SERVICE_GID"
@@ -56,6 +48,22 @@ spec:
           volumeMounts:
             - mountPath: "/opt/tools"
               name: "zk-conf"
+          ports: 
+          imagePullPolicy: "IfNotPresent"
+        - name: "zk-volume"
+          image: "rawmind/alpine-volume:0.0.2-1"
+          env:
+            - name: SERVICE_UID
+              value: "10003"
+            - name: SERVICE_GID
+              value: "10003"
+            - name: SERVICE_VOLUME
+              value: "${kafka_log_dir}"
+            - name: KEEP_ALIVE
+              value: "1"
+          volumeMounts:
+            - mountPath: "${zk_data_dir}"
+              name: "zk-data"
           ports: 
           imagePullPolicy: "IfNotPresent"
         - name: "zk-service"
