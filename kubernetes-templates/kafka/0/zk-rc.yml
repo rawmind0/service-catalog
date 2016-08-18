@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: ReplicationController
+metadata: 
+  name: "${kafka_name}"
+  namespace: "${kafka_namespace}"
+  labels:
+    name: "${kkafka_name}"
+spec:
+  replicas: ${kafka_scale}
+  selector:
+    name: "${kafka_name}"
+  template:
+    metadata: 
+      labels:
+        name: "${kafka_name}"
+    spec:
+      containers:
+        - name: "broker-conf"
+          image: "rawmind/k8s-kafka:0.10.0.0"
+          volumeMounts:
+            - mountPath: "/opt/tools"
+              name: "broker-conf"
+          ports: 
+          imagePullPolicy: "IfNotPresent"
+        - name: "broker-volume"
+          image: "rawmind/alpine-volume:0.0.1-1"
+          env:
+            - name: SERVICE_UID
+              value: "10003"
+            - name: SERVICE_GID
+              value: "10003"
+            - name: SERVICE_VOLUME
+              value: "${kafka_log_dir}"
+            - name: KEEP_ALIVE
+              value: "1"
+          volumeMounts:
+            - mountPath: "${kafka_log_dir}"
+              name: "broker-data"
+          ports: 
+          imagePullPolicy: "IfNotPresent"
+        - name: "broker-service"
+          image: "rawmind/alpine-kafka:0.10.0.0-4"
+          env:
+            - JVMFLAGS=-Xmx${kafka_mem}m -Xms${kafka_mem}m
+            - CONFD_INTERVAL=${kafka_interval}
+            - KAFKA_ZK_SERVICE=${zk_link}
+            - KAFKA_LOG_DIRS=${kafka_log_dir}
+            - KAFKA_LOG_RETENTION_HOURS=${kafka_log_retention}
+            - KAFKA_NUM_PARTITIONS=${kafka_num_partitions}
+            - ADVERTISE_PUB_IP=${kafka_pub_ip}
+          volumeMounts:
+            - mountPath: "${zk_data_dir}"
+              name: "broker-data"
+            - mountPath: "/opt/tools"
+              name: "broker-conf"
+          ports:
+            - containerPort: 9092
+              name: "broker-client"
+              protocol: "TCP"
+          imagePullPolicy: "IfNotPresent"
+      restartPolicy: "Always"
+      volumes:
+        - name: "broker-data"
+          emptyDir: {}
+        - name: "broker-conf"
+          emptyDir: {}
