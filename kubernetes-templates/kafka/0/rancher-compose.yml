@@ -59,7 +59,7 @@
       description: "Advertise local and host public ip" 
       label: "Broker public ip:"
       required: false
-      default: false 
+      default: "false" 
       type: "boolean"
     - variable: "zk_link"
       description: |
