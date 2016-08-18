@@ -54,9 +54,9 @@ spec:
           image: "rawmind/alpine-volume:0.0.2-1"
           env:
             - name: SERVICE_UID
-              value: "10003"
+              value: "10002"
             - name: SERVICE_GID
-              value: "10003"
+              value: "10002"
             - name: SERVICE_VOLUME
               value: "${kafka_log_dir}"
             - name: KEEP_ALIVE
