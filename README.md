@@ -2,7 +2,7 @@
 
 This catalog provides templates to offer services in rancher catalog.
 
-##Packges for cattle:
+##Packages for cattle:
 
 - Zookeeper
 - Kafka
