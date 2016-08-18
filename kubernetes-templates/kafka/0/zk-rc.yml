@@ -4,7 +4,7 @@ metadata:
   name: "${kafka_name}"
   namespace: "${kafka_namespace}"
   labels:
-    name: "${kkafka_name}"
+    name: "${kafka_name}"
 spec:
   replicas: ${kafka_scale}
   selector:
