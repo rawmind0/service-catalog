@@ -64,7 +64,6 @@
       options:
         - false
         - true
-      type: "boolean"
     - variable: "zk_link"
       description: |
         Choose the Zookeeper service to use. 
