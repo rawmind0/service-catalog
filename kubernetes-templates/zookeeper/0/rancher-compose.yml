@@ -61,12 +61,6 @@
       required: true
       default: 2000
       type: "int"
-    - variable: "zk_test"
-      description: "Test"
-      label: "Test:"
-      required: false
-      default: 
-      type: "service"
 zk:
   scale: ${zk_scale}
   retain_ip: true
