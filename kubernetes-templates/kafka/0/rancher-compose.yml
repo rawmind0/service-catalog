@@ -7,6 +7,18 @@
   maintainer: "Raul Sanchez <rawmind@gmail.com>"
   uuid: kafka-0
   questions:
+    - variable: "kafka_name"
+      description: "Name of kafka rc and service."
+      label: "K8s rc name:"
+      required: true
+      default: "kafka"
+      type: "string"
+    - variable: "kafka_namespace"
+      description: "Name of kafka namespace."
+      label: "K8s namespace:"
+      required: true
+      default: "default"
+      type: "string"
     - variable: "kafka_scale"
       description: "Number of brokers nodes. Note: Recommended an odd number"
       label: "Broker Nodes:"
