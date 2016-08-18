@@ -23,7 +23,7 @@ spec:
           ports: 
           imagePullPolicy: "IfNotPresent"
         - name: "broker-volume"
-          image: "rawmind/alpine-volume:0.0.1-1"
+          image: "rawmind/alpine-volume:0.0.2-1"
           env:
             - name: SERVICE_UID
               value: "10003"
