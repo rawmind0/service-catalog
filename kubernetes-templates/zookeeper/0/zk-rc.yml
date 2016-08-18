@@ -75,6 +75,8 @@ spec:
               value: "${zk_tick_time}"
             - name: POD_NAMESPACE
               value: "${zk_namespace}"
+            - name: TEST_SERVICE
+              value: "${zk_test}"
           volumeMounts:
             - mountPath: "${zk_data_dir}"
               name: "zk-data"
