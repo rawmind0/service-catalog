@@ -54,7 +54,7 @@ spec:
             - name: KAFKA_NUM_PARTITIONS
               value: "${kafka_num_partitions}"
             - name: ADVERTISE_PUB_IP
-              value: "${kafka_pub_ip}"
+              value: ${kafka_pub_ip}
             - name: POD_NAMESPACE
               value: "${zk_namespace}"
           volumeMounts:
