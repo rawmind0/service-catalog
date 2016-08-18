@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: "broker-conf"
-          image: "rawmind/k8s-kafka:0.10.0.0-1"
+          image: "rawmind/k8s-kafka:0.10.0.0-2"
           volumeMounts:
             - mountPath: "/opt/tools"
               name: "broker-conf"
