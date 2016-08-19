@@ -1,6 +1,6 @@
 # Service rancher Catalog 
 
-This catalog provides templates to offer services in rancher catalog.
+This catalog provides templates to use or test services in rancher catalog.
 
 ##Packages for cattle:
 
