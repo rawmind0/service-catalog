@@ -37,6 +37,16 @@
       required: true
       default: "1"
       type: "int"
+    - variable: "kafka_delete_topics"
+      label: "Kafka delete topics:"
+      description: |
+        Enable delete topics in kafka.
+      default: false
+      required: true
+      type: enum
+      options:
+        - false
+        - true
     - variable: "kafka_interval"
       description: "Interval to poll/apply configuration changes. 0 to disable" 
       label: "Broker Interval (s):"
@@ -44,8 +54,8 @@
       default: 60 
       type: "int"
     - variable: "kafka_pub_ip"
-      description: "Advertise host ip in zookeeper" 
-      label: "Advertise host ip:"
+      description: "Advertise local and host public ip" 
+      label: "Broker public ip:"
       required: false
       default: false 
       type: "boolean"
