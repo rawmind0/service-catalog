@@ -21,7 +21,6 @@ traefik:
   - TRAEFIK_ACME_ONDEMAND=${acme_ondemand}
   volumes_from:
   - traefik-conf
-  - acme-volume
 traefik-conf:
   log_driver: ''
   labels:
