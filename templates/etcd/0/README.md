@@ -8,7 +8,7 @@
  
 ### Usage:
 
- Select Apache Zookeeper from catalog. 
+ Select etcd from catalog. 
  
  Enter the number of nodes, mem and refresh interval for the zk cluster. (set refresh data to 0 to disable dinamic config)
 
@@ -20,4 +20,6 @@
  Click deploy.
  
  Etcd can now be accessed over the Rancher network. 
+
+ Note: When you scale the cluster, zero downtime is not guaranted...
 
