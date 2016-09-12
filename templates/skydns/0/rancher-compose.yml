@@ -47,7 +47,7 @@
       description: "skydns_ndots"
       label: "skydns_ndots:"
       required: true
-      default: 5
+      default: 2
       type: "string"
 skydns:
   scale: ${skydns_scale}
