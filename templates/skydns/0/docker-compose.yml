@@ -1,0 +1,13 @@
+skydns:
+  tty: true
+  image: rawmind/alpine-skydns:2.5.3-3
+  environment:
+    - ETCD_MACHINES=${skydns_etcd}
+    - SKYDNS_ADDR=${skydns_addr}
+    - SKYDNS_DOMAIN=${skydns_domain} 
+    - SKYDNS_NAMESERVERS=${skydns_nameservers} 
+    - SKYDNS_PATH_PREFIX=${skydns_path_prefix}
+    - SKYDNS_NDOTS=${skydns_ndots}
+  labels: 
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+    io.rancher.container.hostname_override: container_name
