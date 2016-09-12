@@ -3,7 +3,7 @@
   version: 2.5.3-rancher1
   description: |
     (Experimental) Skydns service.
-  minimum_rancher_version: v1.11.0
+  minimum_rancher_version: v1.0.0
   maintainer: "Raul Sanchez <rawmind@gmail.com>"
   uuid: skydns-0
   questions:
