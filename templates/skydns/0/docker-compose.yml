@@ -1,6 +1,6 @@
 skydns:
   tty: true
-  image: rawmind/alpine-skydns:2.5.3-3
+  image: rawmind/alpine-skydns:2.5.3-4
   environment:
     - ETCD_MACHINES=${skydns_etcd}
     - SKYDNS_ADDR=${skydns_addr}
