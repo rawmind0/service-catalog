@@ -13,12 +13,13 @@
       required: true
       default: "3"
       type: "int"
-    - variable: "skydns_etcd"
-      description: "Etcd url to connect to"
-      label: "Etcd url:"
+    - variable: "etcd_link"
+      description: |
+        Choose the etcd service to use. 
+      label: "Etcd stack/service"
+      default: "etcd/etcd"
       required: true
-      default: "http://etcd.etcd:2379"
-      type: "string"
+      type: "service"
     - variable: "skydns_addr"
       description: "Skydns address to bind"
       label: "Skydns bind:"

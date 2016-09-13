@@ -1,8 +1,9 @@
 skydns:
-  tty: true
   image: rawmind/alpine-skydns:2.5.3-5
+  volumes_from:
+    - skydns-conf
   environment:
-    - ETCD_MACHINES=${skydns_etcd}
+    - ETCD_SERVICE=${etcd_link}
     - SKYDNS_ADDR=${skydns_addr}
     - SKYDNS_DOMAIN=${skydns_domain} 
     - SKYDNS_NO_REC=${skydns_no_rec}
@@ -12,4 +13,14 @@ skydns:
   labels: 
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
+    io.rancher.sidekicks: skydns-conf
     io.skydns.domain: ${skydns_domain}
+skydns-conf:
+  net: none
+  labels:
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+    io.rancher.container.hostname_override: container_name
+    io.rancher.container.start_once: true
+  image: rawmind/rancher-skydns:2.5.3
+  volumes:
+    - /opt/tools

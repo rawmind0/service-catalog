@@ -12,7 +12,7 @@
  Change the following skydns default parameters, if you need:
 
 - skydns_scale=3					# Service scale
-- skydns_etcd="http://etcd:2379"	# Multiple values separated by ,
+- etcd_link="etcd/etcd" 			# etcd stack/service to connect to.
 - skydns_addr="0.0.0.0:53"			# Address to bind
 - skydns_domain="dev.local"			# Skydns authorizative domain
 - skydns_path_prefix="skydns"		# skydns etcd prefix
