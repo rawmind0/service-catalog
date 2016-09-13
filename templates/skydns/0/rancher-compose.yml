@@ -31,6 +31,18 @@
       required: true
       default: "dev.local"
       type: "string"
+    - variable: "skydns_path_prefix"
+      description: "Skydns path prefix"
+      label: "Skydns path prefix:"
+      required: true
+      default: "skydns"
+      type: "string"
+    - variable: "skydns_ndots"
+      description: "Minimum dot at query to forward"
+      label: "Skydns ndots:"
+      required: true
+      default: 1
+      type: "int"
     - variable: "skydns_no_rec"
       label: "Disable skydns forward:"
       description: |
@@ -46,18 +58,6 @@
       required: false
       default: ""
       type: "string"
-    - variable: "skydns_path_prefix"
-      description: "Skydns path prefix"
-      label: "Skydns path prefix:"
-      required: true
-      default: "skydns"
-      type: "string"
-    - variable: "skydns_ndots"
-      description: "Minimum dot at query to forward"
-      label: "Skydns ndots:"
-      required: true
-      default: 1
-      type: "int"
 skydns:
   scale: ${skydns_scale}
   retain_ip: true
