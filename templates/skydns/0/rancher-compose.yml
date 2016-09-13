@@ -37,7 +37,7 @@
         Disable skydns forward recursion
       default: true
       required: true
-      type: bool
+      type: boolean
     - variable: "skydns_nameservers"
       description: |
         Skydns nameservers forwarders. <host>:<port>,<host>:<port>...
