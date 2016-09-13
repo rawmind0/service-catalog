@@ -37,10 +37,7 @@
         Disable skydns forward recursion
       default: true
       required: true
-      type: enum
-      options:
-        - false
-        - true
+      type: bool
     - variable: "skydns_nameservers"
       description: |
         Skydns nameservers forwarders. <host>:<port>,<host>:<port>...
@@ -56,8 +53,8 @@
       default: "skydns"
       type: "string"
     - variable: "skydns_ndots"
-      description: "skydns_ndots"
-      label: "skydns_ndots:"
+      description: "Minimum dot at query to forward"
+      label: "Skydns ndots:"
       required: true
       default: 1
       type: "int"
