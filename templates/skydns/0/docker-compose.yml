@@ -1,5 +1,5 @@
 skydns:
-  image: rawmind/alpine-skydns:2.5.3-5
+  image: rawmind/alpine-skydns:2.5.3-6
   volumes_from:
     - skydns-conf
   environment:
@@ -21,6 +21,6 @@ skydns-conf:
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
     io.rancher.container.start_once: true
-  image: rawmind/rancher-skydns:2.5.3
+  image: rawmind/rancher-skydns:2.5.3-1
   volumes:
     - /opt/tools
