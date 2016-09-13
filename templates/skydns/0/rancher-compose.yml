@@ -52,9 +52,9 @@
       type: boolean
     - variable: "skydns_nameservers"
       description: |
-        Skydns nameservers forwarders. <host>:<port>,<host>:<port>...
+        Skydns forward servers. <host>:<port>,<host>:<port>...
         Needed if "Disable skydns forward: false"
-      label: "Skydns nameservers:"
+      label: "Skydns forward servers:"
       required: false
       default: ""
       type: "string"

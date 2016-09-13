@@ -18,7 +18,7 @@
 - skydns_path_prefix="skydns"		# skydns etcd prefix
 - skydns_ndots="1"					# Minimum dot at name to forward query
 - skydns_no_rec="true"				# Disable skydns forward recursion
-- skydns_nameservers=""				# Dns forwarders. <host>:<port> Multiple values separated by ,
+- skydns_nameservers=""				# Forward servers. <host>:<port> Multiple values separated by ,
  
  Click deploy.
  
