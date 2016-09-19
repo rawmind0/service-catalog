@@ -1,6 +1,6 @@
 resolver:
   image: rawmind/alpine-go-dnsmasq:1.0.6-2
-    volumes_from:
+  volumes_from:
     - resolver-conf
   environment:
     - DNSMASQ_LISTEN=0.0.0.0:53
