@@ -3,7 +3,7 @@
   version: 1.0.6-rancher1
   description: |
     (Experimental) go-dnsmasq as dns resolver service.
-  minimum_rancher_version: v1.11.0
+  minimum_rancher_version: v1.0.0
   maintainer: "Raul Sanchez <rawmind@gmail.com>"
   uuid: resolver-0
   questions:
