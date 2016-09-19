@@ -46,7 +46,7 @@
       required: true
       default: "8.8.8.8:53,8.8.4.4:53"
       type: "string"
-skydns:
+resolver:
   scale: ${resolver_scale}
   retain_ip: true
   health_check:
