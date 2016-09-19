@@ -1,5 +1,5 @@
 resolver:
-  image: rawmind/alpine-go-dnsmasq:1.0.6-2
+  image: rawmind/alpine-go-dnsmasq:1.0.6-3
   volumes_from:
     - resolver-conf
   environment:
