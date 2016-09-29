@@ -14,33 +14,6 @@ spec:
       labels:
         name: "${zk_name}"
       annotations:
-        pod.alpha.kubernetes.io/init-containers: '[
-          {
-            "name": "zk-volume",
-            "image": "rawmind/alpine-volume:0.0.2-1",
-            "env": [
-              {
-                name: "SERVICE_UID"
-                value: "1002"
-              },
-             {
-                name: "SERVICE_GID"
-                value: "1002"
-              },
-              {
-                name: "SERVICE_VOLUME"
-                value: "${zk_data_dir}"
-              },
-            ]
-
-            "volumeMounts": [
-              {
-                "name": "zk-data",
-                "mountPath": "${zk_data_dir}"
-              }
-            ]
-          }
-        ]'
     spec:
       containers:
         - name: "zk-conf"
