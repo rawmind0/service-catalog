@@ -36,4 +36,3 @@ traefik-conf:
   net: none
   volumes:
     - /opt/tools
-

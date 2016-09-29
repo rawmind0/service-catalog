@@ -20,7 +20,7 @@
 - acme_ondemand = true 				# acme ondemand parameter.
 - ssl_key # Paste your ssl key. *Required if you enable https
 - ssl_crt # Paste your ssl crt. *Required if you enable https
-- refresh_interval = 60s  # Interval to refresh traefik rules.toml from rancher-metadata.
+- refresh_interval = 10s  # Interval to refresh traefik rules.toml from rancher-metadata.
 
 ### Service configuration labels:
 
@@ -28,10 +28,10 @@ Traefik labels has to be added in your services, in order to get included in tra
 
 - traefik.enable = <true | false> 
   - true: the service will be published as *service_name.stack_name.traefik_domain*
-  - stack: the service will be published as *stack_name.domain*. WARNING: You can have collisions inside services within yout stack
+  - stack: the service will be published as *stack_name.traefik_domain*. WARNING: You could have collisions inside services within your stack
   - false: the service will not be published
-- traefik.domain = < domain names to route rule. Multiple values separated by "," > 
-- traefik.port = < port to expose throught traefik >  
+- traefik.domain = < domain >		# Domain names to route rule. Multiple values separated by "," > 
+- traefik.port = < port > 			# Port to expose throught traefik  
 - traefik.acme = < true | false >	# Enable/disable ACME traefik feature
  
 ### Usage:
@@ -42,10 +42,14 @@ Traefik labels has to be added in your services, in order to get included in tra
 
  Click deploy.
 
- Services will be accessed throught hosts whith traefik_lb=true at: 
+ Services will be accessed throught hosts ip's whith $host_label: 
+
  - http://${service_name}.${stack_name}.${traefik.domain}:${http_port}
  - https://${service_name}.${stack_name}.${traefik.domain}:${https_port}
+ 
  or 
+ 
  - http://${stack_name}.${traefik.domain}:${http_port}
  - https://${stack_name}.${traefik.domain}:${https_port}
 
+Note: To access the services, you need to create A or CNAMES dns entries for every one. 
