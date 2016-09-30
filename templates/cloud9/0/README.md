@@ -14,7 +14,7 @@
 - cloud9_user=test			# Basic auth user
 - cloud9_pass=test1234		# Basic auth password
 - cloud9_port=8080			# Port to listen
-- cloud9_repo="" 			# Git repo to sync in your environment
+- cloud9_repo="" 			# Optional: Git repo to sync in your environment
 - cloud9_publish=stack		# Publish the service in traefik
 - cloud9_domain=dev.local 	# Publish service domain
 
