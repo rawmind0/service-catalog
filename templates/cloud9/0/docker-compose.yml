@@ -5,3 +5,7 @@ cloud9-sdk:
   volumes:
     - "/var/run/docker.sock:/var/run/docker.sock"
     - "/usr/local/bin/docker:/bin/docker"
+  labels:
+    traefik.domain: ml.innotechapp.com
+    traefik.port: ${cloud9_port}
+    traefik.enable: stack
