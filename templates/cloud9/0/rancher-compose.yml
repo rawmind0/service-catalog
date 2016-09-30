@@ -7,26 +7,26 @@
   maintainer: "Raul Sanchez <rawmind@gmail.com>"
   uuid: cloud9-0
   questions:
-    - variable: "cloud9_port"
-      description: "Cloud 9 port to listen"
-      label: "Cloud9 port:"
-      required: true
-      default: "8080"
-      type: "int"
     - variable: "cloud9_user"
       description: |
-        Cloud9 username. 
+        Username. 
       label: "Username:"
       default: "test"
       required: true
       type: "string"
     - variable: "cloud9_pass"
       description: |
-        Cloud9 password. 
+        Password. 
       label: "Password:"
       default: "test1234"
       required: true
       type: "string"
+    - variable: "cloud9_port"
+      description: "Port to listen"
+      label: "Port:"
+      required: true
+      default: "8080"
+      type: "int"
 cloud9-sdk:
   scale: 1
   retain_ip: true
