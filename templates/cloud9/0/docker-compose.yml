@@ -1,11 +1,14 @@
 cloud9-sdk:
   command: "--listen 0.0.0.0 --port ${cloud9_port} -w /workspace --collab --auth ${cloud9_user}:${cloud9_pass}"
-  image: "damnhandy/cloud9-sdk"
+  image: "rawmind/cloud9-sdk:test"
   restart: "always"
   volumes:
     - "/var/run/docker.sock:/var/run/docker.sock"
     - "/usr/local/bin/docker:/bin/docker"
+    - "/workspace"
+  environment:
+    GIT_REPO: ${cloud9_repo}
   labels:
-    traefik.domain: ml.innotechapp.com
+    traefik.domain: ${cloud9_domain}
     traefik.port: ${cloud9_port}
-    traefik.enable: stack
+    traefik.enable: ${cloud9_publish}

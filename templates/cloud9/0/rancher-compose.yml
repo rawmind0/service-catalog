@@ -27,6 +27,28 @@
       required: true
       default: "8080"
       type: "int"
+    - variable: "cloud9_repo"
+      description: "Git repo to sync"
+      label: "Git repo:"
+      required: false
+      default: ""
+      type: "string"
+    - variable: "cloud9_publish"
+      label: "Publish:"
+      description: "Publish service to traefik."
+      default: stack
+      required: true
+      type: enum
+      options:
+        - false
+        - true
+        - stack
+    - variable: "cloud9_domain"
+      description: "Publish service domain"
+      label: "Publish domain:"
+      required: true
+      default: "dev.local"
+      type: "string"
 cloud9-sdk:
   scale: 1
   retain_ip: true
