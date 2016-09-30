@@ -1,0 +1,40 @@
+.catalog:
+  name: Cloud9
+  description: |
+    (Experimental) Cloud 9 SDK 
+  version: 3.0-rancher1
+  minimum_rancher_version: v1.0.0
+  maintainer: "Raul Sanchez <rawmind@gmail.com>"
+  uuid: cloud9-0
+  questions:
+    - variable: "cloud9_port"
+      description: "Cloud 9 port to listen"
+      label: "Cloud9 port:"
+      required: true
+      default: "8080"
+      type: "int"
+      ${cloud9_user}:${cloud9_pass}
+    - variable: "cloud9_user"
+      description: |
+        Cloud9 username. 
+      label: "Username:"
+      default: "test"
+      required: true
+      type: "string"
+    - variable: "cloud9_pass"
+      description: |
+        Cloud9 password. 
+      label: "Password:"
+      default: "test1234"
+      required: true
+      type: "string"
+skydns:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: ${cloud9_port}
+    interval: 5000
+    unhealthy_threshold: 3
+    request_line: ''
+    healthy_threshold: 2
+    response_timeout: 5000
