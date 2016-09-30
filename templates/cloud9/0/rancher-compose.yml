@@ -13,7 +13,6 @@
       required: true
       default: "8080"
       type: "int"
-      ${cloud9_user}:${cloud9_pass}
     - variable: "cloud9_user"
       description: |
         Cloud9 username. 
@@ -28,7 +27,7 @@
       default: "test1234"
       required: true
       type: "string"
-skydns:
+cloud9-sdk:
   scale: 1
   retain_ip: true
   health_check:
