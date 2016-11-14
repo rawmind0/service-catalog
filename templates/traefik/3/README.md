@@ -30,8 +30,8 @@ Traefik labels has to be added in your services, in order to get included in tra
   - true: the service will be published as *service_name.stack_name.traefik_domain*
   - stack: the service will be published as *stack_name.traefik_domain*. WARNING: You could have collisions inside services within your stack
   - false: the service will not be published
-- traefik.domain = < domain >		# Domain names to route rule. Multiple values separated by "," > 
-- traefik.path = < path >		    # Path to route rule > 
+- traefik.domain = < domain >		# Domain names to route rule. Multiple values separated by "," 
+- traefik.path = < path >		    # Path to route rule. Multiple domains separated by ","
 - traefik.port = < port > 			# Port to expose throught traefik  
 - traefik.acme = < true | false >	# Enable/disable ACME traefik feature
  
