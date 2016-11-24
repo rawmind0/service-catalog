@@ -1,12 +1,11 @@
 apiVersion: v1
-kind: ReplicationController
+kind: DaemonSet
 metadata:
   namespace: ${NAMESPACE}
   name: traefik-ingress-controller
   labels:
     k8s-app: traefik-ingress
 spec:
-  replicas: ${REPLICAS}
   selector:
     k8s-app: traefik-ingress
   template:
@@ -31,4 +30,4 @@ spec:
         - --kubernetes
         #- --logLevel=DEBUG
       nodeSelector:
-        traefik_lb: "true"
+        ${node_selector}

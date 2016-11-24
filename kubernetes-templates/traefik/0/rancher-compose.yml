@@ -12,6 +12,12 @@
       label: Kubernetes Namespace
       required: true
       type: string
+    - variable: "node_selector"
+      description: "Host label where to run traefik service."
+      label: "Node selector:"
+      required: true
+      default: "traefik_lb: true"
+      type: "string"
     - variable: REPLICAS
       description: Usually match the number of nodes with label traefik_lb=true
       default: 1

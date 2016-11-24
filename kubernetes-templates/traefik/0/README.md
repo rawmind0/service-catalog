@@ -7,6 +7,7 @@
 ### Config:
 
 - Replicas: Number of pods to deploy. It should be the same of hosts whith traefik_lb=true
+- host_label: "traefik_lb=true" # Host label where to run traefik service.
 - Kubernetes Namespace = Kubernetes namespace to deploy de repservers lication controller
 - Http port = 80  # Port exposed to get access to the published services.
 - Https port = 443  # Port exposed to get access to the published services.
