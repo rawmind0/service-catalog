@@ -5,6 +5,8 @@ vamp-gateway:
   tty: true
   image: magneticio/vamp-gateway-agent_1.6.4:0.8.5
   labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.scheduler.affinity:host_label: ${host_label}
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
   command: ["-logstashHost", "logstash", "-logstashPort", "${vga_logstash_port}", "-storeConnection", "${vga_key_type}:${vga_key_port}", "-storeType", "${vga_key_type}"]

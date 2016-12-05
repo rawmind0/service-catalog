@@ -13,7 +13,7 @@
 
  Change the following vamp default parameters, if you need:
 
- - vga_scale: "1"				#Number of vga's to deploy.
+ - host_label = "vga=true"      #Host label where to run vamp gateway agent.
  - vga_key_type: "zookeeper"	#Vga key store backend: zookeeper | etcd | consul
  - vga_key_port: "2181"			#Vga key port to connect to
  - vga_key: "zookeeper/zk"		#Vga key service to link to (Must be deployed before from the catalog)

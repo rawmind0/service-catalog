@@ -7,12 +7,12 @@
   maintainer: "Raul Sanchez <rawmind@gmail.com>"
   uuid: vga-0
   questions:
-    - variable: "vga_scale"
-      description: "Number of vga nodes."
-      label: "Vga Nodes:"
+    - variable: "host_label"
+      description: "Host label where to run vamp gateway agent."
+      label: "Host label:"
       required: true
-      default: 1
-      type: "int"
+      default: "vga=true" 
+      type: "string"
     - variable: "vga_key_type"
       label: "Vga key type:"
       description: |
