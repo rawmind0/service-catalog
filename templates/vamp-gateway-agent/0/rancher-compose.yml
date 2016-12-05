@@ -3,7 +3,7 @@
   version: 0.8.5-rancher1
   description: |
     (Experimental) Vamp gateway agent (vga).
-  minimum_rancher_version: v0.56.0
+  minimum_rancher_version: v0.59.0
   maintainer: "Raul Sanchez <raul.sanchez.liebana@bbva.com>"
   uuid: vga-0
   questions:

@@ -4,5 +4,4 @@ description: |
 version: 0.9.1-rancher1
 category: clustering
 maintainer: "Raul Sanchez <raul.sanchez.liebana@bbva.com>"
-minimum_rancher_version: v0.59.0
 license: 
