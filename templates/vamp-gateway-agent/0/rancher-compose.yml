@@ -4,7 +4,6 @@
   description: |
     (Experimental) Vamp gateway agent (vga).
   minimum_rancher_version: v0.59.0
-  maintainer: "Raul Sanchez <rawmind@gmail.com>"
   uuid: vga-0
   questions:
     - variable: "vga_scale"
