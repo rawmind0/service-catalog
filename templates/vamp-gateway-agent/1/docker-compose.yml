@@ -9,4 +9,4 @@ vamp-gateway:
     io.rancher.container.hostname_override: container_name
   tty: true
   image: magneticio/vamp-gateway-agent:0.9.1
-  command: ["-logstashHost", "logstash", "-logstashPort", "${vga_logstash_port}", "-storeConnection", "${vga_key_type}:${vga_key_port}", "-storeType", "${vga_key_type}"]
+  command: ["-logstash", "logstash:${vga_logstash_port}", "-storeConnection", "${vga_key_type}:${vga_key_port}", "-storeType", "${vga_key_type}"]
