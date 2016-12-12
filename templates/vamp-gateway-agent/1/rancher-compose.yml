@@ -51,7 +51,6 @@
       required: true
       type: "service"
 vamp-gateway:
-  scale: ${vga_scale}
   retain_ip: true
   health_check:
     port: 1988
