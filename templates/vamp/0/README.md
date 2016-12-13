@@ -25,6 +25,8 @@
  - host_label: "vga=true" 		#Host label where to run vamp gateway agents
  - vamp_logstash : "logstash/logstash-collector"	#Vamp logstash service to link (Must be deployed before from the catalog)
  - vamp_logstash_port: "10001"	#Vamp logstash port to link
+ - vamp_publish: true		# Publish the service in traefik
+ - vamp_domain: dev.local 	# Publish service domain in traefik
  
  Click deploy.
  
