@@ -107,7 +107,7 @@
     - variable: "vamp_publish"
       label: "Publish:"
       description: "Publish service to traefik."
-      default: stack
+      default: true
       required: true
       type: enum
       options:
