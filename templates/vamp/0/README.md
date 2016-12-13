@@ -22,6 +22,9 @@
  - vamp_db_type: "elasticsearch"	#Vamp db backend: elasticsearch
  - vamp_db_port: "9200"			#Vamp db port to connect to
  - vamp_db: "elasticsearch/elasticsearch-masters"	#Vamp db service to link to (Must be deployed before from the catalog)
+ - host_label: "vga=true" 		#Host label where to run vamp gateway agents
+ - vamp_logstash : "logstash/logstash-collector"	#Vamp logstash service to link (Must be deployed before from the catalog)
+ - vamp_logstash_port: "10001"	#Vamp logstash port to link
  
  Click deploy.
  

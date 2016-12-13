@@ -31,7 +31,7 @@
         http://<rancher_server>/env/XXXXX/catalog/ml:vamp?catalogId=ml
       label: "Vamp driver env id"
       default: "<XXXXX>"
-      required: true
+      required: false
       type: "string"
     - variable: "vamp_key_type"
       label: "Vamp key type:"
@@ -85,6 +85,34 @@
       default: "elasticsearch/elasticsearch-masters"
       required: true
       type: "service"
+    - variable: "host_label"
+      description: "Host label where to run vamp gateway agent."
+      label: "Host label:"
+      required: true
+      default: "vga=true" 
+      type: "string"
+    - variable: "vamp_logstash"
+      description: |
+        Choose the logstash service to use.
+      label: "Logstash stack/service"
+      default: "logstash/logstash-collector"
+      required: true
+      type: "service"
+    - variable: "vamp_logstash_port"
+      description: "Vga port to connect to logstash"
+      label: "Vga logstash port:"
+      required: true
+      default: 10001
+      type: "int"
+vamp-gateway:
+  retain_ip: true
+  health_check:
+    port: 1988
+    interval: 5000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 5000
 vamp:
   scale: 1
   retain_ip: true

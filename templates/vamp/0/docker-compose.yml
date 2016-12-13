@@ -12,17 +12,21 @@ vamp:
   - ${vamp_key}:${vamp_key_type}
   - ${vamp_db}:${vamp_db_type}
   tty: true
-  image: rawmind/alpine-vamp:0.9.1
+  image: rawmind/alpine-vamp:0.9.1-2
   labels:
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
     io.rancher.container.create_agent: true
     io.rancher.container.agent.role: environment
-vamp-ui:
+vamp-gateway:
   external_links:
-  - vamp:vamp
-  tty: true
-  image: rawmind/alpine-vamp-ui:0.9.1-1
+  - ${vamp_key}:${vamp_key_type}
+  - ${vamp_logstash}:logstash
   labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.scheduler.affinity:host_label: ${host_label}
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
+  tty: true
+  image: magneticio/vamp-gateway-agent:0.9.1
+  command: ["-logstash", "logstash:${vamp_logstash_port}", "-storeConnection", "${vamp_key_type}:${vamp_key_port}", "-storeType", "${vamp_key_type}"]
