@@ -70,7 +70,7 @@
       required: true
       default: "dev.local"
       type: "string"
-broker:
+kafka-manager:
   scale: 1
   retain_ip: true
   health_check:
