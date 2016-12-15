@@ -7,8 +7,8 @@ metadata:
     name: "${cloud9_name}"
 spec:
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: ${cloud9_port}
+    targetPort: ${cloud9_port}
     name: "cloud9-port"
     protocol: "TCP"
   selector:

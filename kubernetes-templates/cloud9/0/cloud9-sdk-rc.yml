@@ -29,12 +29,12 @@ spec:
             - mountPath: "/workspace"
               name: "cloud9-data"
           ports:
-            - containerPort: 8080
+            - containerPort: ${cloud9_port}
               name: "cloud9-port"
               protocol: "TCP"
           args:
             - --listen 0.0.0.0 
-            - --port 8080 
+            - --port ${cloud9_port} 
             - -w /workspace 
             - --collab 
             - --auth ${cloud9_user}:${cloud9_pass}

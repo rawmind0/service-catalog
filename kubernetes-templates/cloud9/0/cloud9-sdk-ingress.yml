@@ -10,4 +10,4 @@ spec:
       paths:
       - backend:
           serviceName: ${cloud9_name}
-          servicePort: 8080
+          servicePort: ${cloud9_port}
