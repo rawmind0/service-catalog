@@ -15,10 +15,6 @@
           port => 5000
           codec => "json"
         }
-        tcp {
-          port => 6000
-          codec => "json"
-        }
     - variable: "indexer_filters"
       description: |
         Logstash indexing tier filters. These will be added
@@ -36,9 +32,10 @@
       required: true
       default: |
         elasticsearch {
-          host => "elasticsearch"
-          protocol => "http"
-          index => "logstash-%{+YYYY.MM.dd}"
+          hosts => ["elasticsearch.rancher.internal:9200"]
+        }
+        stdout {
+          codec => rubydebug
         }
     - variable: "elasticsearch_link"
       description: |
@@ -53,7 +50,7 @@ logstash-indexer:
     logstash:
       inputs: |
         redis {
-          host => "redis"
+          host => "redis.rancher.internal"
           port => "6379"
           data_type => "list"
           key => "logstash"
@@ -69,7 +66,7 @@ logstash-collector:
         ${collector_inputs}
       outputs: |
         redis {
-          host => "redis"
+          host => "redis.rancher.internal"
           port => "6379"
           data_type => "list"
           key => "logstash"

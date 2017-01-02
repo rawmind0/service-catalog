@@ -36,7 +36,7 @@
       required: true
       default: |
         elasticsearch {
-          host => "elasticsearch"
+          host => "elasticsearch.rancher.internal"
           protocol => "http"
           index => "logstash-%{+YYYY.MM.dd}"
         }
@@ -53,7 +53,7 @@ logstash-indexer:
     logstash:
       inputs: |
         redis {
-          host => "redis"
+          host => "redis.rancher.internal"
           port => "6379"
           data_type => "list"
           key => "logstash"
@@ -69,7 +69,7 @@ logstash-collector:
         ${collector_inputs}
       outputs: |
         redis {
-          host => "redis"
+          host => "redis.rancher.internal"
           port => "6379"
           data_type => "list"
           key => "logstash"
