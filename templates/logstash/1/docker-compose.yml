@@ -1,6 +1,7 @@
 logstash-indexer-config:
   restart: always
   image: rancher/logstash-config:v0.2.0
+  net: none
   labels:
     io.rancher.container.hostname_override: container_name
 redis:
@@ -31,6 +32,7 @@ logstash-indexer:
 logstash-collector-config:
   restart: always
   image: rancher/logstash-config:v0.2.0
+  net: none
   labels:
     io.rancher.container.hostname_override: container_name
 logstash-collector:
