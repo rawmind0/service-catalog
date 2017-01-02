@@ -36,7 +36,7 @@
       required: true
       default: |
         elasticsearch {
-          host => "elasticsearch.rancher.internal"
+          hosts => ["elasticsearch.rancher.internal:9200"]
           protocol => "http"
           index => "logstash-%{+YYYY.MM.dd}"
         }
