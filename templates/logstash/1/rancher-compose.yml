@@ -15,10 +15,6 @@
           port => 5000
           codec => "json"
         }
-        tcp {
-          port => 6000
-          codec => "json"
-        }
     - variable: "indexer_filters"
       description: |
         Logstash indexing tier filters. These will be added
