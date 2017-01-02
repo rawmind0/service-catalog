@@ -2,9 +2,11 @@ vamp:
   environment:
     VAMP_DB_TYPE: "${vamp_db_type}"
     VAMP_DB_PORT: "${vamp_db_port}"
+    VAMP_DB_URL: "http://${vamp_db_type}.rancher.internal:${vamp_db_port}"
     VAMP_KEY_TYPE: "${vamp_key_type}"
     VAMP_KEY_PORT: "${vamp_key_port}"
     VAMP_KEY_PATH: "${vamp_key_path}"
+    VAMP_KEY_SERVERS: "${vamp_key_type}.rancher.internal:${vamp_key_port}"
     VAMP_HEAP_OPTS: "-Xmx${vamp_mem}G -Xms${vamp_mem}G"
     VAMP_DRIVER: "${vamp_driver}"
     VAMP_DRIVER_URL: "${vamp_driver_url}"
