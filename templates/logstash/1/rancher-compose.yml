@@ -37,8 +37,9 @@
       default: |
         elasticsearch {
           hosts => ["elasticsearch.rancher.internal:9200"]
-          protocol => "http"
-          index => "logstash-%{+YYYY.MM.dd}"
+        }
+        stdout {
+          codec => rubydebug
         }
     - variable: "elasticsearch_link"
       description: |
