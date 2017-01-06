@@ -33,9 +33,13 @@ Traefik labels has to be added in your services, in order to get included in tra
   - false: the service will not be published
 - traefik.alias = < alias >			# Alternate names to route rule. Multiple values separated by ",". WARNING: You could have collisions BE CAREFULL
 - traefik.domain = < domain >		# Domain names to route rule. Multiple values separated by "," 
-- traefik.path = < path >		    # Path to route rule. Multiple paths separated by ","
 - traefik.port = < port > 			# Port to expose throught traefik  
 - traefik.acme = < true | false >	# Enable/disable ACME traefik feature
+- traefik.path = < path >		    		# Path rule. Multiple values separated by ","
+- traefik.path.strip = < path >		       	# Path strip rule. Multiple values separated by ","
+- traefik.path.prefix = < path >	       	# Path prefix rule. Multiple values separated by ","
+- traefik.path.prefix.strip = < path >	   	# Path prefix strip rule. Multiple values separated by ","
+
  
 ### Usage:
 
