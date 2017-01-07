@@ -40,6 +40,7 @@ Traefik labels has to be added in your services, in order to get included in tra
 - traefik.path.prefix = < path >	       	# Path prefix rule. Multiple values separated by ","
 - traefik.path.prefix.strip = < path >	   	# Path prefix strip rule. Multiple values separated by ","
 
+Details for configuring the traefik rules can be found at: https://docs.traefik.io/basics/#frontends
  
 ### Usage:
 
