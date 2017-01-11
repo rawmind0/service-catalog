@@ -10,6 +10,8 @@ traefik:
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.sidekicks: traefik-conf
     io.rancher.container.hostname_override: container_name
+    io.rancher.container.create_agent: true
+    io.rancher.container.agent.role: environment
   tty: true
   log_opt: {}
   image: rawmind/alpine-traefik:1.1.2-1
