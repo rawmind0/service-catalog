@@ -18,6 +18,7 @@ traefik:
   - TRAEFIK_HTTP_PORT=${http_port}
   - TRAEFIK_HTTPS_PORT=${https_port}
   - TRAEFIK_HTTPS_ENABLE=${https_enable}
+  - TRAEFIK_HTTPS_CERT=${https_cert}
   - TRAEFIK_ACME_ENABLE=${acme_enable}
   - TRAEFIK_ACME_EMAIL=${acme_email}
   - TRAEFIK_ACME_ONDEMAND=${acme_ondemand}
@@ -33,7 +34,7 @@ traefik-conf:
     io.rancher.container.start_once: 'true'
   tty: true
   log_opt: {}
-  image: rawmind/rancher-traefik:0.3.4-15
+  image: rawmind/rancher-traefik:0.3.4-16
   net: none
   volumes:
     - /opt/tools

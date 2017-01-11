@@ -42,6 +42,11 @@
         - false
         - true
         - only
+    - variable: "https_cert"
+      label: "Certificate"
+      description: "SSL certificate to use"
+      required: true
+      type: "certificate"
     - variable: "acme_enable"
       description: "Enable acme support on traefik."
       label: "Enable ACME:"
@@ -66,18 +71,6 @@
       required: true
       default: true 
       type: "boolean"
-    - variable: "ssl_key"
-      description: "SSL key to secure the service. *Required if you enable https"
-      label: "SSL key"
-      type: "multiline"
-      required: false
-      default: ""
-    - variable: "ssl_crt"
-      description: "SSL cert to secure the service. *Required if you enable https"
-      label: "SSL crt"
-      type: "multiline"
-      required: false
-      default: ""
     - variable: "refresh_interval"
       description: "Interval to poll/apply configuration changes." 
       label: "Refresh Interval (s):"
