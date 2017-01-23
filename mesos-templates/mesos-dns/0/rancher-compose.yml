@@ -1,0 +1,40 @@
+.catalog:
+  name: mesos-dns
+  version: v0.6.0-rancher1
+  description: |
+    (Experimental) Mesos-dns.
+  minimum_rancher_version: v0.59.0
+  maintainer: "Raul Sanchez <rawmind@gmail.com>"
+  uuid: mesos-dns-0
+  questions:
+    - variable: "mesos_zk"
+      description: |
+        Choose the Zookeeper service to use. 
+      label: "Zookeeper stack/service"
+      default: "mesos/zookeeper"
+      required: true
+      type: "service"
+    - variable: "mesos_master"
+      description: |
+        Choose the mesos master service to use. 
+      label: "Mesos-master stack/service"
+      default: "mesos/mesos-master"
+      required: true
+      type: "service"
+    - variable: "mesos_domain"
+      description: "Mesos domain."
+      label: "Mesos domain:"
+      required: true
+      default: "mesos" 
+      type: "string"
+    - variable: "mesos_scale"
+      description: "Mesos-dns scale."
+      label: "Mesos scale:"
+      required: true
+      default: "1" 
+      type: "int"
+mesos-dns:
+  retain_ip: true
+  scale: ${mesos_scale}
+
+
