@@ -7,20 +7,6 @@
   maintainer: "Raul Sanchez <rawmind@gmail.com>"
   uuid: mesos-dns-0
   questions:
-    - variable: "mesos_zk"
-      description: |
-        Choose the Zookeeper service to use. 
-      label: "Zookeeper stack/service"
-      default: "mesos/zookeeper"
-      required: true
-      type: "service"
-    - variable: "mesos_master"
-      description: |
-        Choose the mesos master service to use. 
-      label: "Mesos-master stack/service"
-      default: "mesos/mesos-master"
-      required: true
-      type: "service"
     - variable: "mesos_domain"
       description: "Mesos domain."
       label: "Mesos domain:"
