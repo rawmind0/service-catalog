@@ -13,14 +13,8 @@
       required: true
       default: "mesos" 
       type: "string"
-    - variable: "mesos_scale"
-      description: "Mesos-dns scale."
-      label: "Mesos scale:"
-      required: true
-      default: "1" 
-      type: "int"
 mesos-dns:
   retain_ip: true
-  scale: ${mesos_scale}
+
 
 
