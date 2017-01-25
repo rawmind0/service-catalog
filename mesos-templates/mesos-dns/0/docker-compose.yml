@@ -7,7 +7,7 @@ mesos-dns:
   tty: true
   log_opt: {}
   image: rawmind/alpine-mesos-dns:0.6.0-1
-  network_mode: host
+  network: host
   external_links:
   - mesos/zookeeper:zookeeper
   - mesos/mesos-master:master
