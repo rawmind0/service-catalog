@@ -7,6 +7,8 @@ services:
       io.rancher.container.hostname_override: container_name
     tty: true
     image: rawmind/alpine-mesos-dns:0.6.0-2
+    cap_add:
+    - NET_ADMIN
     external_links:
     - mesos/zookeeper:zookeeper
     - mesos/mesos-master:master
@@ -15,6 +17,6 @@ services:
     - MESOS_MASTER="master.mesos:5050"
     - MESOS_DNS_DOMAIN=${mesos_domain}
     - MESOS_DNS_RESOLVERS="169.254.169.250"
-    - MESOS_DNS_LISTENER="169.254.169.251"
-    - LINK_LOCAL_IP="169.254.169.251"
+    - MESOS_DNS_LISTENER="${mesos_localip}"
+    - LINK_LOCAL_IP="${mesos_localip}"
 
