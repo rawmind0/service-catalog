@@ -6,7 +6,7 @@ services:
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
     tty: true
-    image: rawmind/alpine-mesos-dns:0.6.0-2
+    image: rawmind/alpine-mesos-dns:0.6.0-3
     cap_add:
     - NET_ADMIN
     external_links:
