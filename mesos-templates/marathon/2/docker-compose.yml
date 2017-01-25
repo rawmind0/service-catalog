@@ -10,3 +10,9 @@ marathon:
   - "${MARATHON_HTTP_PORT}:${MARATHON_HTTP_PORT}"
   privileged: true
   dns: 169.254.169.251
+  dns_search:
+  - mesos
+  - marathon.mesos
+  - marathon.rancher.internal 
+  - marathon.marathon.rancher.internal 
+  - rancher.internal
