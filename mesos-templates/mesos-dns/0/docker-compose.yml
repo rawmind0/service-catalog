@@ -6,7 +6,8 @@ mesos-dns:
     io.rancher.container.hostname_override: container_name
   tty: true
   log_opt: {}
-  image: rawmind/alpine-mesos-dns:0.6.0
+  image: rawmind/alpine-mesos-dns:0.6.0-1
+  network_mode: host
   external_links:
   - mesos/zookeeper:zookeeper
   - mesos/mesos-master:master
@@ -14,4 +15,6 @@ mesos-dns:
   - MESOS_ZK=zk://zookeeper.mesos:2181/mesos
   - MESOS_MASTER="master.mesos:5050"
   - MESOS_DNS_DOMAIN=${mesos_domain}
+  - MESOS_DNS_RESOLVERS="169.254.169.250"
+  - MESOS_DNS_LISTENER="10.42.0.1"
 
