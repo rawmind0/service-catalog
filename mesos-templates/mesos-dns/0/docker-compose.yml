@@ -6,11 +6,7 @@ services:
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
     tty: true
-    image: rawmind/alpine-mesos-dns:0.6.0-1
-    networks:
-      mesos-dns_net:
-        link_local_ips:
-          - 169.254.169.251
+    image: rawmind/alpine-mesos-dns:0.6.0-2
     external_links:
     - mesos/zookeeper:zookeeper
     - mesos/mesos-master:master
@@ -20,7 +16,5 @@ services:
     - MESOS_DNS_DOMAIN=${mesos_domain}
     - MESOS_DNS_RESOLVERS="169.254.169.250"
     - MESOS_DNS_LISTENER="169.254.169.251"
-networks:
-  mesos-dns_net:
-    driver: bridge
+    - LINK_LOCAL_IP="169.254.169.251"
 
