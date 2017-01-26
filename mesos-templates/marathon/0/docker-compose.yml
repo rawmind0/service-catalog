@@ -1,9 +1,0 @@
-marathon:
-  image: rancher/marathon:v1.1.0
-  environment:
-    ZK_SERVICE: Mesos/zookeeper
-    MESOS_SERVICE: Mesos/mesos-master
-    MARATHON_HTTP_PORT: ${MARATHON_HTTP_PORT}
-  ports:
-  - "${MARATHON_HTTP_PORT}:${MARATHON_HTTP_PORT}"
-  privileged: true
