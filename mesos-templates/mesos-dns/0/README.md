@@ -11,6 +11,7 @@ Mesos-dns will be listening at link_local_ip and will forward dns queries to ran
 To deploy marathon tasks, you need to set network=HOST and set dns=link_local_ip
 
 Marathon json template example
+```
 {
   "id": "NAME",
   "cmd": null,
@@ -42,3 +43,4 @@ Marathon json template example
     }
   ]
 }
+```
