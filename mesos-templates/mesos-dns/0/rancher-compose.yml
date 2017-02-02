@@ -14,10 +14,16 @@
       default: "mesos" 
       type: "string"
     - variable: "mesos_localip"
-      description: "Mesos-dns Link Local Ip."
+      description: "Link Local Ip."
       label: "Mesos LLI:"
       required: true
       default: "169.254.169.251" 
+      type: "string"
+    - variable: "mesos_bridge"
+      description: "Bridge."
+      label: "Mesos bridge:"
+      required: true
+      default: "docker0" 
       type: "string"
 mesos-dns:
   retain_ip: true

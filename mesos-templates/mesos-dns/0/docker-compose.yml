@@ -32,4 +32,4 @@ services:
     - NET_ADMIN
     environment:
     - DESTINATION_IP=${mesos_localip}
-    - BRIDGE=docker0
+    - BRIDGE=${mesos_bridge}
