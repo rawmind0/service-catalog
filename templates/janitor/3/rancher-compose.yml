@@ -28,4 +28,11 @@
       default: "*:*"
       required: false
       type: "string"
+    - variable: "KEEPCN"
+      label: "Keep named containers"
+      description: "A comma separated list of names of exited or dead container that should never be removed. These are left-anchored Bash Shell Wildcard patterns."
+      default: "**None**"
+      required: false
+      type: "string"
 
+ 
