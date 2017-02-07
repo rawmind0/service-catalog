@@ -34,5 +34,14 @@
       default: "**None**"
       required: false
       type: "string"
+    - variable: "DEBUG"
+      label: "Enable more debugging output on pattern matches"
+      description: "Read https://github.com/meltwater/docker-cleanup#environment-variables"
+      required: false
+      default: 0
+      type: "enum"
+      options:
+        - 0
+        - 1
 
  
