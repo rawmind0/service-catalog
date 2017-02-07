@@ -1,0 +1,10 @@
+.catalog:
+  name: "Weave Cloud Suite"
+  description: "All you need to implement Continuous Delivery with hosted Prometheus monitoring and visual distributed system analysis/debug tools"
+  version: "latest"
+  questions:
+    - variable: "WEAVE_CLOUD_SERVICE_TOKEN"
+      description: "Service authentication toke for you Weave Cloud instance, signup at https://cloud.weave.works"
+      label: "Weave Cloud service token"
+      required: true
+      type: "string"
