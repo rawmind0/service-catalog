@@ -43,5 +43,13 @@
       options:
         - 0
         - 1
-
+     - variable: "LOOP"
+      label: "Ability to do non-looped cleanups, run it once and exit. Defaults to yes to run it forever in loops."
+      description: "Read https://github.com/meltwater/docker-cleanup#environment-variables"
+      required: false
+      default: "true"
+      type: "enum"
+      options:
+        - "false"
+        - "true"
  
