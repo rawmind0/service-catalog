@@ -5,7 +5,7 @@ allinone:
     privileged: true
     environment:
         - affinity:com.myself.name!=neuvector
-        - CLUSTER_JOIN_ADDR=allinone.${stack_name}.rancher.internal
+        - CLUSTER_JOIN_ADDR=allinone.neuvector.rancher.internal
     ports:
         - 18300:18300
         - 18301:18301
@@ -26,7 +26,7 @@ enforcer:
     privileged: true
     environment:
         - affinity:com.myself.name!=neuvector
-        - CLUSTER_JOIN_ADDR=allinone.${stack_name}.rancher.internal
+        - CLUSTER_JOIN_ADDR=allinone.neuvector.rancher.internal
     ports:
         - 18301:18301
         - 18301:18301/udp
