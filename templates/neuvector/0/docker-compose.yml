@@ -6,6 +6,7 @@ allinone:
     environment:
         - affinity:com.myself.name!=neuvector
         - CLUSTER_JOIN_ADDR=allinone
+    ports:
         - 18300:18300
         - 18301:18301
         - 18301:18301/udp
