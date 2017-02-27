@@ -31,7 +31,11 @@ Traefik labels has to be added in your services, in order to get included in tra
   - true: the service will be published as *service_name.stack_name.traefik_domain*
   - stack: the service will be published as *stack_name.traefik_domain*. WARNING: You could have collisions inside services within your stack
   - false: the service will not be published
-- traefik.alias = < alias >			# Alternate names to route rule. Multiple values separated by ",". WARNING: You could have collisions BE CAREFULL
+- traefik.priority = <priority>     	  	# Override for frontend priority. 5 by default
+- traefik.protocol = < http | https	>		# Override the default http protocol
+- traefik.sticky = < true | false	>		# Enable/disable sticky sessions to the backend
+- traefik.alias = < alias >					# Alternate names to route rule. Multiple values separated by ",". traefik.domain is appended. WARNING: You could have collisions BE CAREFULL
+- traefik.alias.fqdn = < alias fqdn >					# Alternate names to route rule. Multiple values separated by ",". traefik.domain must be defined but is not appended here.
 - traefik.domain = < domain >		# Domain names to route rule. Multiple values separated by "," 
 - traefik.port = < port > 			# Port to expose throught traefik  
 - traefik.acme = < true | false >	# Enable/disable ACME traefik feature
@@ -39,6 +43,7 @@ Traefik labels has to be added in your services, in order to get included in tra
 - traefik.path.strip = < path >		       	# Path strip rule. Multiple values separated by ","
 - traefik.path.prefix = < path >	       	# Path prefix rule. Multiple values separated by ","
 - traefik.path.prefix.strip = < path >	   	# Path prefix strip rule. Multiple values separated by ","
+- traefik.sticky = < true | false >	# Enable/disable traefik sticky bit feature
 
 Details for configuring the traefik rules can be found at: https://docs.traefik.io/basics/#frontends
 
