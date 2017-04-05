@@ -7,10 +7,19 @@
   maintainer: "Raul Sanchez <rawmind@gmail.com>"
   uuid: influxdb-0
   questions:
+    - variable: "EXPOSE_SERVICE"
+      description: "Expose Influxdb port"
+      label: "Expose influxdb port"
+      required: true
+      type: enum
+      default: "true"
+      options:
+        - "true"
+        - "false"
     - variable: "influxdb_port"
       description: |
         Port to expose. 
-      label: "Port:"
+      label: "Influxdb port:"
       default: "8086"
       required: true
       type: "int"

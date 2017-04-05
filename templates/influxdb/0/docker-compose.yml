@@ -1,5 +1,6 @@
 version: '2'
 services:
+{{- if eq .Values.EXPOSE_SERVICE "true"}}
   lb:
     image: rancher/lb-service-haproxy:v0.6.2
     ports:
@@ -7,6 +8,7 @@ services:
     labels:
       io.rancher.container.agent.role: environmentAdmin
       io.rancher.container.create_agent: 'true'
+{{- end}}
   influxdb:
     image: influxdb:1.2.2-alpine
     stdin_open: true
@@ -31,3 +33,4 @@ services:
       - /var/lib/influxdb
     volume_driver: local
     image: rawmind/alpine-volume:0.0.2-1
+
