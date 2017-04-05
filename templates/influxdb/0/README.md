@@ -16,5 +16,5 @@
 
  Click deploy.
  
- Influxdb can now be accessed over the Rancher network. 
+ Influxdb can now be accessed over the Rancher network and over exposed port.
 
