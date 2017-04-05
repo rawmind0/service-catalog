@@ -1,4 +1,4 @@
-# Influxdb (Experimental)
+# Influxdb
 
 ### Info:
 
@@ -7,18 +7,13 @@
  
 ### Usage:
 
- Select cloud9 from catalog. 
+ Select influxdb from catalog. 
 
  Change the following cloud9 default parameters, if you need:
 
-- cloud9_user=test			# Basic auth user
-- cloud9_pass=test1234		# Basic auth password
-- cloud9_port=8080			# Port to listen
-- cloud9_repo="" 			# Optional: Git repo to sync in your environment
-- cloud9_publish=stack		# Publish the service in traefik
-- cloud9_domain=dev.local 	# Publish service domain
+- Port=8086			# Influxdb exposed port
 
  Click deploy.
  
- Cloud9 can now be accessed over the Rancher network. 
+ Influxdb can now be accessed over the Rancher network. 
 

@@ -1,7 +1,7 @@
 name: Influxdb
 description: |
-  (Experimental) Influxdb 
-version: 1.2-rancher1
+  Influxdb 
+version: 1.2.2-rancher1
 category: Database
 maintainer: "Raul Sanchez <rawmind@gmail.com>"
 license: 
