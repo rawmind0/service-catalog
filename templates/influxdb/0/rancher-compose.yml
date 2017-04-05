@@ -8,8 +8,8 @@
   uuid: influxdb-0
   questions:
     - variable: "EXPOSE_SERVICE"
-      description: "Expose Influxdb port"
-      label: "Expose influxdb port"
+      description: "Expose Influxdb"
+      label: "Expose influxdb:"
       required: true
       type: enum
       default: "true"

@@ -11,7 +11,8 @@
 
  Change the following cloud9 default parameters, if you need:
 
-- Port=8086			# Influxdb exposed port
+- Expose influxdb=true		# Exposed influxdb service
+- Influxdb port=8086		# Influxdb exposed port
 
  Click deploy.
  
