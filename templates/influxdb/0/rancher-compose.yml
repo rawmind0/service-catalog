@@ -43,5 +43,4 @@ services:
       port: 8086
       unhealthy_threshold: 3
       interval: 2000
-      request_line: GET / HTTP/1.0
 
