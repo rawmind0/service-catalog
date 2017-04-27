@@ -10,8 +10,6 @@ traefik:
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.sidekicks: traefik-conf
     io.rancher.container.hostname_override: container_name
-    io.rancher.container.create_agent: true
-    io.rancher.container.agent.role: system
   tty: true
   log_opt: {}
   image: rawmind/alpine-traefik:1.2.3-1
@@ -20,7 +18,6 @@ traefik:
   - TRAEFIK_HTTP_PORT=${http_port}
   - TRAEFIK_HTTPS_PORT=${https_port}
   - TRAEFIK_HTTPS_ENABLE=${https_enable}
-  - TRAEFIK_HTTPS_CERT=${https_cert}
   - TRAEFIK_ACME_ENABLE=${acme_enable}
   - TRAEFIK_ACME_EMAIL=${acme_email}
   - TRAEFIK_ACME_ONDEMAND=${acme_ondemand}
