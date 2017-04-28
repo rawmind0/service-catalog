@@ -102,14 +102,14 @@ services:
     lb_config:
       certs: []
       port_rules:
-      - priority: 1
-        protocol: http
+      - protocol: http
         service: server
         source_port: ${host_port}
         target_port: 8000
     health_check:
-      response_timeout: 2000
       healthy_threshold: 2
+      response_timeout: 2000
       port: 42
       unhealthy_threshold: 3
       interval: 2000
+      strategy: recreate
