@@ -1,8 +1,8 @@
 version: 2
 catalog:
   name: Drone
-  version: 0.6.0
-  upgrade_from: 0.6.0
+  version: 0.6-rancher
+  upgrade_from: 0.6-rancher
   description: |
     Drone CI Server ref http://readme.drone.io/admin/installation-guide/
   questions:
@@ -39,7 +39,10 @@ catalog:
         Users self register. http://readme.drone.io/admin/user-registration/
       required: true
       default: true
-      type: boolean
+      type: enum
+      options:
+        - true
+        - false
     - variable: drone_admin
       label: Drone Admin
       description: List of admins for drone coma seperated. http://readme.drone.io/admin/user-admins/
