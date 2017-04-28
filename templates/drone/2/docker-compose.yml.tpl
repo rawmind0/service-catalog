@@ -22,6 +22,7 @@ services:
       DRONE_SECRET: ${drone_secret}
       DRONE_OPEN: ${drone_open}
       DRONE_ADMIN: ${drone_admins}
+      DRONE_ORGS: ${drone_orgs}
 {{- if eq .Values.drone_driver "github"}}
       DRONE_GITHUB: true
       DRONE_GITHUB_CLIENT: ${drone_driver_client}
@@ -44,7 +45,6 @@ services:
 {{- end}}
       DATABASE_DRIVER: ${database_driver}
       DATABASE_CONFIG: ${database_link}
-      DRONE_ORGS: ${drone_orgs}
     stdin_open: true
     tty: true
     labels:
