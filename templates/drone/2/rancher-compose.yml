@@ -20,14 +20,14 @@ catalog:
       default: 1
       type: int
     - variable: drone_secret
-      label: Secret to be used between the server and agents. http://readme.drone.io/admin/user-registration/
-      description: Enter the Secret to be used
+      label: Server and agents sercret. 
+      description: Server and agents secret to be communicate. http://readme.drone.io/admin/user-registration/
       type: password
       required: true
     - variable: drone_open
       label: Open registration
       description: |
-        Are users able to self register. http://readme.drone.io/admin/user-registration/
+        Users self register. http://readme.drone.io/admin/user-registration/
       required: true
       default: true
       type: boolean
