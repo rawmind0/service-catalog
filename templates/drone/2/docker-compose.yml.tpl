@@ -5,10 +5,8 @@ services:
     environment:
       DRONE_SERVER: ws://drone:8000/ws/broker
       DRONE_SECRET: ${drone_secret}
-    stdin_open: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    tty: true
     links:
       - server:drone
     command:
@@ -51,8 +49,6 @@ services:
       DRONE_DATABASE_DRIVER: ${database_driver}
       DRONE_DATABASE_DATASOURCE: ${database_source}
 {{- end}}
-    stdin_open: true
-    tty: true
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
