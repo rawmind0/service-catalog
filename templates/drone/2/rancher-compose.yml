@@ -24,6 +24,15 @@ catalog:
       description: Server and agents secret to be communicate. http://readme.drone.io/admin/user-registration/
       type: password
       required: true
+    - variable: gin_mode
+      label: Run mode
+      description: "Drone run mode, GIN_MODE"
+      type: enum
+      default: "release"
+      options:
+        - "release"
+        - "debug"
+      required: true
     - variable: drone_open
       label: Open registration
       description: |

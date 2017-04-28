@@ -24,6 +24,15 @@ catalog:
       description: Server and agents secret to be communicate. http://readme.drone.io/admin/user-registration/
       type: password
       required: true
+    - variable: gin_mode
+      label: Run mode
+      description: "Drone run mode, GIN_MODE"
+      type: enum
+      default: "release"
+      options:
+        - "release"
+        - "debug"
+      required: true
     - variable: drone_open
       label: Open registration
       description: |
@@ -54,12 +63,12 @@ catalog:
         - gogs
     - variable: drone_driver_client
       label: Remote Driver client
-      description: client key from remote driver
+      description: "Client key from remote driver. Required for github, bitbucket and gitlab."
       type: string
       required: false
     - variable: drone_driver_secret
       label: Remote Driver secret
-      description: secret key from remote driver
+      description: "Secret key from remote driver. Required for github, bitbucket and gitlab."
       type: string
       required: false
     - variable: drone_driver_url

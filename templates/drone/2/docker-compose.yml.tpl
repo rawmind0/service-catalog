@@ -17,6 +17,7 @@ services:
   server:
     image: drone/drone:0.5
     environment:
+      GIN_MODE: ${gin_mode}
       DRONE_SECRET: ${drone_secret}
       DRONE_OPEN: ${drone_open}
 {{- if (.Values.drone_admin)}}
