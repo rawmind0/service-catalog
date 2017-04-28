@@ -11,7 +11,7 @@ catalog:
       description: |
         Port that will be exposed on service creation
       required: true
-      default: 80
+      default: 8000
       type: int
     - variable: agent_scale
       label: Drone agent scale
