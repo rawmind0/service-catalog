@@ -20,140 +20,96 @@ catalog:
       required: true
       default: 80
       type: int
+    - variable: agent_scale
+      label: Drone agent scale
+      description: Drone agent scale to deploy
+      required: true
+      default: 1
+      type: int
     - variable: drone_secret
       label: Secret to be used between the server and agents
       description: Enter the Secret to be used
-      type: string
+      type: password
       required: true
     - variable: drone_admins
       label: Drone Admins
       description: List of admins for drone coma seperated
       type: string
       required: true
-    - variable: drone_github
-      label: Enable github
-      description: |
-        Enable github ref http://readme.drone.io/admin/setup-github/
-      required: true
-      default: true
-      type: boolean
-    - variable: drone_github_client
-      label: Github client
-      description: client key from github
-      type: string
-      required: false
-    - variable: drone_github_secret
-      label: Gihub secret
-      description: secret key from github
-      type: string
-      required: false
-    - variable: drone_bitbucket
-      label: Enable bitbucket
-      description: |
-        Enable bitbucket ref http://readme.drone.io/admin/setup-bitbucket/
-      required: true
-      type: boolean
-      default: false
-    - variable: drone_bitbucket_client
-      label: bitbucket client
-      description: client key from bitbucket
-      type: string
-      required: false
-    - variable: drone_bitbucket_secret
-      label: Bitbucket secret
-      description: secret key from bitbucket
-      type: string
-      required: false
-    - variable: drone_stash
-      label: Enable Stash/Bitbucket server
-      description: |
-        Enable bitbucket ref http://readme.drone.io/admin/setup-bitbuket-server/
-      required: true
-      type: boolean
-      default: false
-    - variable: drone_stash_git_username
-      label: Git username
-      description: Username that can clone repos
-      type: string
-      required: false
-    - variable: drone_stash_git_password
-      label: Git Password
-      description: Password for the username that can clone repos
-      type: string
-      required: false
-    - variable: drone_stash_consumer_key
-      label: Stash/Bitbucket server consumer key
-      description: Consumber key from the incoming link
-      type: string
-      required: false
-    - variable: drone_stash_consumer_rsa_string
-      label: Stash/Bitbucket private key
-      description: Private key for the public key added to Stash/Bitbucket
-      type: string
-      required: false
-    - variable: drone_stash_url
-      label: Stash/Bitbucket URL
-      description: URL to the git server
-      type: string
-      required: false
-    - variable: drone_gogs
-      label: Enable gogs server
-      description: |
-        Enable gogs ref http://readme.drone.io/admin/setup-gogs/
-      required: true
-      type: boolean
-      default: false
-    - variable: drone_gogs_url
-      label: Gogs url
-      description: Gogs server url
-      type: string
-      required: false
-    - variable: drone_gitlab
-      label: Enable gitlab server
-      description: |
-        Enable gitlab ref http://readme.drone.io/admin/setup-gitlab/
-      required: true
-      type: boolean
-      default: false
-    - variable: drone_gitlab_client
-      label: Gitlab client
-      description: client key from Gitlab
-      type: string
-      required: false
-    - variable: drone_gitlab_secret
-      label: Gitlab secret
-      description: secret key from Gitlabl
-      type: string
-      required: false
-    - variable: drone_gitlab_url
-      label: Gitlab url
-      description: Gitlab server url
-      type: string
-      required: false
-
-    - variable: database_driver
-      label: Database Driver
-      description: What database to use (will use sqlite by default mounted at -/var/lib/drone/)
-      type: enum
-      options:
-        - "mysql"
-        - "postgres"
-      required: false
-    - variable: database_link
-      label: Database Link
-      description: Database link string to use
-      type: string
-      required: false
-    - variable: orgs
+    - variable: drone_orgs
       label: Organizations
       description: Comman seperated list of org that can access drone
       type: string
       required: false
-
+    - variable: "drone_driver"
+      type: "enum"
+      required: true
+      label: "Remote Driver"
+      description: "Remote Git and Auth scheme. ref http://readme.drone.io/admin"
+      options:
+        - github
+        - bitbucket
+        - gitlab
+        - gogs
+    - variable: drone_driver_client
+      label: Remote Driver client
+      description: client key from remote driver
+      type: string
+      required: false
+    - variable: drone_driver_secret
+      label: Remote Driver secret
+      description: secret key from remote driver
+      type: string
+      required: false
+    - variable: drone_driver_url
+      label: Remote Driver url
+      description: "Remote Driver server url. Required for gitlab and gogs, http://readme.drone.io/admin"
+      type: string
+      required: false
+    - variable: database_driver
+      label: Database Driver
+      description: What database to use (will use sqlite by default mounted at -/var/lib/drone/)
+      type: enum
+      default: "sqlite3"
+      options:
+        - "sqlite3"
+        - "mysql"
+        - "postgres"
+      required: true
+    - variable: "database_service"
+      type: "service"
+      label: "Database Service"
+      description: "Service to link to for database. For instance if using the default Rancher Galera cluster select galera/galera-lb."
+      required: false
 services:
   agent:
+    scale: ${agent_scale}
+    start_on_create: true
+  server:
     scale: 1
     start_on_create: true
-  drone:
+    health_check:
+      port: 8000
+      interval: 2000
+      unhealthy_threshold: 3
+      strategy: recreate
+      request_line: GET / HTTP/1.0
+      healthy_threshold: 2
+      response_timeout: 2000
+  lb:
     scale: 1
     start_on_create: true
+    lb_config:
+      certs: []
+      port_rules:
+      - priority: 1
+        protocol: http
+        service: drone
+        source_port: ${host_port}
+        target_port: 8000
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 42
+      unhealthy_threshold: 3
+      interval: 2000
