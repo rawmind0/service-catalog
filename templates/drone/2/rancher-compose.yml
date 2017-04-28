@@ -7,7 +7,7 @@ catalog:
     Drone CI Server ref http://readme.drone.io/admin/installation-guide/
   questions:
     - variable: drone_open
-      label: Open registrion
+      label: Open registration
       description: |
         Are users able to self register
       required: true

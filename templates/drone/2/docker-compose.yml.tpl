@@ -71,7 +71,7 @@ services:
   lb:
     image: rancher/load-balancer-service
     ports:
-      - ${host_port}:${host_port}/tcp
+      - ${host_port}:8000/tcp
     labels:
       io.rancher.container.agent.role: environmentAdmin
       io.rancher.container.create_agent: 'true'
