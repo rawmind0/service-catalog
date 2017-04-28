@@ -47,7 +47,7 @@ services:
       DRONE_GOGS: true
       DRONE_GOGS_URL: ${drone_driver_url}
 {{- end}}
-{{- if neq .Values.database_driver "sqlite"}}
+{{- if ne .Values.database_driver "sqlite"}}
       DRONE_DATABASE_DRIVER: ${database_driver}
       DRONE_DATABASE_DATASOURCE: ${database_source}
 {{- end}}
