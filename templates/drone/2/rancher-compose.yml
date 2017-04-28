@@ -45,6 +45,7 @@ catalog:
       type: "enum"
       required: true
       label: "Remote Driver"
+      default: "github"
       description: "Remote Git and Auth scheme. ref http://readme.drone.io/admin"
       options:
         - github
