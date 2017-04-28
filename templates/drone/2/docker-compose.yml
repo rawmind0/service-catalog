@@ -1,50 +1,45 @@
-version: '2'
-services:
-  agent:
-    image: drone/drone:0.5
-    environment:
-      DRONE_SERVER: ws://drone:8000/ws/broker
-      DRONE_SECRET: ${drone_secret}
-    stdin_open: true
-    volumes:
+drone-lb:
+  ports:
+  - ${public_port}:8000
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - drone-server:drone-server
+  stdin_open: true
+
+drone-healthcheck:
+  image: rancher/drone-config:v0.1.0
+  net: 'container:drone-server'
+  volumes_from:
+    - drone-data-volume
+  entrypoint: /giddyup health
+
+drone-server:
+  image: rancher/drone-config:v0.1.0
+  volumes_from:
+    - drone-data-volume
+  labels: 
+    io.rancher.sidekicks: drone-data-volume,drone-daemon,drone-healthcheck
+  external_links:
+    - ${database_service}:database
+
+drone-daemon:
+  image: rancher/drone:0.5
+  net: 'container:drone-server'
+  volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    tty: true
-    links:
-    - drone:drone
-    command:
-    - agent
-    labels:
-      io.rancher.container.pull_image: always
-  drone:
-    image: drone/drone:0.5
-    environment:
-      DRONE_SECRET: ${drone_secret}
-      DRONE_OPEN: ${drone_open}
-      DRONE_ADMIN: ${drone_admins}
-      DRONE_GITHUB: ${drone_github}
-      DRONE_GITHUB_CLIENT: ${drone_github_client}
-      DRONE_GITHUB_SECRET: ${drone_github_secret}
-      DRONE_BITBUCKET: ${drone_bitbucket}
-      DRONE_BITBUCKET_CLIENT: ${drone_bitbucket_client}
-      DRONE_BITBUCKET_SECRET: ${drone_bitbucket_secret}
-      DRONE_STASH: ${drone_stash}
-      DRONE_STASH_GIT_USERNAME: ${drone_stash_git_username}
-      DRONE_STASH_GIT_PASSWORD: ${drone_stash_git_password}
-      DRONE_STASH_CONSUMER_KEY: ${drone_stash_consumer_key}
-      DRONE_STASH_CONSUMER_RSA_STRING: ${drone_stash_consumber_rsa_string}
-      DRONE_STASH_URL: ${drone_stash_url}
-      DRONE_GOGS: ${drone_gogs}
-      DRONE_GOGS_URL: ${drone_gogs_url}
-      DRONE_GITLAB: ${drone_gitlab}
-      DRONE_GITLAB_CLIENT: ${drone_gitlab_client}
-      DRONE_GITLAB_SECRET: ${drone_gitlab_secret}
-      DRONE_GITLAB_URL: ${drone_gitlab_url}
-      DATABASE_DRIVER: ${database_driver}
-      DATABASE_CONFIG: ${database_link}
-      DRONE_ORGS: ${orgs}
-    stdin_open: true
-    tty: true
-    ports:
-    - ${host_port}:8000/tcp
-    labels:
-      io.rancher.container.pull_image: always
+  volumes_from:
+    - drone-data-volume
+  entrypoint: /opt/rancher/rancher_entry.sh
+
+## Do not change below. Could cause data loss in upgrade.
+drone-data-volume:
+  image: busybox
+  net: none
+  command: /bin/true
+  labels:
+    io.rancher.container.start_once: 'true'
+  volumes:
+    - /var/lib/drone
+    - /etc/drone
+    - /opt/rancher
