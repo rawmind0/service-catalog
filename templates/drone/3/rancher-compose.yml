@@ -1,8 +1,8 @@
 version: 2
 catalog:
   name: Drone
-  version: 0.5.0
-  upgrade_from: 0.5.0
+  version: 0.6.0
+  upgrade_from: 0.6.0
   description: |
     Drone CI Server ref http://readme.drone.io/admin/installation-guide/
   questions:
