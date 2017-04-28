@@ -6,13 +6,6 @@ catalog:
   description: |
     Drone CI Server ref http://readme.drone.io/admin/installation-guide/
   questions:
-    - variable: drone_open
-      label: Open registration
-      description: |
-        Are users able to self register
-      required: true
-      default: true
-      type: boolean
     - variable: host_port
       label: Drone server Host Port
       description: |
@@ -27,18 +20,25 @@ catalog:
       default: 1
       type: int
     - variable: drone_secret
-      label: Secret to be used between the server and agents
+      label: Secret to be used between the server and agents. http://readme.drone.io/admin/user-registration/
       description: Enter the Secret to be used
       type: password
       required: true
-    - variable: drone_admins
-      label: Drone Admins
-      description: List of admins for drone coma seperated
-      type: string
+    - variable: drone_open
+      label: Open registration
+      description: |
+        Are users able to self register. http://readme.drone.io/admin/user-registration/
       required: true
+      default: true
+      type: boolean
+    - variable: drone_admin
+      label: Drone Admin
+      description: List of admins for drone coma seperated. http://readme.drone.io/admin/user-admins/
+      type: string
+      required: false
     - variable: drone_orgs
       label: Organizations
-      description: Comman seperated list of org that can access drone
+      description: Comman seperated list of org that can access drone. http://readme.drone.io/admin/user-registration/
       type: string
       required: false
     - variable: "drone_driver"
@@ -68,18 +68,18 @@ catalog:
       required: false
     - variable: database_driver
       label: Database Driver
-      description: What database to use (will use sqlite by default mounted at -/var/lib/drone/)
+      description: "Database driver. If sqlite, additional volume would be mounted at /var/lib/drone."
       type: enum
-      default: "sqlite3"
+      default: "sqlite"
       options:
-        - "sqlite3"
+        - "sqlite"
         - "mysql"
         - "postgres"
       required: true
-    - variable: "database_service"
-      type: "service"
-      label: "Database Service"
-      description: "Service to link to for database. For instance if using the default Rancher Galera cluster select galera/galera-lb."
+    - variable: "database_source"
+      type: "string"
+      label: "Database source"
+      description: "Database datasource. Required if database driver is mysql or postgres, http://readme.drone.io/admin/database-engines/"
       required: false
 services:
   agent:

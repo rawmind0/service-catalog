@@ -21,8 +21,12 @@ services:
     environment:
       DRONE_SECRET: ${drone_secret}
       DRONE_OPEN: ${drone_open}
+{{- if (.Values.drone_admin)}}
       DRONE_ADMIN: ${drone_admins}
+{{- end}}
+{{- if (.Values.drone_orgs)}}
       DRONE_ORGS: ${drone_orgs}
+{{- end}}
 {{- if eq .Values.drone_driver "github"}}
       DRONE_GITHUB: true
       DRONE_GITHUB_CLIENT: ${drone_driver_client}
@@ -34,23 +38,25 @@ services:
       DRONE_BITBUCKET_SECRET: ${drone_driver_secret}
 {{- end}}
 {{- if eq .Values.drone_driver "gitlab"}}
-      DRONE_GITLAB: ${drone_gitlab}
+      DRONE_GITLAB: true
       DRONE_GITLAB_CLIENT: ${drone_driver_secret}
       DRONE_GITLAB_SECRET: ${drone_driver_secret}
       DRONE_GITLAB_URL: ${drone_driver_url}
 {{- end}}
 {{- if eq .Values.drone_driver "gogs"}}
-      DRONE_GOGS: ${drone_gogs}
+      DRONE_GOGS: true
       DRONE_GOGS_URL: ${drone_driver_url}
 {{- end}}
-      DATABASE_DRIVER: ${database_driver}
-      DATABASE_CONFIG: ${database_link}
+{{- if neq .Values.database_driver "sqlite"}}
+      DRONE_DATABASE_DRIVER: ${database_driver}
+      DRONE_DATABASE_DATASOURCE: ${database_source}
+{{- end}}
     stdin_open: true
     tty: true
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
-{{- if eq .Values.database_driver "sqlite3"}}
+{{- if eq .Values.database_driver "sqlite"}}
       io.rancher.sidekicks: server-volume
     volumes_from:
       - server-volume
@@ -72,6 +78,3 @@ services:
     image: rancher/load-balancer-service
     ports:
       - ${host_port}:8000/tcp
-    labels:
-      io.rancher.container.agent.role: environmentAdmin
-      io.rancher.container.create_agent: 'true'
