@@ -2,7 +2,7 @@ version: 2
 catalog:
   name: Drone
   version: 0.6-rancher
-  upgrade_from: 0.6-rancher
+  upgrade_from: 0.6-rancher1
   description: |
     Drone CI Server ref http://readme.drone.io/admin/installation-guide/
   questions:
