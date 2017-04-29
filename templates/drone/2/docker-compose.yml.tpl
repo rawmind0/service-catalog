@@ -75,3 +75,5 @@ services:
     image: rancher/load-balancer-service
     ports:
       - ${host_port}:8000/tcp
+    links:
+      - server:server
