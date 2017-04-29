@@ -112,8 +112,8 @@ services:
   lb:
     scale: 1
     start_on_create: true
-    lb_config:
-      certs: []
+    load_balancer_config:
+      haproxy_config: {}
     health_check:
       healthy_threshold: 2
       response_timeout: 2000
