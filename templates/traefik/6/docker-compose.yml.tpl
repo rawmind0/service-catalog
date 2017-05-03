@@ -8,7 +8,10 @@ traefik:
     io.rancher.scheduler.global: 'true'
     io.rancher.scheduler.affinity:host_label: ${host_label}
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    io.rancher.sidekicks: traefik-conf,traefik-acme
+    io.rancher.sidekicks: traefik-conf
+{{- if eq .Values.acme_enable "true"}}
+,traefik-acme
+{{- end}}
     io.rancher.container.hostname_override: container_name
   tty: true
   log_opt: {}
