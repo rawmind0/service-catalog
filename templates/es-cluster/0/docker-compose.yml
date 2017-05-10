@@ -2,6 +2,7 @@ version: '2'
 services:
     es-master:
         labels: 
+            - io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             - io.rancher.container.hostname_override=container_name
             - io.rancher.sidekicks=es-storage
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
@@ -31,6 +32,7 @@ services:
 
     es-data:
         labels:
+            - io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             - io.rancher.container.hostname_override=container_name
             - io.rancher.sidekicks=es-storage
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
@@ -61,6 +63,7 @@ services:
 
     es-client:
         labels:
+            - io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             - io.rancher.container.hostname_override=container_name
             - io.rancher.sidekicks=es-storage
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
