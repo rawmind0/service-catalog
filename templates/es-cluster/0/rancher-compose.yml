@@ -15,7 +15,7 @@
           label: "Update host sysctl:"
           description: |
             Set true to avoid vm.max_map_count errors.
-            WARN: If set true, host param vm.max_map_count will be update to 262144".
+            WARN: If set true, host param vm.max_map_count will be update to 262144.
           default: false
           required: true
           type: enum
