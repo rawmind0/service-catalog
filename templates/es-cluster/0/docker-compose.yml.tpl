@@ -102,19 +102,22 @@ services:
             - es-master
 
     es-storage:
-        network_mode: none
         labels:
             io.rancher.container.start_once: true
-        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
-        entrypoint: /bin/true
+        network_mode: none
+        image: rawmind/alpine-volume:0.0.2-1
+        environment:
+            - SERVICE_UID=1000
+            - SERVICE_GID=1000
+            - SERVICE_VOLUME=/usr/share/elasticsearch/data
         volumes: 
             - es-storage-volume:/usr/share/elasticsearch/data
 
     {{- if eq .Values.UPDATE_SYSCTL "true" }}
     es-sysctl:
-        network_mode: none
         labels:
             io.rancher.container.start_once: true
+        network_mode: none	
         image: rawmind/alpine-sysctl:0.1
         privileged: true
         environment: 
