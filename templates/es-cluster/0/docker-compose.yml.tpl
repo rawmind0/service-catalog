@@ -4,7 +4,10 @@ services:
         labels: 
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.container.hostname_override: container_name
-            io.rancher.sidekicks: es-storage,es-sysctl
+            io.rancher.sidekicks: es-storage
+            {{- if eq .Values.UPDATE_SYSCTL "true" -}}
+                ,es-sysctl
+            {{- end}}
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
         environment: 
             - "cluster.name=${cluster_name}"
@@ -34,7 +37,10 @@ services:
         labels:
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.container.hostname_override: container_name
-            io.rancher.sidekicks: es-storage,es-sysctl
+            io.rancher.sidekicks: es-storage
+            {{- if eq .Values.UPDATE_SYSCTL "true" -}}
+                ,es-sysctl
+            {{- end}}
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
         environment: 
             - "cluster.name=${cluster_name}"
@@ -65,7 +71,10 @@ services:
         labels:
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.container.hostname_override: container_name
-            io.rancher.sidekicks: es-storage,es-sysctl
+            io.rancher.sidekicks: es-storage
+            {{- if eq .Values.UPDATE_SYSCTL "true" -}}
+                ,es-sysctl
+            {{- end}}
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
         environment: 
             - "cluster.name=${cluster_name}"
@@ -91,7 +100,7 @@ services:
             - es-storage
         depends_on: 
             - es-master
-    
+
     es-storage:
         labels:
             io.rancher.container.start_once: true
@@ -100,6 +109,7 @@ services:
         volumes: 
             - es-storage-volume:/usr/share/elasticsearch/data
 
+    {{- if eq .Values.UPDATE_SYSCTL "true" }}
     es-sysctl:
         labels:
             io.rancher.container.start_once: true
@@ -108,6 +118,7 @@ services:
         environment: 
             - "SYSCTL_KEY=vm.max_map_count" 
             - "SYSCTL_VALUE=262144"
+    {{- end}}
 
 volumes:
   es-storage-volume:
