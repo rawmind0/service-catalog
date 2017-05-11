@@ -111,6 +111,9 @@ services:
             io.rancher.container.start_once: true
         image: rawmind/alpine-sysctl:0.1
         privileged: true
+        environment: 
+            - "SYSCTL_KEY=vm.max_map_count" 
+            - "SYSCTL_VALUE=262144"
 
 volumes:
   es-storage-volume:
