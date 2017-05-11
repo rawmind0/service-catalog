@@ -102,6 +102,7 @@ services:
             - es-master
 
     es-storage:
+        network_mode: none
         labels:
             io.rancher.container.start_once: true
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
@@ -111,6 +112,7 @@ services:
 
     {{- if eq .Values.UPDATE_SYSCTL "true" }}
     es-sysctl:
+        network_mode: none
         labels:
             io.rancher.container.start_once: true
         image: rawmind/alpine-sysctl:0.1
