@@ -25,17 +25,17 @@ services:
       io.rancher.container.create_agent: 'true'
   grafana-volume:
     net: none
-	labels:
-	  io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-	  io.rancher.container.hostname_override: container_name
-	  io.rancher.container.start_once: true
-	environment:
-	  - SERVICE_UID=0
-	  - SERVICE_GID=0
-	  - SERVICE_VOLUME=/var/lib/grafana
-	volumes:
-	  - grafana-volume:/var/lib/grafana
-	image: rawmind/alpine-volume:0.0.2-1
+  	labels:
+  	  io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  	  io.rancher.container.hostname_override: container_name
+  	  io.rancher.container.start_once: true
+  	environment:
+  	  - SERVICE_UID=0
+  	  - SERVICE_GID=0
+  	  - SERVICE_VOLUME=/var/lib/grafana
+  	volumes:
+  	  - grafana-volume:/var/lib/grafana
+  	image: rawmind/alpine-volume:0.0.2-1
 volumes:
   grafana-volume:
     driver: local
