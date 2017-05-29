@@ -79,6 +79,10 @@ services:
   grafana:
     scale: 1
     start_on_create: true
+    metadata:
+      grafana:
+        params: |
+          ${extra_params}
   grafana-lb:
     scale: 1
     start_on_create: true
