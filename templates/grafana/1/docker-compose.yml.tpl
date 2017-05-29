@@ -8,6 +8,7 @@ services:
       GF_SECURITY_SECRET_KEY: ${secret_key}
       GF_SERVER_DOMAIN: ${http_host}
       GF_SERVER_ROOT_URL: ${http_protocol}://${http_host}
+      GF_USERS_AUTO_ASSIGN_ORG_ROLE: ${default_role}
       {{- if (.Values.extra_params) }}
       ${extra_params}
       {{- end}}
@@ -18,8 +19,7 @@ services:
   grafana-lb:
     image: rancher/lb-service-haproxy:v0.7.1
     ports:
-    - 443:443/tcp
-    - 80:80/tcp
+    - ${http_port}:${http_port}/tcp
     labels:
       io.rancher.container.agent.role: environmentAdmin
       io.rancher.container.create_agent: 'true'
