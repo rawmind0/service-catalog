@@ -87,8 +87,10 @@ services:
     scale: 1
     start_on_create: true
     lb_config:
+      {{- if (.Values.ssl_cert) }}
       certs: []
       default_cert: ${ssl_cert}
+      {{- end}}
       port_rules:
       - priority: 1
         protocol: ${http_protocol}
