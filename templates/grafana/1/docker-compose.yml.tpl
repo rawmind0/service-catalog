@@ -9,9 +9,9 @@ services:
       GF_SERVER_DOMAIN: ${http_host}
       GF_SERVER_ROOT_URL: ${http_protocol}://${http_host}
       GF_USERS_AUTO_ASSIGN_ORG_ROLE: ${default_role}
-      {{- if (.Values.extra_params) }}
+      {{if (.Values.extra_params) }}
       ${extra_params}
-      {{- end}}
+      {{end}}
     labels: 
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
