@@ -59,30 +59,38 @@
         - Admin
         - Editor
         - Read Only Editor
-    - variable: extra_params
-      description: "Grafana extra params"
-      label: "Extra params"
+    - variable: github_auth
+      description: "Github auth integration"
+      label: "Github auth"
+      required: true
+      type: "enum"
+      default: true
+      options:
+        - true
+        - false
+    - variable: github_app_id
+      description: "Github app id"
+      label: "Github app id"
       required: false
-      type: "multiline"
-      default: | 
-        GF_AUTH_GITHUB_ENABLED: 'true'
-        GF_AUTH_GITHUB_AUTH_URL: https://github.com/login/oauth/authorize
-        GF_AUTH_GITHUB_TOKEN_URL: https://github.com/login/oauth/access_token
-        GF_AUTH_GITHUB_API_URL: https://api.github.com/user
-        GF_AUTH_GITHUB_SCOPES: user:email,read:org
-        GF_AUTH_GITHUB_CLIENT_ID: 66bc59b220441546801d
-        GF_AUTH_GITHUB_CLIENT_SECRET: 954bbcddb6a4902fa1e4f0fee418ff6dbbd30d7e
-        GF_AUTH_GITHUB_ALLOWED_ORGANIZATIONS: rancher
-        GF_AUTH_GITHUB_ALLOW_SIGN_UP: 'true'
+      type: "string"
+      default: ""
+    - variable: github_app_secret
+      description: "Github app secret"
+      label: "Github app secret"
+      required: false
+      type: "string"
+      default: ""
+    - variable: github_org
+      description: "Github allowed organization names. space-delimited"
+      label: "Github org"
+      required: false
+      type: "string"
+      default: ""
 version: '2'
 services:
   grafana:
     scale: 1
     start_on_create: true
-    metadata:
-      grafana:
-        params: |
-          ${extra_params}
   grafana-lb:
     scale: 1
     start_on_create: true

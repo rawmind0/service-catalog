@@ -9,8 +9,16 @@ services:
       GF_SERVER_DOMAIN: ${http_host}
       GF_SERVER_ROOT_URL: ${http_protocol}://${http_host}
       GF_USERS_AUTO_ASSIGN_ORG_ROLE: ${default_role}
-      {{if (.Values.extra_params) }}
-      ${extra_params}
+      {{- if eq .Values.github_auth "true"}}
+      GF_AUTH_GITHUB_ENABLED: ${github_auth}
+      GF_AUTH_GITHUB_AUTH_URL: https://github.com/login/oauth/authorize
+      GF_AUTH_GITHUB_TOKEN_URL: https://github.com/login/oauth/access_token
+      GF_AUTH_GITHUB_API_URL: https://api.github.com/user
+      GF_AUTH_GITHUB_SCOPES: user:email,read:org
+      GF_AUTH_GITHUB_CLIENT_ID: ${github_app_id}
+      GF_AUTH_GITHUB_CLIENT_SECRET: ${github_app_secret}
+      GF_AUTH_GITHUB_ALLOWED_ORGANIZATIONS: ${github_org}
+      GF_AUTH_GITHUB_ALLOW_SIGN_UP: 'true'
       {{end}}
     labels: 
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
