@@ -47,7 +47,7 @@ services:
     image: mreferre/harbor-setupwrapper:1.1.1-1
     container_name: harbor-setupwrapper
     environment:
-      - HARBORHOSTNAME=${harborhostname}.${traefikdomain}
+      - HARBORHOSTNAME=${harborhostname}
       - HARBOR_ADMIN_PASSWORD=${harbor_admin_password}
     volumes:
       - data:/data
@@ -64,6 +64,8 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
       io.rancher.container.start_once: 'true'
+    external_links:
+      - log:log
   log:
     image: vmware/harbor-log:v1.1.1
     container_name: harbor-log
@@ -101,6 +103,8 @@ services:
     depends_on:
       - log
       - harbor-setupwrapper
+    external_links:
+      - log:log
     logging:
       driver: "syslog"
       options:
@@ -127,6 +131,9 @@ services:
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
     depends_on:
+      - log
+      - harbor-setupwrapper
+    external_links:
       - log
       - harbor-setupwrapper
     logging:
@@ -161,6 +168,9 @@ services:
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
     depends_on:
+      - log
+      - harbor-setupwrapper
+    external_links:
       - log
       - harbor-setupwrapper
     logging:
@@ -200,6 +210,11 @@ services:
       - harbor-setupwrapper
       - adminserver
       - registry
+    external_links:
+      - log
+      - harbor-setupwrapper
+      - adminserver
+      - registry
     logging:
       driver: "syslog"
       options:
@@ -231,6 +246,11 @@ services:
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
     depends_on:
+      - log
+      - harbor-setupwrapper
+      - ui
+      - adminserver
+    external_links:
       - log
       - harbor-setupwrapper
       - ui
@@ -281,6 +301,8 @@ services:
       - mysql
       - jobservice
       - adminserver
+      - log
+      - harbor-setupwrapper
     logging:
       driver: "syslog"
       options:
