@@ -64,7 +64,7 @@
       label: "Github auth"
       required: true
       type: "enum"
-      default: true
+      default: false
       options:
         - true
         - false
