@@ -1,7 +1,7 @@
 version: '2'
 services:
   agent:
-    image: drone/drone:0.6
+    image: drone/drone:0.7.1
     environment:
       DRONE_SERVER: ws://drone:8000/ws/broker
       DRONE_SECRET: ${drone_secret}
@@ -15,7 +15,7 @@ services:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
   server:
-    image: drone/drone:0.6
+    image: drone/drone:0.7.1
     environment:
       GIN_MODE: ${gin_mode}
       DRONE_SECRET: ${drone_secret}
