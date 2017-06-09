@@ -73,7 +73,7 @@ services:
 {{- end}}
   lb:
     image: rancher/load-balancer-service
-    links:
-      - server
     ports:
       - ${host_port}:8000/tcp
+    links:
+      - server:server
