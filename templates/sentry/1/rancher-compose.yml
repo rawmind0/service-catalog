@@ -38,7 +38,7 @@
       default: "sentry"
       description: "Sentry db pass."
 
-    - variable: "sentry_initial_user_passwordtial_user_email"
+    - variable: "sentry_initial_user_email"
       type: "string"
       required: true
       label: "SENTRY_INITIAL_USER_EMAIL"
