@@ -38,16 +38,16 @@
       default: "sentry"
       description: "Sentry db pass."
 
-    - variable: "sentry_inital_user_email"
+    - variable: "sentry_initial_user_passwordtial_user_email"
       type: "string"
       required: true
-      label: "SENTRY_INITAL_USER_EMAIL"
+      label: "SENTRY_INITIAL_USER_EMAIL"
       description: "The initial superuser email"
 
-    - variable: "sentry_inital_user_password"
+    - variable: "sentry_initial_user_password"
       type: "password"
       required: true
-      label: "SENTRY_INITAL_USER_PASSWORD"
+      label: "SENTRY_INITIAL_USER_PASSWORD"
       description: "The initial superuser password. Please use a simple intial password and change it afterwards in the Sentry interface"
 
     - variable: "sentry_server_email"
