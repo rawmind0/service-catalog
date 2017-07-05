@@ -45,7 +45,7 @@ sentry-cron:
   - run
   - cron
   log_opt: {}
-  image: sentry:8.16.0
+  image: sentry:8.17.0
   links:
   - sentry-postgres:postgres
   - sentry-redis:redis
@@ -81,7 +81,7 @@ sentry:
   - -c
   - sentry upgrade --noinput && sentry createuser --email ${sentry_initial_user_email} --password ${sentry_initial_user_password} --superuser && /entrypoint.sh run web || /entrypoint.sh run web
   log_opt: {}
-  image: sentry:8.16.0
+  image: sentry:8.17.0
   links:
   - sentry-postgres:postgres
   - sentry-redis:redis
@@ -107,7 +107,7 @@ sentry-worker:
   - run
   - worker
   log_opt: {}
-  image: sentry:8.16.0
+  image: sentry:8.17.0
   links:
   - sentry-postgres:postgres
   - sentry-redis:redis
