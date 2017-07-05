@@ -32,6 +32,7 @@ sentry-cron:
     SENTRY_EMAIL_USER: ${sentry_email_user}
     SENTRY_SECRET_KEY: ${sentry_secret_key}
     SENTRY_SERVER_EMAIL: ${sentry_server_email}
+    SENTRY_POSTGRES_HOST: postgres
   log_driver: ''
   labels:
     io.rancher.container.pull_image: always
@@ -63,6 +64,7 @@ sentry:
     SENTRY_EMAIL_USER: ${sentry_email_user}
     SENTRY_SECRET_KEY: ${sentry_secret_key}
     SENTRY_SERVER_EMAIL: ${sentry_server_email}
+    SENTRY_POSTGRES_HOST: postgres
   log_driver: ''
   labels:
     io.rancher.container.pull_image: always
@@ -85,6 +87,7 @@ sentry-worker:
     SENTRY_EMAIL_USER: ${sentry_email_user}
     SENTRY_SECRET_KEY: ${sentry_secret_key}
     SENTRY_SERVER_EMAIL: ${sentry_server_email}
+    SENTRY_POSTGRES_HOST: postgres
   log_driver: ''
   labels:
     io.rancher.scheduler.global: 'true'
