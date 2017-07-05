@@ -1,7 +1,8 @@
 sentry-postgres:
   environment:
-    POSTGRES_USER: sentry
-    POSTGRES_PASSWORD: secret
+    POSTGRES_DB: ${sentry_db_name}
+    POSTGRES_USER: ${sentry_db_user}
+    POSTGRES_PASSWORD: ${sentry_db_pass}
     PGDATA: /data/postgres/data
   log_driver: ''
   labels:
@@ -33,6 +34,9 @@ sentry-cron:
     SENTRY_SECRET_KEY: ${sentry_secret_key}
     SENTRY_SERVER_EMAIL: ${sentry_server_email}
     SENTRY_POSTGRES_HOST: postgres
+    SENTRY_DB_NAME: ${sentry_db_name}
+    SENTRY_DB_USER: ${sentry_db_user}
+    SENTRY_DB_PASSWORD: ${sentry_db_pass}
   log_driver: ''
   labels:
     io.rancher.container.hostname_override: container_name
@@ -65,6 +69,9 @@ sentry:
     SENTRY_SECRET_KEY: ${sentry_secret_key}
     SENTRY_SERVER_EMAIL: ${sentry_server_email}
     SENTRY_POSTGRES_HOST: postgres
+    SENTRY_DB_NAME: ${sentry_db_name}
+    SENTRY_DB_USER: ${sentry_db_user}
+    SENTRY_DB_PASSWORD: ${sentry_db_pass}
   log_driver: ''
   labels:
     io.rancher.container.hostname_override: container_name
@@ -88,6 +95,9 @@ sentry-worker:
     SENTRY_SECRET_KEY: ${sentry_secret_key}
     SENTRY_SERVER_EMAIL: ${sentry_server_email}
     SENTRY_POSTGRES_HOST: postgres
+    SENTRY_DB_NAME: ${sentry_db_name}
+    SENTRY_DB_USER: ${sentry_db_user}
+    SENTRY_DB_PASSWORD: ${sentry_db_pass}
   log_driver: ''
   labels:
     io.rancher.scheduler.global: 'true'

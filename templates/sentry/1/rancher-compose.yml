@@ -17,6 +17,20 @@
       default: 9000
       description: "Port that Sentry will listen on. Alternatively you could point a load balancer to the port 9000 of this container"
 
+    - variable: "sentry_db_user"
+      type: "string"
+      required: true
+      label: "Sentry db user"
+      default: "sentry"
+      description: "Sentry db user."
+
+    - variable: "sentry_db_pass"
+      type: "string"
+      required: true
+      label: "Sentry db pass"
+      default: "sentry"
+      description: "Sentry db pass."
+
     - variable: "sentry_inital_user_email"
       type: "string"
       required: true
