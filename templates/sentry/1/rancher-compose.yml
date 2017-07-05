@@ -48,7 +48,7 @@
       type: "password"
       required: true
       label: "SENTRY_INITIAL_USER_PASSWORD"
-      description: "The initial superuser password. Please use a simple intial password and change it afterwards in the Sentry interface"
+      description: "The initial superuser password. Please use a simple initial password and change it afterwards in the Sentry interface"
 
     - variable: "sentry_server_email"
       type: "string"
