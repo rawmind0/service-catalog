@@ -122,7 +122,7 @@ services:
       healthy_threshold: 2
       port: 9000
       unhealthy_threshold: 3
-      initializing_timeout: 60000
+      initializing_timeout: 300000
       interval: 2000
       strategy: recreate
       request_line: GET "/auth/login/sentry" "HTTP/1.0"
