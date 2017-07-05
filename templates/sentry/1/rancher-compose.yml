@@ -12,8 +12,9 @@
 
     - variable: "sentry_public_port"
       type: "int"
-      required: false
+      required: true
       label: "Sentry public port"
+      default: 9000
       description: "Port that Sentry will listen on. Alternatively you could point a load balancer to the port 9000 of this container"
 
     - variable: "sentry_inital_user_email"
