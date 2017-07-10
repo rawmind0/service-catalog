@@ -9,25 +9,19 @@
       description: "Version of Bamboo Server. Check https://www.atlassian.com/software/bamboo/download?os=linux for current version."
       label: "Bamboo Version"
       required: true
-      default: "5.14.1"
+      default: "5.15.3"
       type: "string"
-    - variable: http_port
+    - variable: lb_http_port
       description: "HTTP port to access Bamboo Server UI"
-      label: "Bamboo HTTP Port"
+      label: "Bamboo LB HTTP Port"
       required: true
-      default: "8085"
-      type: "int"
-    - variable: agent_port
-      description: "HTTP port to connect Bamboo Agents. Can be useful when connecting agents out of Rancher."
-      label: "Agent HTTP Port"
-      required: true
-      default: "54663"
+      default: 80
       type: "int"
     - variable: scale
       description: "Number of Bamboo Agents"
       label: "Number of Bamboo Agents"
       required: true
-      default: "1"
+      default: 1
       type: "int"
     - variable: packages
       description: "List of additional packages which should be installed on Bamboo Agent. Put pakcages separated with space."
@@ -35,12 +29,6 @@
       required: false
       default: ""
       type: "string"
-    - variable: postgress_port
-      description: "Port for Postgres"
-      label: "Postgres Port"
-      required: true
-      default: "5432"
-      type: "int"
     - variable: postgres_db
       description: "Postgres Database"
       label: "Postgres Database"
@@ -72,6 +60,26 @@
       default: ""
       type: "string"
       
-bamboo-agent:
-  scale: ${scale}
-  retain_ip: true
+version: '2'
+services:
+  bamboo-server-lb:
+    scale: 1
+    load_balancer_config:
+      haproxy_config: {}
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  bamboo-server:
+    scale: 1
+    health_check:
+      port: 8085
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  bamboo-agent:
+    scale: ${scale}
+    retain_ip: true
