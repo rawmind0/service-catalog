@@ -1,0 +1,25 @@
+version: "2"
+
+services:
+  postgres:
+    image: postgres:9.6-alpine
+    environment:
+      - "POSTGRES_USER=${POSTGRES_USER}"
+      - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    volume_driver: ${VOLUME_DRIVER}
+  
+  cachet:
+    image: cachethq/docker:2.3.12
+    environment:
+      - "DB_DRIVER=pgsql"
+      - "DB_HOST=postgres"
+      - "DB_DATABASE=postgres"
+      - "DB_USERNAME=${POSTGRES_USER}"
+      - "DB_PASSWORD=${POSTGRES_PASSWORD}"
+    links: 
+      - postgres:postgres
+    depends_on: 
+      - postgres
+  

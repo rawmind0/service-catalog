@@ -1,0 +1,23 @@
+.catalog:
+  name: CachetHQ
+  version: 2.3.12-rancher1
+  description: Cachet is a beautiful and powerful open source status page system.
+
+  questions:
+    - variable: "POSTGRES_USER"
+      type: "string"
+      required: true
+      label: "PostgreSQL username"
+      default: "postgres"
+    
+    - variable: "POSTGRES_PASSWORD"
+      type: "password"
+      required: true
+      label: "PostgreSQL password"
+      default: "postgres"
+    
+    - variable: "VOLUME_DRIVER"
+      type: "string"
+      required: true
+      label: "Volume driver for PostgreSQL storage"
+      default: "local"
