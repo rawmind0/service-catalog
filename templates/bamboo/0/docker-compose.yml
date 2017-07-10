@@ -8,7 +8,7 @@ services:
       - ${lb_http_port}:8085
 
   bamboo-data:
-    net: none
+    network_mode: none
     image: busybox
     labels:
       io.rancher.container.start_once: true
@@ -33,7 +33,7 @@ services:
       - bamboo-data
 
   postgres-data:
-    net: none
+    network_mode: none
     image: busybox
     labels:
       io.rancher.container.start_once: true
