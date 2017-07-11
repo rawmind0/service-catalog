@@ -8,8 +8,6 @@ traefik:
     io.rancher.scheduler.global: 'true'
     io.rancher.scheduler.affinity:host_label: ${host_label}
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    io.rancher.container.agent.role: system
-    io.rancher.container.create_agent: 'true'
     io.rancher.sidekicks: traefik-conf
       {{- if eq .Values.acme_enable "true" -}}
         ,traefik-acme
@@ -17,7 +15,7 @@ traefik:
     io.rancher.container.hostname_override: container_name
   tty: true
   log_opt: {}
-  image: rawmind/alpine-traefik:1.3.3
+  image: rawmind/alpine-traefik:1.2.3-1
   environment:
   - CONF_INTERVAL=${refresh_interval}
   - TRAEFIK_HTTP_PORT=${http_port}
