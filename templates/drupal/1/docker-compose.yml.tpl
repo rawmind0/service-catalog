@@ -28,7 +28,7 @@ services:
   drupal-lb:
     image: rancher/lb-service-haproxy
     ports:
-      - ${public_port}
+      - ${PUBLIC_PORT}:${PUBLIC_PORT}
 
   db:
     labels:
