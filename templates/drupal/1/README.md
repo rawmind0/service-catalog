@@ -16,7 +16,11 @@ Select Drupal from catalog.
 - Set db name, username and password.
 - Click launch.
 
-IMPORTANT: Database is linked to drupal server with "db" hostname. Set ADVANCED OPTIONS - Database host: db
+### Configuration: 
+
+Database is linked to drupal server with "db" hostname. 
+
+- Set ADVANCED OPTIONS  Database host: db
  
 
 ### Source, bugs and enhances
