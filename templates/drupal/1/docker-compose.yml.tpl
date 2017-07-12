@@ -26,7 +26,7 @@ services:
     volume_driver: local
 
   drupal-lb:
-    image: rancher/lb-service-haproxy
+    image: rancher/lb-service-haproxy:v0.6.4
     ports:
       - ${PUBLIC_PORT}:${PUBLIC_PORT}
 
