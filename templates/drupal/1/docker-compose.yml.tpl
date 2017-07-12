@@ -7,23 +7,12 @@ services:
       io.rancher.container.pull_image: always
     links:
       - db:db
-    volumes_from:
-      - drupal-datavolume
-    restart: always
-
-  drupal-datavolume:
-    network_mode: none
-    image: "busybox"
     volumes:
-      # Offitial recommended volumes https://hub.docker.com/_/drupal/ 
-      - /var/www/html/modules
-      - /var/www/html/profiles
-      - /var/www/html/themes
-      - /var/www/html/sites/default/files
-    labels:
-      io.rancher.container.start_once: true
-    entrypoint: ["/bin/true"]
-    volume_driver: local
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-themes:/var/www/html/themes
+      - drupal-sites:/var/www/html/sites
+    restart: always
 
   drupal-lb:
     image: rancher/lb-service-haproxy:v0.6.4
@@ -48,21 +37,24 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASS}
   {{- end}}
-    volumes_from:
-      - db-datavolume
-    restart: always
-
-  db-datavolume:
-    network_mode: none
-    image: "busybox"
     volumes:
     {{- if eq .Values.DB_TYPE "postgres"}}
-      - /var/lib/postgresql
+      - db-data:/var/lib/postgresql
     {{- end}}
     {{- if eq .Values.DB_TYPE "mysql"}}
-      - /var/lib/mysql
+      - db-data:/var/lib/mysql
     {{- end}}
-    labels:
-      io.rancher.container.start_once: true
-    entrypoint: ["/bin/true"]
-    volume_driver: local
+    restart: always
+
+volumes:
+  drupal-modules:
+    driver: local
+  drupal-profiles:
+    driver: local
+  drupal-themes:
+    driver: local
+  drupal-sites:
+    driver: local
+  db-data:
+    driver: local
+
