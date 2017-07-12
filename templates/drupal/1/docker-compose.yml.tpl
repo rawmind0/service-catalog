@@ -4,7 +4,7 @@ services:
     image: drupal:8.3.5-apache
     labels:
       io.rancher.sidekicks: drupal-datavolume
-      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
     links:
       - db:db
     volumes:
@@ -22,6 +22,7 @@ services:
   db:
     labels:
       io.rancher.sidekicks: db-datavolume
+      io.rancher.container.hostname_override: container_name
   {{- if eq .Values.DB_TYPE "postgres"}}
     image: postgres:9.6.3-alpine
     environment:
