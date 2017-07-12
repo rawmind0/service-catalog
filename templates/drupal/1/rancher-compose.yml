@@ -17,7 +17,7 @@ catalog:
       description: "public port to access the drupal site"
       label: "DB type"
       required: true
-      default: "mysql"
+      default: "postgres"
       type: "enum"
       options: 
         - "mysql"
