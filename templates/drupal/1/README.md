@@ -11,13 +11,12 @@ You could choose between mysql or postgres as database.
 
 Select Drupal from catalog.
 
-Choose public port, exposed throught a rancher lb.
-Choose db type.
-Set db name, username and password.
+- Choose public port, exposed throught a rancher lb.
+- Choose db type.
+- Set db name, username and password.
+- Click launch.
 
-Click deploy.
-
-Note: Database is linked to drupal server with "db" hostname. Set ADVANCED OPTIONS - Database host: db
+IMPORTANT: Database is linked to drupal server with "db" hostname. Set ADVANCED OPTIONS - Database host: db
  
 
 ### Source, bugs and enhances
