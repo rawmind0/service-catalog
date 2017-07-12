@@ -19,7 +19,7 @@ services:
       - /var/www/html/modules
       - /var/www/html/profiles
       - /var/www/html/themes
-      - /var/www/html/sites
+      - /var/www/html/sites/default/files
     labels:
       io.rancher.container.start_once: true
     entrypoint: ["/bin/true"]
