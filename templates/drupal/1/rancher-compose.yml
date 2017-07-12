@@ -1,6 +1,6 @@
 .catalog:
   name: "Drupal"
-  version: "v0.1-postgres"
+  version: "8.3.5-rancher1"
   description: "Blog tool, publishing platform and CMS"
   uuid: Drupal-0
   minimum_rancher_version: v0.51.0
@@ -11,6 +11,16 @@
       required: true
       default: "15080"
       type: "int"
+
+    - variable: "DB_TYPE"
+      description: "public port to access the drupal site"
+      label: "DB type"
+      required: true
+      default: "mysql"
+      type: "enum"
+      options: 
+        - "mysql"
+        - "postgres"
 
     - variable: "DB_NAME"
       description: "Database Name to use for the server"
