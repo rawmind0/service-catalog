@@ -1,7 +1,7 @@
 version: '2'
 services:
   drupal:
-    image: drupal:8.3.5-fpm-alpine
+    image: drupal:8.3.5-apache
     labels:
       io.rancher.sidekicks: drupal-datavolume
       io.rancher.container.pull_image: always
