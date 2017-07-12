@@ -18,9 +18,9 @@ Select Drupal from catalog.
 
 ### Configuration: 
 
-Database is linked to drupal server with "db" hostname. 
+When you first connect to drupal, follow the navigation path configuring correct database backend, mysql or postgres.
 
-- Set ADVANCED OPTIONS  Database host: db
+On both cases, database is linked to drupal server with "db" hostname. Set ADVANCED OPTIONS - Database host: db
  
 
 ### Source, bugs and enhances
