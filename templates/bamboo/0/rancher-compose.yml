@@ -1,16 +1,10 @@
 .catalog:
   name: "Bamboo"
-  version: "v0.0.1"
+  version: "5.15.3"
   description: "Bambo Server"
   uuid: bamboo-0
   minimum_rancher_version: v0.51.0
   questions:
-    - variable: bamboo_version
-      description: "Version of Bamboo Server. Check https://www.atlassian.com/software/bamboo/download?os=linux for current version."
-      label: "Bamboo Version"
-      required: true
-      default: "5.15.3"
-      type: "string"
     - variable: lb_http_port
       description: "HTTP port to access Bamboo Server UI"
       label: "Bamboo LB HTTP Port"
@@ -64,8 +58,13 @@ version: '2'
 services:
   bamboo-server-lb:
     scale: 1
-    load_balancer_config:
-      haproxy_config: {}
+    lb_config:
+      certs: []
+      port_rules:
+      - protocol: http
+        service: bamboo-server
+        source_port: ${lb_http_port}
+        target_port: 8085
     health_check:
       port: 42
       interval: 2000
@@ -74,6 +73,7 @@ services:
       response_timeout: 2000
   bamboo-server:
     scale: 1
+    retain_ip: true
     health_check:
       port: 8085
       interval: 2000

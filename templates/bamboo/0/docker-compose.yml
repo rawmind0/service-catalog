@@ -1,10 +1,10 @@
 version: '2'
 services:
   bamboo-server-lb:
-    image: rancher/load-balancer-service
-    links:
-      - bamboo-server
+    bamboo-server-lb:
+    image: rancher/lb-service-haproxy:v0.6.4
     ports:
+      - ${lb_http_port}:${lb_http_port}
       - ${lb_http_port}:8085
 
   bamboo-data:
