@@ -12,7 +12,7 @@ services:
      - EXTRA_JAVA_OPTIONS=${EXTRA_JAVA_OPTIONS}
   {{- if (.Values.PUBLISH_PORT)}}
   artifactory-lb:
-    image: rancher/lb-service-haproxy
+    image: rancher/lb-service-haproxy:v0.6.4
     ports:
       - ${PUBLISH_PORT}:${PUBLISH_PORT}
   {{- end}}
