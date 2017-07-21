@@ -35,7 +35,7 @@ services:
             proxy_read_timeout  900;
             proxy_pass_header   Server;
             proxy_cookie_path   ~*^/.* /;
-            if ( $request_uri ~ ^/(.*)$$ ) {
+            if ( $$request_uri ~ ^/(.*)$$ ) {
               proxy_pass          http://artifactory:8081/artifactory/$$1;
             }
             proxy_pass          http://artifactory:8081/artifactory/;
