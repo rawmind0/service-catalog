@@ -38,9 +38,9 @@ catalog:
       type: "int"
       default: 8081
     - variable: "SSL_CERT"
-      description: "SSL certificate" 
+      description: "SSL certificate. Mandatory if schema https." 
       label: "SSL certificate:"
-      required: false
+      required: true
       default: ""
       type: "certificate"
     - variable: "EXTRA_JAVA_OPTIONS"
