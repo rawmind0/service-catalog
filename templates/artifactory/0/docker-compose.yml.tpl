@@ -14,7 +14,7 @@ services:
     image: rawmind/alpine-nginx:1.12.1-2
     environment:
       - "NGINX_SERVER_NAME: artifactory"
-      - NGINX_SERVER_CONF: |
+      - "NGINX_SERVER_CONF: |
           server {
       
             listen ${PUBLISH_PORT};
@@ -45,7 +45,7 @@ services:
               proxy_set_header    Host              $$http_host;
               proxy_set_header    X-Forwarded-For   $$proxy_add_x_forwarded_for;
             }
-          }
+          }"
   {{- if (.Values.PUBLISH_PORT)}}
   artifactory-lb:
     image: rancher/lb-service-haproxy:v0.6.4
