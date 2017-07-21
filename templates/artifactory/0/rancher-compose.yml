@@ -48,7 +48,6 @@ services:
       port_rules:
       - protocol: http
         service: artifactory-rb
-        hostname: ${PUBLISH_NAME}
         source_port: ${PUBLISH_PORT}
         target_port: ${PUBLISH_PORT}
     health_check:
