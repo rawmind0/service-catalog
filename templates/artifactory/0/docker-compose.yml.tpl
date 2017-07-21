@@ -39,7 +39,7 @@ services:
                 proxy_pass          http://artifactory:8081/artifactory/\$1;
               }
               proxy_pass          http://artifactory:8081/artifactory/;
-              proxy_set_header    X-Artifactory-Override-Base-Url \$http_x_forwarded_proto://\$host:$server_port;
+              proxy_set_header    X-Artifactory-Override-Base-Url \$http_x_forwarded_proto://\$host:\$server_port;
               proxy_set_header    X-Forwarded-Port  \$server_port;
               proxy_set_header    X-Forwarded-Proto \$http_x_forwarded_proto;
               proxy_set_header    Host              \$http_host;
