@@ -13,7 +13,7 @@ services:
   artifactory-rb:
     image: rawmind/alpine-nginx:1.12.1-2
     environment:
-      - NGINX_SERVER_NAME: artifactory
+      - NGINX_SERVER_NAME: "artifactory"
       - NGINX_SERVER_CONF: |
           server {
       
