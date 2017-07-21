@@ -16,12 +16,13 @@ generated artifacts.
 
  Click deploy.
 
-Note: To use the PRO version, you need to get a free trial at [artifactory-trial][artifactory-trial]
+Note: To use the PRO version, you need to get a free trial.
 
 
-### More info
+### More info:
 
-- [artifactory-resources][artifactory-resources]
+- [Resources][artifactory-resources]
+- [Free-trial][artifactory-trial]
 
 
 [artifactory]: https://www.jfrog.com/artifactory/
