@@ -45,7 +45,8 @@ services:
               proxy_set_header    Host              $$http_host;
               proxy_set_header    X-Forwarded-For   $$proxy_add_x_forwarded_for;
             }
-          }"
+          }
+        "
   {{- if (.Values.PUBLISH_PORT)}}
   artifactory-lb:
     image: rancher/lb-service-haproxy:v0.6.4
