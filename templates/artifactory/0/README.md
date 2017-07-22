@@ -15,9 +15,9 @@ generated artifacts.
 
  Click deploy.
 
-Note: To use the PRO version, you need to get a free trial.
-Note: You need a certificate imported in rancher enviroment to launch the package. 
-
+Notes: 
+- To use the PRO version, you need to get a free trial.
+- You need a certificate imported in rancher enviroment to launch the package. 
 
 
 ### More info:
