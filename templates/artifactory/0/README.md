@@ -18,14 +18,14 @@ generated artifacts.
 Notes: 
 - To use the PRO version, you need to get a free trial.
 - You need a certificate imported in rancher enviroment before deploy this package. 
-- If you use self signed certificates, you should implement [using-self-signed-certificates][using-self-signed-certificates].
+- If you use self signed certificates, you should implement [self-signed-certificates][using-self-signed-certificates] in your hosts.
 
 
 ### More info:
 
 - [Resources][artifactory-resources]
 - [Free-trial][artifactory-trial]
-- [using-self-signed-certificates][using-self-signed-certificates]
+- [self-signed-certificates][using-self-signed-certificates]
 
 
 [artifactory]: https://www.jfrog.com/artifactory/
