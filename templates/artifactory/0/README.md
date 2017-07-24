@@ -15,20 +15,24 @@ generated artifacts.
 
  Click deploy.
 
-Notes: 
+### Notes:
+
 - To use the PRO version, you need to get a free trial.
 - You need a certificate imported in rancher enviroment before deploy this package. 
 - If you use self signed certificates, you should implement [self-signed-certificates][using-self-signed-certificates] in your hosts.
+- If you use http schema, you should implement [insecure-registry][insecure-registry] in your hosts.
 
 
 ### More info:
 
 - [Resources][artifactory-resources]
 - [Free-trial][artifactory-trial]
-- [self-signed-certificates][using-self-signed-certificates]
+- [Self-signed-certificates][using-self-signed-certificates]
+- [Insecure-registry][insecure-registry]
 
 
 [artifactory]: https://www.jfrog.com/artifactory/
 [artifactory-resources]: https://www.jfrog.com/support-service/resources/
 [artifactory-trial]: https://www.jfrog.com/artifactory/free-trial/
 [using-self-signed-certificates]: https://docs.docker.com/registry/insecure/#using-self-signed-certificates
+[insecure-registry]: https://docs.docker.com/registry/insecure/
