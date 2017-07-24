@@ -40,7 +40,7 @@ catalog:
     - variable: "SSL_CERT"
       description: "Select SSL certificate." 
       label: "SSL certificate:"
-      required: true
+      required: false
       default: ""
       type: "certificate"
     - variable: "EXTRA_JAVA_OPTIONS"
