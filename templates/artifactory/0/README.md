@@ -10,10 +10,11 @@ generated artifacts.
 ### Usage:
 
  - Select Artifactory from catalog. 
- - Select artifactory version, OSS or PRO.
+ - Select artifactory version. 
+ - Select artifactory release, OSS or PRO.
  - Set the params and select certificate.
 
- Click deploy.
+ Click "Launch".
 
 ### Notes:
 
