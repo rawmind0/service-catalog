@@ -10,7 +10,7 @@ services:
      - artifactory-data:/var/opt/jfrog/artifactory
     environment:
      - EXTRA_JAVA_OPTIONS=${EXTRA_JAVA_OPTIONS}
-  artifactory-rb:
+  artifactory-rp:
     image: rawmind/alpine-nginx:1.12.1-3
     external_links:
       - artifactory:artifactory
