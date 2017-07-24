@@ -17,7 +17,7 @@ catalog:
     - variable: "PUBLISH_SCHEMA"
       description: "Publish schema" 
       label: "Publish schema:"
-      required: false
+      required: true
       default: "https"
       type: "enum"
       options:
