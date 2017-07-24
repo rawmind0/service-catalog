@@ -12,6 +12,8 @@ services:
      - EXTRA_JAVA_OPTIONS=${EXTRA_JAVA_OPTIONS}
   artifactory-rb:
     image: rawmind/alpine-nginx:1.12.1-3
+    external_links:
+      - artifactory:artifactory
     environment:
       NGINX_SERVER_NAME: artifactory
       NGINX_SERVER_CONF: |
