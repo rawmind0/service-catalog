@@ -59,8 +59,9 @@ services:
   artifactory-lb:
     scale: 1
     lb_config:
-      certs: []
-      default_cert: ${SSL_CERT}
+      certs: 
+        - ${SSL_CERT}
+      #default_cert: ${SSL_CERT}
       port_rules:
       - protocol: ${PUBLISH_SCHEMA}
         service: artifactory-rp
