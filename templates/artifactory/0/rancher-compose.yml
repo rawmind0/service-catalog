@@ -42,7 +42,7 @@ catalog:
       label: "SSL certificate:"
       required: false
       default: ""
-      type: "certificate"
+      type: "string"
     - variable: "EXTRA_JAVA_OPTIONS"
       label: "Extra Java options"
       description: |
