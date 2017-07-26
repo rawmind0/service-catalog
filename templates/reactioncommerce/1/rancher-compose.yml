@@ -16,7 +16,7 @@ catalog:
         description: "Domain to use for the reaction server"
         label: "reaction Domain"
         required: true
-        default: ""
+        default: "local"
         type: "string"
       - variable: host_label
         label: "Host Label to reaction Tags"
@@ -29,7 +29,7 @@ catalog:
       - variable: REACTION_EMAIL
         label: "reaction Email"
         required: true
-        default: ""
+        default: "test@local"
         type: "string"
       - variable: REACTION_USER
         label: "reaction User"
