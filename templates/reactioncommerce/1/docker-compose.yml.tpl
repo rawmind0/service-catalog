@@ -16,7 +16,7 @@ services:
       REACTION_EMAIL: ${REACTION_EMAIL}
       REACTION_USER: ${REACTION_USER}
       REACTION_AUTH: ${REACTION_AUTH}
-{{- if neq .Values.mongo_link ""}}
+{{- if ne .Values.mongo_link ""}}
     external_links:
       - ${mongo_link}:mongo
 {{- else}}
