@@ -18,7 +18,7 @@ services:
       REACTION_AUTH: ${REACTION_AUTH}
 {{- if ne .Values.mongo_link ""}}
       REACTION_TEST: ${REACTION_AUTH}
-    external_links:
+    links:
     - ${mongo_link}:mongo
 {{- else}}
   mongo:
