@@ -18,7 +18,7 @@ services:
       REACTION_AUTH: ${REACTION_AUTH}
 {{- if ne .Values.mongo_link ""}}
     external_links:
-      - ${mongo_link}:mongo
+    - ${mongo_link}:mongo
 {{- else}}
   mongo:
     command: mongod --storageEngine=wiredTiger
