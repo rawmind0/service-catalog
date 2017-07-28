@@ -289,14 +289,6 @@ services:
       response_timeout: 5000 
  ```
 
-
-  {{- if (.Values.PUBLISH_PORT)}}
-  artifactory-lb:
-    image: rancher/lb-service-haproxy:v0.6.4
-    ports:
-      - ${PUBLISH_PORT}:${PUBLISH_PORT}
-  {{- end}}
-
 - Use go templating in docker-compose.yml.tpl to allow different deployment modes.
 
 For exampe, if we set public_port variable, we configure and deploy a lb.
