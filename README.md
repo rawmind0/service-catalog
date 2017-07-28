@@ -17,3 +17,7 @@ This catalog provides templates to use or test services in rancher catalog.
 
 - Zookeeper
 - Kafka
+
+# Best practices
+
+Best practices for developing catalog packages.
