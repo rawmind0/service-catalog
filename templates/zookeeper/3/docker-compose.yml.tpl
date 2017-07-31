@@ -21,6 +21,7 @@ services:
     {{- end}}
       io.rancher.sidekicks: zk-volume, zk-conf
   zk-conf:
+    network_mode: none
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
@@ -32,6 +33,7 @@ services:
     volumes:
       - zkconfig:/opt/tools
   zk-volume:
+    network_mode: none
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
@@ -45,10 +47,11 @@ services:
       - SERVICE_VOLUME=${zk_data_dir}
     volumes:
       - zkdata:${zk_data_dir}
-    volume_driver: local
     image: rawmind/alpine-volume:0.0.2-1
 volumes:
   zkconfig:
     driver: ${VOLUME_DRIVER}
+    per_container: true
   zkdata:
     driver: ${VOLUME_DRIVER}
+    per_container: true
