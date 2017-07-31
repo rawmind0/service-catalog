@@ -62,7 +62,7 @@ catalog:
         Host label to use as zookeeper 'value' tag.
         Example: 'zookeeper=true'
       required: false
-      default: "private=true"
+      default: ""
       type: "string"
     - variable: "VOLUME_DRIVER"
       description: "The VOLUME driver to associate with this server"
