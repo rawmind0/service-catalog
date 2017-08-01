@@ -57,15 +57,6 @@ catalog:
 services:
   db:
     retain_ip: true
-    health_check:
-      response_timeout: 2000
-      healthy_threshold: 2
-      port: 3306
-      unhealthy_threshold: 3
-      initializing_timeout: 120000
-      interval: 2000
-      strategy: recreate
-      reinitializing_timeout: 120000
   gogs:
     scale: 1
     retain_ip: true
