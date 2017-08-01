@@ -2,17 +2,12 @@ version: '2'
 services:
   gogs:
     image: gogs/gogs:0.11.19
-    ports:
-      - ${http_port}:3000
-      - ${ssh_port}:22
     links:
       - mysql:db
     volumes:
       - gogs-data:/data/gogs
-  mysql:
+  db:
     image: mysql:5.5
-    ports:
-      - ${public_port}:3306
     environment:
       MYSQL_ROOT_PASSWORD: ${mysql_password}
       MYSQL_USER: ${mysql_user}
@@ -20,6 +15,11 @@ services:
       MYSQL_DATABASE: ${mysql_db}
     volumes:
       - gogs-db:/var/lib/mysql
+  lb:
+    image: rancher/lb-service-haproxy:v0.6.4
+    ports:
+    - ${http_port}:${http_port}/tcp
+    - ${ssh_port}:${ssh_port}/tcp
 volumes:
   gogs-db:
     driver: ${volume_driver}

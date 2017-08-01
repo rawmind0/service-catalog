@@ -6,12 +6,6 @@ catalog:
   uuid: gogs-0
   minimum_rancher_version: v0.51.0
   questions:
-    - variable: public_port
-      description: "public port to access the mysql server"
-      label: "Public Port"
-      required: true
-      default: "3306"
-      type: "int"
     - variable: http_port
       description: "http port to access gogs webui"
       label: "Http Port"
@@ -22,7 +16,7 @@ catalog:
       description: "ssh port to access gogs cli"
       label: "SSH Port"
       required: true
-      default: "222"
+      default: "2222"
       type: "int"
     - variable: mysql_db
       description: "mysql db"
@@ -42,4 +36,64 @@ catalog:
       required: true
       default: ""
       type: "password"
-
+    - variable: "volume_driver"
+      description: "Volume driver to associate with this service"
+      label: "Volume Driver"
+      required: true
+      default: "local"
+      type: enum
+      options: # List of options if using type of `enum`
+        - local
+        - rancher-nfs
+        - rancher-efs
+        - rancher-ebs
+services:
+  db:
+    scale: 1
+    retain_ip: false
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 3306
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      strategy: recreate
+      reinitializing_timeout: 60000
+  gogs:
+    scale: 1
+    retain_ip: true
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 3000
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      strategy: recreate
+      request_line: GET "/" "HTTP/1.0"
+      reinitializing_timeout: 60000
+  lb:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      certs: []
+      port_rules:
+      - priority: 1
+        protocol: http
+        service: gogs
+        source_port: ${http_port}
+        target_port: 3000
+      - priority: 2
+        protocol: tcp
+        service: gogs
+        source_port: ${ssh_port}
+        target_port: 22
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 42
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      reinitializing_timeout: 60000
