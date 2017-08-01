@@ -24,6 +24,7 @@ services:
     entrypoint: /bin/true
     image: rabbitmq:3.6-management-alpine
   rabbitmq-base:
+    network_mode: "container:rabbitmq"
     labels:
       io.rancher.container.hostname_override: container_name
       io.rancher.scheduler.affinity:host_label: ${host_label}
