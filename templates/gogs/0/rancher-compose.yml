@@ -29,13 +29,13 @@ catalog:
       label: "Mysql db"
       required: true
       default: "gogs"
-      type: "password"
+      type: "string"
     - variable: mysql_user
       description: "mysql user"
       label: "Mysql User"
       required: true
       default: "gogs"
-      type: "password"
+      type: "string"
     - variable: mysql_password
       description: "mysql root password"
       label: "Mysql Password"
