@@ -55,9 +55,6 @@ catalog:
       default: "default_pass"
       type: "password"
 services:
-  db:
-    scale: 1
-    retain_ip: true
   gogs:
     scale: 1
     retain_ip: true
