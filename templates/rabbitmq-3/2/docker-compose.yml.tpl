@@ -48,5 +48,7 @@ services:
 volumes:
   rancherbin:
     driver: ${VOLUME_DRIVER}
+    per_container: true
   rabbitconf:
     driver: ${VOLUME_DRIVER}
+    per_container: true
