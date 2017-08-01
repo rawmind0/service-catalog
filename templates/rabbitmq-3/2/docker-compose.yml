@@ -13,11 +13,11 @@ services:
       - RABBITMQ_CLUSTER_PARTITION_HANDLING=${cluster_partition_handling}
       - CONFD_ARGS=${confd_args}
   rabbitmq-datavolume:
+    network_mode: "none"
     labels:
       io.rancher.container.hostname_override: container_name
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.start_once: true
-    volume_driver: ${VOLUME_DRIVER}
     volumes:
       - rabbitconf:/etc/rabbitmq
       - rancherbin:/opt/rancher/bin
