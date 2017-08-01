@@ -8,6 +8,8 @@ services:
     external_links:
       - ${db_link}:db
 {{- else}}
+    links:
+      - db:db
   db:
     image: mysql:5.5
     environment:
