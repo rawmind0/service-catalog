@@ -16,30 +16,28 @@ services:
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
-    {{- if ne .Values.host_label ""}}
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
-    {{- end}}
+{{- end}}
       io.rancher.sidekicks: zk-volume, zk-conf
   zk-conf:
-    network_mode: none
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
-    {{- if ne .Values.host_label ""}}
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
-    {{- end}}
+{{- end}}
       io.rancher.container.start_once: true
     image: rawmind/rancher-zk:3.4.9
     volumes:
       - zkconfig:/opt/tools
   zk-volume:
-    network_mode: none
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
-    {{- if ne .Values.host_label ""}}
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
-    {{- end}}
+{{- end}}
       io.rancher.container.start_once: true
     environment:
       - SERVICE_UID=10002
