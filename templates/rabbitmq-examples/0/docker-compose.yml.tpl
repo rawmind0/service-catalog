@@ -5,6 +5,7 @@ services:
     hostname: rabbit
     image: rabbitmq:3
 {{- end}}
+
   receive:
     command: receive
 {{- if ne .Values.rabbitmq_link ""}}
@@ -21,6 +22,7 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: send
 {{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
 {{- end}}
@@ -49,6 +51,7 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: newtask
 {{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
 {{- end}}
@@ -89,6 +92,7 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: rpcclient
 {{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
 {{- end}}
@@ -129,6 +133,7 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: emitlog
 {{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
 {{- end}}
@@ -169,6 +174,7 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: emitlogdirect
 {{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
 {{- end}}
@@ -209,6 +215,7 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: emitlogtopic
 {{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
 {{- end}}
