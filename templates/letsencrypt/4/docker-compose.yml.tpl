@@ -33,9 +33,9 @@ services:
       AZURE_RESOURCE_GROUP: ${AZURE_RESOURCE_GROUP}
     volumes:
       - /var/lib/rancher:/var/lib/rancher
-    {{- if .Values.VOLUME_NAME}}
+      {{- if .Values.VOLUME_NAME}}
       - {{.Values.VOLUME_NAME}}:/etc/letsencrypt
-    {{- end }}
+      {{- end }}
     labels:
       io.rancher.container.create_agent: 'true'
       io.rancher.container.agent.role: 'environment'
