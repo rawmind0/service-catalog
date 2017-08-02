@@ -17,7 +17,6 @@ services:
       KEEPALIVED_VIRTUAL_IPADDRESS_1: "\"${virtual_ip}\""
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}=${master_label}
-
   keepalived-backup:
     restart: always
     image: arcts/keepalived:1.1.0
@@ -35,3 +34,14 @@ services:
       KEEPALIVED_VIRTUAL_IPADDRESS_1: "\"${virtual_ip}\""
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}=${backup_label}
+{{- if eq .Values.UPDATE_SYSCTL "true" }}
+  keepalived-sysctl:
+    labels:
+      io.rancher.container.start_once: true
+    network_mode: none  
+    image: rawmind/alpine-sysctl:0.1-1
+    privileged: true
+    environment: 
+      - "SYSCTL_KEY=net.ipv4.ip_nonlocal_bind" 
+      - "SYSCTL_VALUE=1"
+{{- end}}
