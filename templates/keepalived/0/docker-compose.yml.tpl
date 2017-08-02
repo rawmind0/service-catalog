@@ -14,7 +14,7 @@ services:
       KEEPALIVED_UNICAST_SRC_IP: ${master_ip}
       KEEPALIVED_UNICAST_PEER_0: ${backup_ip}
       KEEPALIVED_TRACK_INTERFACE_1: ${interface}
-      KEEPALIVED_VIRTUAL_IPADDRESS_1: "\"${virtual_ip}\""
+      KEEPALIVED_VIRTUAL_IPADDRESS_1: "$"${virtual_ip}$""
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}=${master_label}
     {{- if eq .Values.UPDATE_SYSCTL "true" -}}
@@ -34,7 +34,7 @@ services:
       KEEPALIVED_UNICAST_SRC_IP: ${backup_ip}
       KEEPALIVED_UNICAST_PEER_0: ${master_ip}
       KEEPALIVED_TRACK_INTERFACE_1: ${interface}
-      KEEPALIVED_VIRTUAL_IPADDRESS_1: "\"${virtual_ip}\""
+      KEEPALIVED_VIRTUAL_IPADDRESS_1: "$"${virtual_ip}$""
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}=${backup_label}
 {{- if eq .Values.UPDATE_SYSCTL "true" }}
