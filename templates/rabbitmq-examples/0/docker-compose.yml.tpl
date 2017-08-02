@@ -4,15 +4,6 @@ services:
   rabbit:
     hostname: rabbit
     image: rabbitmq:3
-  send:
-    image: joshuacox/rabbitmq-tutorials
-    labels:
-      io.rancher.container.hostname_override: container_name
-      io.rancher.scheduler.affinity:host_label: ${host_label}
-      io.rancher.container.start_once: true
-    environment:
-      - AMQ_HOST=rabbit
-    command: send
 {{- end}}
   receive:
     command: receive
@@ -23,14 +14,18 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
     environment:
       - AMQ_HOST=rabbit
   send:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
       io.rancher.container.start_once: true
     environment:
       - AMQ_HOST=rabbit
@@ -44,7 +39,9 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
     environment:
       - AMQ_HOST=rabbit
     command: worker
@@ -56,7 +53,9 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
       io.rancher.container.start_once: true
     environment:
       - AMQ_HOST=rabbit
@@ -70,7 +69,9 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
     environment:
       - AMQ_HOST=rabbit
     command: rpc_server
@@ -82,7 +83,9 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
       io.rancher.container.start_once: true
     environment:
       - AMQ_HOST=rabbit
@@ -96,7 +99,9 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
     environment:
       - AMQ_HOST=rabbit
     command: receive_logs
@@ -108,7 +113,9 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
       io.rancher.container.start_once: true
     environment:
       - AMQ_HOST=rabbit
@@ -122,7 +129,9 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
     environment:
       - AMQ_HOST=rabbit
     command: receive_logs_direct info
@@ -134,7 +143,9 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
       io.rancher.container.start_once: true
     environment:
       - AMQ_HOST=rabbit
@@ -148,7 +159,9 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
     environment:
       - AMQ_HOST=rabbit
     command: receive_logs_topic anonymous.info
@@ -160,7 +173,9 @@ services:
     image: joshuacox/rabbitmq-tutorials
     labels:
       io.rancher.container.hostname_override: container_name
+{{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
+{{- end}}
       io.rancher.container.start_once: true
     environment:
       - AMQ_HOST=rabbit
