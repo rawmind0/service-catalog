@@ -778,11 +778,6 @@ services:
         service: web
         source_port: ${web_port}
         target_port: 80
-      - priority: 2
-        protocol: tcp
-        service: db
-        source_port: ${db_port}
-        target_port: 3306
     health_check:
       healthy_threshold: 2
       response_timeout: 2000
