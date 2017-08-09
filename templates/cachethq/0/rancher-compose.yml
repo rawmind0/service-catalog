@@ -4,6 +4,12 @@
   description: Cachet is a beautiful and powerful open source status page system.
 
   questions:
+    - variable: "APP_KEY"
+      type: "string"
+      required: true
+      label: "Application Key"
+      default: "base64:INSERT/RANDOM/BASE64/STRING/HERE"
+
     - variable: "POSTGRES_USER"
       type: "string"
       required: true

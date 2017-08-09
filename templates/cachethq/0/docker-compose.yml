@@ -18,6 +18,7 @@ services:
       - "DB_DATABASE=postgres"
       - "DB_USERNAME=${POSTGRES_USER}"
       - "DB_PASSWORD=${POSTGRES_PASSWORD}"
+      - "APP_KEY=${APP_KEY}"
     links: 
       - postgres:postgres
     depends_on: 
