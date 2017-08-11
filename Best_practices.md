@@ -74,29 +74,13 @@ Packages has to be easy reproducible and latest isn't.
 
 docker-compose.yml
 ```
-version: '2'
-services:
-  web:
+.
+.
     image: <web_image>:<web_version>
-    ports:
-      - ${web_port}:80
-    environment:
-      DB_HOST: db
-      DB_PORT: ${db_port}
-      DB_NAME: demo
-      DB_USER: user
-      DB_PASS: pass
-    links:
-      - db:db
-  db:
+.
+.
     image: <db_image>:<db_version>
-    ports:
-      - ${db_port}:${db_port}
-    environment:
-      DB_PORT: ${db_port}
-      DB_NAME: demo
-      DB_USER: user
-      DB_PASS: pass
+
 ```
 
 - Use healthchecks
