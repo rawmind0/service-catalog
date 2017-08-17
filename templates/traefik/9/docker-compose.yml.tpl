@@ -5,7 +5,6 @@ services:
     - ${admin_port}:8000/tcp
     - ${http_port}:${http_port}/tcp
     - ${https_port}:${https_port}/tcp
-    log_driver: ''
     labels:
       io.rancher.scheduler.global: 'true'
       io.rancher.scheduler.affinity:host_label: ${host_label}
@@ -15,8 +14,6 @@ services:
           ,traefik-acme
         {{- end}}
       io.rancher.container.hostname_override: container_name
-    tty: true
-    log_opt: {}
     image: rawmind/alpine-traefik:1.3.5
     environment:
     - CONF_INTERVAL=${refresh_interval}
@@ -36,14 +33,11 @@ services:
     - traefik-acme
   {{- end}}
   traefik-conf:
-    log_driver: ''
     labels:
       io.rancher.scheduler.global: 'true'
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.start_once: 'true'
-    tty: true
-    log_opt: {}
     image: rawmind/rancher-traefik:1.3.3-1
     network_mode: none
     volumes:
