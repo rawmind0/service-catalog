@@ -58,7 +58,7 @@ traefik-acme:
     - SERVICE_GID=10001
     - SERVICE_VOLUME=/opt/traefik/acme
   volumes:
-    - /opt/traefik/acme
+    - ${VOLUME_NAME}:/opt/traefik/acme
   volume_driver: ${VOLUME_DRIVER}
   image: rawmind/alpine-volume:0.0.2-1
 {{- end}}
