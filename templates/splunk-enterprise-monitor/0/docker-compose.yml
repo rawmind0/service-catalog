@@ -1,0 +1,34 @@
+version: '2'
+services:
+  vsplunk:
+    image: busybox
+    stdin_open: true
+    volumes:
+    - /opt/splunk/etc
+    - /opt/splunk/var
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+  splunk:
+    image: splunk/splunk:6.5.3-monitor
+    hostname: splunkenterprise
+    environment:
+      SPLUNK_ADD: tcp 1514
+      SPLUNK_ENABLE_LISTEN: '9997'
+      SPLUNK_START_ARGS: --accept-license --answer-yes
+      SPLUNK_USER: root
+    stdin_open: true
+    volumes:
+    - /var/lib/docker/containers:/host/containers:ro
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    tty: true
+    volumes_from:
+    - vsplunk
+    ports:
+    - 1514:1514/tcp
+    - 8000:8000/tcp
+    - 8088:8088/tcp
+    - 9997:9997/tcp
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.sidekicks: vsplunk

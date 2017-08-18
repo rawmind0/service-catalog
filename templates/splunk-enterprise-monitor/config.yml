@@ -1,0 +1,6 @@
+name: Splunk Enterprise Monitor
+description: |
+  STCL-Tech Splunk Enterprise Monitor (Experimental)
+version: 6.5.3-monitor
+category: Logging and Monitoring
+maintainer: "Rich Bos <richard.bosomworth@skeltonthatcher.com"

@@ -1,0 +1,22 @@
+.catalog:
+  name: Splunk Enterprise Monitor
+  version: 6.5.3-monitor
+  description: |
+    STCL-Tech Splunk Enterprise Monitor (Experimental)
+  maintainer: "Rich Bos <richard.bosomworth@skeltonthatcher.com"
+  uuid: splunk-ent-mon-0
+vsplunk:
+  scale: 1
+  start_on_create: true
+splunk:
+  scale: 1
+  start_on_create: true
+  retain_ip: true
+  health_check:
+    port: 8000
+    interval: 2000
+    initializing_timeout: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000
