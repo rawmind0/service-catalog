@@ -6,9 +6,9 @@ catalog:
   uuid: sonarqube-0
   minimum_rancher_version: v0.51.0
   questions:
-    - variable: version
-      description: "SonarQube version"
-      label: "SonarQube version"
+    - variable: docker_version
+      description: "SonarQube docker version"
+      label: "SonarQube docker version"
       required: true
       default: "6.5-alpine"
       type: "enum"

@@ -7,7 +7,7 @@ services:
   sonarqube:
     labels:
       io.rancher.container.hostname_override: container_name
-    image: sonarqube:${version}
+    image: sonarqube:${docker_version}
     environment:
       SONARQUBE_WEB_JVM_OPTS: ${jvm_opts}
       SONARQUBE_JDBC_USERNAME: ${postgres_user}
