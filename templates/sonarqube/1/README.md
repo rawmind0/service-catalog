@@ -3,10 +3,10 @@
 * Postgres Database + Sidekick for storing data
 
 ## Info
-* In default SonarQube stack will create "sonar" postgres database with sonar user.  
-* Additional variables `http_proxy` and `https_proxy` are included, which can be helpfull in some cases.
+* In default SonarQube stack will create "sonar" postgres database with sonar user. 
+* For easy upgrades there are sidekicks for postgres data with dedicated storage. 
+* Optional, you could use an external postgres database link.
 * Once SonarQube will start, make sure you setup correct information in setup page.
-* For easy upgrades there are sidekicks for both postgress and SonarQube with dedicated storage.
 
 ## Installing Plugins Manually
 * Go to [Plugin Library](http://docs.sonarqube.org/display/PLUG/Plugin+Library) and find your favourite plugins

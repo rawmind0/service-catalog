@@ -42,6 +42,13 @@ catalog:
       required: true
       default: "sonar"
       type: "password"
+    - variable: "postgres_link"
+      description: |
+        Choose the postgres service to use. 
+      label: "Postgres stack/service"
+      default: ""
+      required: false
+      type: "service"
 services:
   sonarqube-lb:
     scale: 1
