@@ -18,7 +18,7 @@ services:
     image: rancher/lb-service-haproxy:v0.6.4
     ports:
       - ${http_port}:${http_port}
-  sonarqube-db:
+  db:
     labels:
       io.rancher.container.hostname_override: container_name
     image: postgres:9.6.3-alpine
