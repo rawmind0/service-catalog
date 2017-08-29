@@ -7,11 +7,17 @@ catalog:
   minimum_rancher_version: v0.51.0
   questions:
     - variable: http_port
-      description: "HTTP port to access SonarQube UI"
-      label: "SonarQube HTTP Port"
+      description: "SonarQube http port"
+      label: "SonarQube http Port"
       required: true
       default: "9000"
       type: "int"
+    - variable: jvm_opts
+      description: "SonarQube web jvm options"
+      label: "SonarQube web jvm options"
+      required: false
+      default: ""
+      type: "string"
     - variable: postgres_port
       description: "Postgres Port"
       label: "Postgres Port"
