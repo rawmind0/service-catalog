@@ -3,7 +3,7 @@
 * Postgres Database + Sidekick for storing data
 
 ## Info
-* In default SonarQube stack will create "sonar" postgres database with sonar user. 
+* In default SonarQube stack will install alpine version and will create "sonar" postgres database with "sonar" user and password. 
 * For easy upgrades there are sidekicks for postgres data with dedicated storage. 
 * Optional, you could use an external postgres database link.
 * Once SonarQube will start, make sure you setup correct information in setup page.

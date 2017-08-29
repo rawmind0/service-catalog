@@ -1,11 +1,20 @@
 version: '2'
 catalog:
   name: "SonarQube"
-  version: "v0.0.2"
+  version: "v6.5"
   description: "SonarQube"
   uuid: sonarqube-0
   minimum_rancher_version: v0.51.0
   questions:
+    - variable: version
+      description: "SonarQube version"
+      label: "SonarQube version"
+      required: true
+      default: "6.5-alpine"
+      type: "enum"
+      options:
+        - 6.5-alpine
+        - 6.5
     - variable: http_port
       description: "SonarQube http port"
       label: "SonarQube http Port"
@@ -44,7 +53,7 @@ catalog:
       type: "password"
     - variable: "postgres_link"
       description: |
-        Choose the postgres service to use. 
+        Optional external postgres service to use. 
       label: "Postgres stack/service"
       default: ""
       required: false
