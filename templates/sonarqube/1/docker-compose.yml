@@ -24,6 +24,7 @@ services:
   db:
     labels:
       io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: db-storage
     image: postgres:9.6.3-alpine
     environment:
       POSTGRES_USER:  ${postgres_user}
