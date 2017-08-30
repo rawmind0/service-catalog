@@ -4,9 +4,22 @@ services:
     image: rancher/lb-service-haproxy:v0.7.6
     ports:
       - ${http_port}:${http_port}
+  sonarqube-storage:
+    network_mode: none
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.start_once: true
+    environment:
+      - SERVICE_UID=0
+      - SERVICE_GID=0
+      - SERVICE_VOLUME=/opt/sonarqube/extensions/plugins
+    volumes:
+      - sonarqube-plugin:/opt/sonarqube/extensions/plugins
+    image: rawmind/alpine-volume:0.0.2-1
   sonarqube:
     labels:
       io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: sonarqube-storage
     image: sonarqube:${docker_version}
     environment:
       SONARQUBE_WEB_JVM_OPTS: ${jvm_opts}
@@ -15,6 +28,8 @@ services:
       SONARQUBE_JDBC_URL: jdbc:postgresql://db:${postgres_port}/${postgres_db}
     labels:
       io.rancher.container.hostname_override: container_name
+    volumes_from:
+        - sonarqube-storage
 {{- if ne .Values.postgres_link ""}}
     external_links:
       - ${postgres_link}:db
@@ -46,6 +61,8 @@ services:
     image: rawmind/alpine-volume:0.0.2-1
 volumes:
   db-data:
+    driver: local
+  sonarqube-plugin:
     driver: local
 {{- end}}
 
