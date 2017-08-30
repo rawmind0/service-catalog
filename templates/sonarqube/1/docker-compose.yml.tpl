@@ -4,6 +4,12 @@ services:
     image: rancher/lb-service-haproxy:v0.7.6
     ports:
       - ${http_port}:${http_port}
+    lb_config:
+      port_rules:
+      - protocol: http
+        service: sonarqube
+        source_port: ${http_port}
+        target_port: 9000
   sonarqube:
     labels:
       io.rancher.container.hostname_override: container_name

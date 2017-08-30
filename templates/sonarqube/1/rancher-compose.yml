@@ -61,12 +61,6 @@ catalog:
 services:
   sonarqube-lb:
     scale: 1
-    lb_config:
-      port_rules:
-      - protocol: http
-        service: sonarqube
-        source_port: ${http_port}
-        target_port: 9000
     health_check:
       response_timeout: 2000
       healthy_threshold: 2
