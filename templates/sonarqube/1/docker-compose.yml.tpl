@@ -29,7 +29,7 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
     volumes_from:
-        - sonarqube-storage
+      - sonarqube-storage
 {{- if ne .Values.postgres_link ""}}
     external_links:
       - ${postgres_link}:db
