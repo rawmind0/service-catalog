@@ -26,8 +26,6 @@ services:
       SONARQUBE_JDBC_USERNAME: ${postgres_user}
       SONARQUBE_JDBC_PASSWORD: ${postgres_password}
       SONARQUBE_JDBC_URL: jdbc:postgresql://db:${postgres_port}/${postgres_db}
-    labels:
-      io.rancher.container.hostname_override: container_name
     volumes_from:
       - sonarqube-storage
 {{- if ne .Values.postgres_link ""}}
@@ -59,11 +57,12 @@ services:
     volumes:
       - db-data:/var/lib/postgresql
     image: rawmind/alpine-volume:0.0.2-1
+{{- end}}
 volumes:
-  db-data:
-    driver: local
   sonarqube-plugin:
     driver: local
+{{- if eq .Values.postgres_link ""}}
+  db-data:
+    driver: local
 {{- end}}
-
 
