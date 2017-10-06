@@ -52,7 +52,7 @@ services:
             proxy_pass          http://payments:8080/;
           }
           location / {
-            try_files =404;
+            try_files =200;
           }
           proxy_set_header    X-Forwarded-Port  $$server_port;
           proxy_set_header    X-Forwarded-Proto $$http_x_forwarded_proto;
