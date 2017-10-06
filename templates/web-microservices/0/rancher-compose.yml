@@ -48,29 +48,28 @@ services:
       interval: 2000
       strategy: recreate
       request_line: GET "/" "HTTP/1.0"
-  web-gateway:
+  gateway:
+    scale: 2
+    start_on_create: true
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 8080
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      strategy: recreate
+      request_line: GET "/" "HTTP/1.0"
+  lb:
     scale: 1
     start_on_create: true
     lb_config:
       certs: []
       port_rules:
       - hostname: ''
-        path: /payments
         priority: 1
         protocol: http
-        service: payments
-        source_port: ${PUBLIC_PORT}
-        target_port: 8080
-      - path: /shipping
-        priority: 2
-        protocol: http
-        service: shipping
-        source_port: ${PUBLIC_PORT}
-        target_port: 8080
-      - path: /inventory
-        priority: 3
-        protocol: http
-        service: inventory
+        service: gateway
         source_port: ${PUBLIC_PORT}
         target_port: 8080
     health_check:
