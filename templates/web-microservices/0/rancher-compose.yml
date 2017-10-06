@@ -12,7 +12,7 @@ catalog:
       default: "8080"
       type: int
 services:
-  web-inventory:
+  inventory:
     scale: 2
     start_on_create: true
     health_check:
@@ -24,7 +24,7 @@ services:
       interval: 2000
       strategy: recreate
       request_line: GET "/" "HTTP/1.0"
-  web-shipping:
+  shipping:
     scale: 2
     start_on_create: true
     health_check:
@@ -36,7 +36,7 @@ services:
       interval: 2000
       strategy: recreate
       request_line: GET "/" "HTTP/1.0"
-  web-payments:
+  payments:
     scale: 2
     start_on_create: true
     health_check:
@@ -58,19 +58,19 @@ services:
         path: /payments
         priority: 1
         protocol: http
-        service: web-payments
+        service: payments
         source_port: ${PUBLIC_PORT}
         target_port: 8080
       - path: /shipping
         priority: 2
         protocol: http
-        service: web-shipping
+        service: shipping
         source_port: ${PUBLIC_PORT}
         target_port: 8080
       - path: /inventory
         priority: 3
         protocol: http
-        service: web-inventory
+        service: inventory
         source_port: ${PUBLIC_PORT}
         target_port: 8080
     health_check:
