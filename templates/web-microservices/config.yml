@@ -1,0 +1,5 @@
+name: web-microservice
+description: |
+  Web example to show microservice concept
+version: 0.1
+category: Test

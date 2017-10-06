@@ -1,0 +1,27 @@
+version: '2'
+services:
+  web-inventory:
+    image: rawmind/web-inventory:0.1
+    tty: true
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  web-shipping:
+    image: rawmind/web-shipping:0.1
+    tty: true
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  web-payments:
+    image: rawmind/web-payments:0.1-2
+    tty: true
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  web-gateway:
+    image: rancher/lb-service-haproxy:v0.7.6
+    ports:
+    - ${PUBLIC_PORT}:${PUBLIC_PORT}/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'
