@@ -1,4 +1,4 @@
-# Traefik active load balancer (Experimental)
+# Traefik active load balancer
 
 ### Info:
 
