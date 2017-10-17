@@ -47,12 +47,12 @@ services:
   {{- end}}
   {{- if or (eq .Values.rancher_integration "external") (eq .Values.acme_enable "true")}}
     volumes_from:
-  {{- end}}
-  {{- if eq .Values.rancher_integration "external"}}
+    {{- if eq .Values.rancher_integration "external"}}
     - traefik-conf
-  {{- end}}
-  {{- if eq .Values.acme_enable "true"}}
+    {{- end}}
+    {{- if eq .Values.acme_enable "true"}}
     - traefik-acme
+    {{- end}}
   {{- end}}
   {{- if eq .Values.rancher_integration "external"}}
   traefik-conf:
