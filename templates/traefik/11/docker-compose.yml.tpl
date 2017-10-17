@@ -22,10 +22,18 @@ services:
       io.rancher.container.hostname_override: container_name
     image: rawmind/alpine-traefik:1.4.0-3
     environment:
-    - CONF_INTERVAL=${refresh_interval}
     - TRAEFIK_HTTP_PORT=${http_port}
     - TRAEFIK_HTTPS_PORT=${https_port}
     - TRAEFIK_HTTPS_ENABLE=${https_enable}
+    - TRAEFIK_INSECURE_SKIP=${insecure_skip}
+    - TRAEFIK_ADMIN_ENABLE=true
+    - TRAEFIK_ADMIN_READ_ONLY=${admin_readonly}
+    - TRAEFIK_ADMIN_STATISTICS=${admin_statistics}
+    - TRAEFIK_ADMIN_AUTH_METHOD=${admin_auth_method}
+    - TRAEFIK_ADMIN_AUTH_USERS=${admin_users}
+  {{- if eq .Values.rancher_integration "external"}}
+    - CONF_INTERVAL=${refresh_interval}
+  {{- end}}
   {{- if eq .Values.acme_enable "true"}}
     - TRAEFIK_ACME_ENABLE=${acme_enable}
     - TRAEFIK_ACME_EMAIL=${acme_email}
@@ -36,12 +44,6 @@ services:
     - TRAEFIK_RANCHER_ENABLE=true
     - TRAEFIK_RANCHER_MODE=${rancher_integration}
   {{- end}}
-    - TRAEFIK_INSECURE_SKIP=${insecure_skip}
-    - TRAEFIK_ADMIN_ENABLE=true
-    - TRAEFIK_ADMIN_READ_ONLY=${admin_readonly}
-    - TRAEFIK_ADMIN_STATISTICS=${admin_statistics}
-    - TRAEFIK_ADMIN_AUTH_METHOD=${admin_auth_method}
-    - TRAEFIK_ADMIN_AUTH_USERS=${admin_users}
   {{- if eq .Values.prometheus_enable "true"}}
     - TRAEFIK_PROMETHEUS_ENABLE=${prometheus_enable}
     - TRAEFIK_PROMETHEUS_BUCKETS=${prometheus_buckets}
