@@ -155,7 +155,7 @@ catalog:
         - basic
         - digest
     - variable: "admin_users"
-      description: "Admin auth user list on the webui. Basic or digest format."
+      description: "Admin auth user list on the webui. Generate with htpassword for basic or htdigest with traefik realm for digest."
       label: "Admin users:"
       type: "multiline"
       required: false
