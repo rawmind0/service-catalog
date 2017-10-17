@@ -17,7 +17,7 @@ services:
         {{- if eq .Values.acme_enable "true" -}}
           traefik-acme
         {{- end}}
-    {- end }}
+    {- end}}
       io.rancher.container.hostname_override: container_name
     image: rawmind/alpine-traefik:1.4.0-3
     environment:
@@ -47,12 +47,12 @@ services:
   {{- end}}
   {{- if or (eq .Values.rancher_integration "external") (eq .Values.acme_enable "true")}}
     volumes_from:
-  {{- end}}
-  {{- if eq .Values.rancher_integration "external"}}
+    {{- if eq .Values.rancher_integration "external"}}
     - traefik-conf
-  {{- end}}
-  {{- if eq .Values.acme_enable "true"}}
+    {{- end}}
+    {{- if eq .Values.acme_enable "true"}}
     - traefik-acme
+    {{- end}}
   {{- end}}
   {{- if eq .Values.rancher_integration "external"}}
   traefik-conf:
@@ -83,7 +83,6 @@ services:
   {{- end}}
 {{- if or (eq .Values.rancher_integration "external") (eq .Values.acme_enable "true")}}
 volumes:
-{{- end}}
   {{- if eq .Values.rancher_integration "external"}}
   tools-volume:
     driver: local
@@ -93,3 +92,4 @@ volumes:
   ${VOLUME_NAME}:
     driver: ${VOLUME_DRIVER}
   {{- end}}
+{{- end}}
