@@ -40,7 +40,9 @@ services:
     - TRAEFIK_PROMETHEUS_ENABLE=${prometheus_enable}
     - TRAEFIK_PROMETHEUS_BUCKETS=${prometheus_buckets}
   {{- end}}
+  {{- if or (eq .Values.rancher_integration "external") (eq .Values.acme_enable "true")}}
     volumes_from:
+  {{- end}}
   {{- if eq .Values.rancher_integration "external"}}
     - traefik-conf
   {{- end}}
