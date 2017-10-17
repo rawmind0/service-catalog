@@ -54,7 +54,7 @@ services:
     - traefik-acme
     {{- end}}
   {{- end}}
-  {{- if eq .Values.rancher_integration "external"}}
+  {{- if eq .Values.rancher_integration "external" -}}
   traefik-conf:
     labels:
       io.rancher.scheduler.global: 'true'
