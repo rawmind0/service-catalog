@@ -26,6 +26,10 @@ services:
     - TRAEFIK_ACME_ONDEMAND=${acme_ondemand}
     - TRAEFIK_ACME_ONHOSTRULE=${acme_onhostrule}
   {{- end}}
+  {{- if ne .Values.rancher_integration "external"}}
+    - TRAEFIK_RANCHER_ENABLE=true
+    - TRAEFIK_RANCHER_MODE=${rancher_integration}
+  {{- end}}
     - TRAEFIK_INSECURE_SKIP=${insecure_skip}
     - TRAEFIK_ADMIN_ENABLE=true
     - TRAEFIK_ADMIN_READ_ONLY=${admin_readonly}
@@ -35,10 +39,13 @@ services:
     - TRAEFIK_PROMETHEUS_ENABLE=${prometheus_enable}
     - TRAEFIK_PROMETHEUS_BUCKETS=${prometheus_buckets}
     volumes_from:
+  {{- if eq .Values.rancher_integration "external"}}
     - traefik-conf
+  {{- end}}
   {{- if eq .Values.acme_enable "true"}}
     - traefik-acme
   {{- end}}
+  {{- if eq .Values.rancher_integration "external"}}
   traefik-conf:
     labels:
       io.rancher.scheduler.global: 'true'
@@ -49,6 +56,7 @@ services:
     network_mode: none
     volumes:
       - tools-volume:/opt/tools
+  {{- end}}
   {{- if eq .Values.acme_enable "true"}}
   traefik-acme:
     network_mode: none
@@ -64,10 +72,14 @@ services:
       - ${VOLUME_NAME}:/opt/traefik/acme
     image: rawmind/alpine-volume:0.0.2-1
   {{- end}}
+{{- if or (eq .Values.rancher_integration "external") (eq .Values.acme_enable "true")}}
 volumes:
+{{- end}}
+  {{- if eq .Values.rancher_integration "external"}}
   tools-volume:
     driver: local
     per_container: true
+  {{- end}}
   {{- if eq .Values.acme_enable "true"}}
   ${VOLUME_NAME}:
     driver: ${VOLUME_DRIVER}

@@ -14,6 +14,17 @@ catalog:
       required: true
       default: "traefik_lb=true" 
       type: "string"
+    - variable: "rancher_integration"
+      label: "Choose rancher integration:"
+      description: |
+        Enable rancher integration mode. Traefik built in integration, metadata or api, or external sidekick integration with confd.
+      default: metadata
+      required: true
+      type: enum
+      options:
+        - metadata
+        - api
+        - external
     - variable: "http_port"
       description: "Traefik http public port to listen."
       label: "Http port:"
