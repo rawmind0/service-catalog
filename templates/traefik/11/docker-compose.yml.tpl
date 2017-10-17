@@ -10,11 +10,11 @@ services:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     {{- if or (eq .Values.rancher_integration "external") (eq .Values.acme_enable "true")}}
-      io.rancher.sidekicks: {{- if eq .Values.rancher_integration "external" -}}
-          traefik-conf,
-        {{- end -}}{{- if eq .Values.acme_enable "true" -}}
-          traefik-acme
+      io.rancher.sidekicks: 
+        {{- if eq .Values.rancher_integration "external"}} traefik-conf,
+            {{- if eq .Values.acme_enable "true" -}},{{- end -}}
         {{- end -}}
+        {{- if eq .Values.acme_enable "true" -}}traefik-acme{{- end -}}
     {{- end}}
       io.rancher.container.hostname_override: container_name
     image: rawmind/alpine-traefik:1.4.0-3
