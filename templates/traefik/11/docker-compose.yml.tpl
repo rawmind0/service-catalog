@@ -15,8 +15,9 @@ services:
             {{- if eq .Values.acme_enable "true" -}},{{- end -}}
         {{- end -}}
         {{- if eq .Values.acme_enable "true" -}}
-            {{- if ne .Values.rancher_integration "external"}} {{- end -}}
-            traefik-acme
+            {{- if ne .Values.rancher_integration "external"}} traefik-acme
+            {{- else -}}traefik-acme
+            {{- end -}}
         {{- end -}}
     {{- end}}
       io.rancher.container.hostname_override: container_name
