@@ -14,7 +14,10 @@ services:
         {{- if eq .Values.rancher_integration "external"}} traefik-conf
             {{- if eq .Values.acme_enable "true" -}},{{- end -}}
         {{- end -}}
-        {{- if eq .Values.acme_enable "true" -}}traefik-acme{{- end -}}
+        {{- if eq .Values.acme_enable "true" -}}
+            {{- if ne .Values.rancher_integration "external"}} {{- end -}}
+            traefik-acme
+        {{- end -}}
     {{- end}}
       io.rancher.container.hostname_override: container_name
     image: rawmind/alpine-traefik:1.4.0-3
