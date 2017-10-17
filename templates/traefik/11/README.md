@@ -43,7 +43,7 @@ Traefik labels has to be added to your services, in order to get included in tra
 
 Please use traefik defined labels if you choose metadata or api rancher integration. 
 
-[traefik rancher backend][traefik rancher backend]
+[Traefik rancher backend labels][traefik rancher backend]
 
 ## External
 
