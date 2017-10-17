@@ -43,7 +43,7 @@ Traefik labels has to be added to your services, in order to get included in tra
 
 Please use traefik defined labels if you choose metadata or api rancher integration. 
 
-[traefik rancher backend][https://docs.traefik.io/configuration/backends/rancher/#labels-overriding-default-behaviour]
+[traefik rancher backend][traefik rancher backend]
 
 ## External
 
@@ -70,3 +70,5 @@ Use this labels if you choose extenal rancher integration.
  Access your traefik admin service at $admin_port to see your published services.
 
 Note: To access the services, you need to create A or CNAMES dns entries for every one.
+
+[traefik rancher backend]: https://docs.traefik.io/configuration/backends/rancher/#labels-overriding-default-behaviour
