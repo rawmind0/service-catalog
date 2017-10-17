@@ -27,7 +27,7 @@ services:
     - TRAEFIK_ACME_ONHOSTRULE=${acme_onhostrule}
   {{- end}}
     - TRAEFIK_INSECURE_SKIP=${insecure_skip}
-    - TRAEFIK_ADMIN_ENABLE=${admin_enable}
+    - TRAEFIK_ADMIN_ENABLE=true
     - TRAEFIK_ADMIN_READ_ONLY=${admin_readonly}
     - TRAEFIK_ADMIN_STATISTICS=${admin_statistics}
     - TRAEFIK_ADMIN_AUTH_METHOD=${admin_auth_method}
