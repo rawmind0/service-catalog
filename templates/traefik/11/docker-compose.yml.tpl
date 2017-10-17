@@ -36,8 +36,10 @@ services:
     - TRAEFIK_ADMIN_STATISTICS=${admin_statistics}
     - TRAEFIK_ADMIN_AUTH_METHOD=${admin_auth_method}
     - TRAEFIK_ADMIN_AUTH_USERS=${admin_users}
+  {{- if eq .Values.prometheus_enable "true"}}
     - TRAEFIK_PROMETHEUS_ENABLE=${prometheus_enable}
     - TRAEFIK_PROMETHEUS_BUCKETS=${prometheus_buckets}
+  {{- end}}
     volumes_from:
   {{- if eq .Values.rancher_integration "external"}}
     - traefik-conf
