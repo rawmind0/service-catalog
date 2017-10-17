@@ -8,12 +8,6 @@ catalog:
   maintainer: "Raul Sanchez <rawmind@gmail.com>"
   uuid: traefik-0
   questions:
-    - variable: "host_label"
-      description: "Host label where to run traefik service."
-      label: "Host label:"
-      required: true
-      default: "traefik_lb=true" 
-      type: "string"
     - variable: "rancher_integration"
       label: "Choose rancher integration:"
       description: |
@@ -25,6 +19,12 @@ catalog:
         - metadata
         - api
         - external
+    - variable: "host_label"
+      description: "Host label where to run traefik service."
+      label: "Host label:"
+      required: true
+      default: "traefik_lb=true" 
+      type: "string"
     - variable: "http_port"
       description: "Traefik http public port to listen."
       label: "Http port:"
@@ -84,6 +84,23 @@ catalog:
       required: true
       default: "https://acme-v01.api.letsencrypt.org/directory"
       type: "string"
+    - variable: "acme_vol_name"
+      description: "The volume name shared to store ACME certs"
+      label: "ACME Volume Name"
+      required: true
+      default: "traefik_acme_vol"
+      type: "string"
+    - variable: "acme_vol_driver"
+      description: "The volume driver shared to store ACME certs"
+      label: "ACME Volume Driver"
+      required: true
+      default: "local"
+      type: enum
+      options: # List of options if using type of `enum`
+        - local
+        - rancher-nfs
+        - rancher-efs
+        - rancher-ebs
     - variable: "ssl_key"
       description: "SSL key to secure the service. *Required if you enable https"
       label: "SSL key"
@@ -102,6 +119,13 @@ catalog:
       required: true
       default: false 
       type: "boolean"
+    - variable: "compress_enable"
+      label: "Enable compression:"
+      description: |
+        Enable Traefik compression for entrypoints.
+      default: true
+      required: true
+      type: "boolean"
     - variable: "refresh_interval"
       description: "Interval to poll/apply configuration changes." 
       label: "Refresh Interval (s):"
@@ -109,20 +133,20 @@ catalog:
       default: 10 
       type: "int"
     - variable: "admin_readonly"
-      label: "Read only mode:"
+      label: "Admin readonly:"
       description: |
-        Set REST API to read-only mode.
+        Set admin to readonly mode.
       default: false
       required: true
       type: "boolean"
     - variable: "admin_statistics"
       description: "Enable more detailed statistics."
-      label: "Number of recents errors to keep:"
+      label: "Admin statistics history:"
       required: true
       default: 10
       type: "int"
     - variable: "admin_auth_method"
-      description: "Set admin auth method on the webui."
+      description: "Admin auth method on the webui."
       label: "Admin auth method:"
       required: true
       default: "basic"
@@ -148,23 +172,6 @@ catalog:
       default: "[0.1,0.3,1.2,5.0]"
       required: true
       type: "string"
-    - variable: "VOLUME_NAME"
-      description: "The volume name shared to store ACME certs"
-      label: "ACME Volume Name"
-      required: true
-      default: "TRAEFIK"
-      type: "string"
-    - variable: "VOLUME_DRIVER"
-      description: "The volume driver shared to store ACME certs"
-      label: "ACME Volume Driver"
-      required: true
-      default: "rancher-nfs"
-      type: enum
-      options: # List of options if using type of `enum`
-        - local
-        - rancher-nfs
-        - rancher-efs
-        - rancher-ebs
 services:
   traefik:
     retain_ip: true

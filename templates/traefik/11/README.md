@@ -7,12 +7,10 @@
 
 ### Config:
 
-- host_label = "traefik_lb=true" # Host label where to run traefik service.
 - rancher_integration = "metadata" # Rancher integration method.
+- host_label = "traefik_lb=true" # Host label where to run traefik service.
 - http_port = 8080  # Port exposed to get access to the published services.
 - https_port = 8443  # Port exposed to get secured access to the published services.
-- admin_enable = false  # Enable web ui.
-- compress_enable = true    # Enable traefik compression
 - admin_port = 8000  # Port exposed to get admin access to the traefik service.
 - https_enable = <false | true | only>
   - false: Enable http enpoints and disable https ones.
@@ -23,8 +21,12 @@
 - acme_ondemand = true              # acme ondemand parameter.
 - acme_onhostrule = true            # acme onHostRule parameter.
 - acme_caserver = "https://acme-v01.api.letsencrypt.org/directory"          # acme caServer parameter.
+- acme_vol_name = "traefik_acme_vol"    # Volume name to user by acme sidekick
+- acme_vol_driver = "local"   # Volume driver to user by acme sidekick
 - ssl_key # Paste your ssl key. *Required if you enable https
 - ssl_crt # Paste your ssl crt. *Required if you enable https
+- insecure_skip = false # Enable InsecureSkipVerify param.
+- compress_enable = true    # Enable traefik compression
 - refresh_interval = 10s  # Interval to refresh traefik rules.toml from rancher-metadata.
 - admin_readonly = false # Set REST API to read-only mode.
 - admin_statistics = 10 # Enable more detailed statistics, extend recent errors number.
@@ -35,7 +37,7 @@
 
 ### Service configuration labels:
 
-Traefik labels has to be added in your services, in order to get included in traefik dynamic config.
+Traefik labels has to be added to your services, in order to get included in traefik config.
 
 ## Metadata or api
 

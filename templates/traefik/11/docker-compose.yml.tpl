@@ -24,8 +24,10 @@ services:
     image: rawmind/alpine-traefik:1.4.0-3
     environment:
     - TRAEFIK_HTTP_PORT=${http_port}
+    - TRAEFIK_HTTP_COMPRESSION=${compress_enable}
     - TRAEFIK_HTTPS_PORT=${https_port}
     - TRAEFIK_HTTPS_ENABLE=${https_enable}
+    - TRAEFIK_HTTPS_COMPRESSION=${compress_enable}
     - TRAEFIK_INSECURE_SKIP=${insecure_skip}
     - TRAEFIK_ADMIN_ENABLE=true
     - TRAEFIK_ADMIN_READ_ONLY=${admin_readonly}
@@ -83,7 +85,7 @@ services:
       - SERVICE_GID=10001
       - SERVICE_VOLUME=/opt/traefik/acme
     volumes:
-      - ${VOLUME_NAME}:/opt/traefik/acme
+      - ${acme_vol_name}:/opt/traefik/acme
     image: rawmind/alpine-volume:0.0.2-1
   {{- end}}
 {{- if or (eq .Values.rancher_integration "external") (eq .Values.acme_enable "true")}}
@@ -94,7 +96,7 @@ volumes:
     per_container: true
   {{- end}}
   {{- if eq .Values.acme_enable "true"}}
-  ${VOLUME_NAME}:
-    driver: ${VOLUME_DRIVER}
+  ${acme_vol_name}:
+    driver: ${acme_vol_driver}
   {{- end}}
 {{- end}}
