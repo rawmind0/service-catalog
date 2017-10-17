@@ -9,7 +9,12 @@ services:
       io.rancher.scheduler.global: 'true'
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-      io.rancher.sidekicks: traefik-conf
+    {{- if or (eq .Values.rancher_integration "external") (eq .Values.acme_enable "true")}}
+      io.rancher.sidekicks: 
+    {- end}}
+        {{- if eq .Values.rancher_integration "external"}}
+          traefik-conf
+        {- end -}}
         {{- if eq .Values.acme_enable "true" -}}
           ,traefik-acme
         {{- end}}
