@@ -37,6 +37,16 @@
 
 Traefik labels has to be added in your services, in order to get included in traefik dynamic config.
 
+## Metadata or api
+
+Please use traefik defined labels if you choose metadata or api rancher integration. 
+
+[traefik rancher backend][https://docs.traefik.io/configuration/backends/rancher/#labels-overriding-default-behaviour]
+
+## External
+
+Use this labels if you choose extenal rancher integration.
+
 - traefik.enable = <true | false>
   - true: the service will be published as *service_name.stack_name.traefik_domain*
   - stack: the service will be published as *stack_name.traefik_domain*. WARNING: You could have collisions inside services within your stack
@@ -55,19 +65,6 @@ Traefik labels has to be added in your services, in order to get included in tra
 
  Click deploy.
 
- Services will be accessed throught hosts ip's whith $host_label:
-
- - http://${service_name}.${stack_name}.${traefik.domain}:${http_port}
- - https://${service_name}.${stack_name}.${traefik.domain}:${https_port}
-
- or
-
- - http://${stack_name}.${traefik.domain}:${http_port}
- - https://${stack_name}.${traefik.domain}:${https_port}
-
- If you set traefik.alias you service could also be acceses through
-
- - http://${traefik.alias}.${traefik.domain}:${http_port}
- - https://${traefik.alias}.${traefik.domain}:${https_port}
+ Access your traefik admin service at $admin_port to see your published services.
 
 Note: To access the services, you need to create A or CNAMES dns entries for every one.
