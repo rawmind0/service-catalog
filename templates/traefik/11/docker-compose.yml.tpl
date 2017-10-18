@@ -48,7 +48,7 @@ services:
     - TRAEFIK_RANCHER_ENABLE=true
     - TRAEFIK_RANCHER_MODE=${rancher_integration}
     {{- if eq .Values.rancher_integration "api"}}
-    - CATTLE_URL="${cattle_url}"
+    - CATTLE_URL=${cattle_url}
     - CATTLE_ACCESS_KEY=${cattle_access_key}
     - CATTLE_SECRET_KEY=${cattle_secret_key}
     {{- end}}
