@@ -47,6 +47,11 @@ services:
   {{- if ne .Values.rancher_integration "external"}}
     - TRAEFIK_RANCHER_ENABLE=true
     - TRAEFIK_RANCHER_MODE=${rancher_integration}
+    {{- if eq .Values.rancher_integration "api"}}
+    - CATTLE_URL="${cattle_url}"
+    - CATTLE_ACCESS_KEY=${cattle_access_key}
+    - CATTLE_SECRET_KEY=${cattle_secret_key}
+    {{- end}}
   {{- end}}
   {{- if eq .Values.prometheus_enable "true"}}
     - TRAEFIK_PROMETHEUS_ENABLE=${prometheus_enable}

@@ -34,7 +34,9 @@
 - admin_users = "" # Paste basic or digest users created with htdigest, one user per line.
 - prometheus_enable = false # Enable prometheus statistics
 - prometheus_buckets = "[0.1,0.3,1.2,5.0]" # Prometheus buckets
-
+- cattle_url = ""           # Cattle url if you choose api integration
+- cattle_access_key = ""    # Cattle access key if you choose api integration
+- cattle_secret_key = ""    # Cattle secret key if you choose api integration    
 ### Service configuration labels:
 
 Traefik labels has to be added to your services, in order to get included in traefik config.
@@ -44,6 +46,10 @@ Traefik labels has to be added to your services, in order to get included in tra
 Please use traefik defined labels if you choose metadata or api rancher integration. 
 
 [Traefik rancher backend labels][traefik rancher backend]
+
+Metadata is the prefered and recommended rancher integration.
+
+Api integration needs you create an environment API key in your rancher environment. Also, it needs you provide CATTLE_URL, CATTLE_ACCESS_KEY and CATTLE_SECRET_KEY.
 
 ## External
 
