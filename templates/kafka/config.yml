@@ -1,6 +1,6 @@
 name: Apache Kafka
 description: |
-  (Experimental) Kafka cluster
+  Kafka cluster
 version: 1.0.0-rancher1
 category: Clustering
 maintainer: "Raul Sanchez <rawmind@gmail.com>"

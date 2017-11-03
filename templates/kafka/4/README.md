@@ -1,4 +1,4 @@
-# Apache Kafka (Experimental)
+# Apache Kafka
 
 ### Info:
 
