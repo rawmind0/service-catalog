@@ -8,6 +8,7 @@ services:
       - zk-conf
     environment:
       - JVMFLAGS=-Xmx${zk_mem}m -Xms${zk_mem}m
+      - CONFD_INTERVAL=${zk_interval}
       - ZK_DATA_DIR=${zk_data_dir}
       - ZK_INIT_LIMIT=${zk_init_limit}
       - ZK_MAX_CLIENT_CXNS=${zk_max_client_cxns}
