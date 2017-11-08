@@ -42,7 +42,7 @@ services:
     - TRAEFIK_ACME_EMAIL=${acme_email}
     - TRAEFIK_ACME_ONDEMAND=${acme_ondemand}
     - TRAEFIK_ACME_ONHOSTRULE=${acme_onhostrule}
-    - TRAEFIK_ACME_CASERVER="${acme_caserver}"
+    - TRAEFIK_ACME_CASERVER=${acme_caserver}
   {{- end}}
   {{- if ne .Values.rancher_integration "external"}}
     - TRAEFIK_RANCHER_ENABLE=true
