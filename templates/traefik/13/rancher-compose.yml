@@ -29,7 +29,7 @@ catalog:
       type: "boolean"
     - variable: "constraints"
       description: |
-        Traefik constraints for rancher provider. Eg: \"tag==api\"
+        Traefik constraints for rancher provider. Eg: "tag==api"
         Only valid for api and metadata integration.
       label: "Traefik constraints:"
       required: false
