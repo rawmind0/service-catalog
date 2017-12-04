@@ -21,13 +21,19 @@ services:
         {{- end -}}
     {{- end}}
       io.rancher.container.hostname_override: container_name
-    image: rawmind/alpine-traefik:1.4.4-1
+    image: rawmind/alpine-traefik:1.4.4-2
     environment:
     - TRAEFIK_HTTP_PORT=${http_port}
     - TRAEFIK_HTTP_COMPRESSION=${compress_enable}
     - TRAEFIK_HTTPS_PORT=${https_port}
     - TRAEFIK_HTTPS_ENABLE=${https_enable}
     - TRAEFIK_HTTPS_COMPRESSION=${compress_enable}
+  {{- if ne .Values.ssl_key ""}}
+    - TRAEFIK_SSL_KEY=${ssl_key}
+  {{- end}}
+  {{- if ne .Values.ssl_crt ""}}
+    - TRAEFIK_SSL_CRT=${ssl_crt}
+  {{- end}}
     - TRAEFIK_INSECURE_SKIP=${insecure_skip}
     - TRAEFIK_ADMIN_ENABLE=true
     - TRAEFIK_ADMIN_READ_ONLY=${admin_readonly}
