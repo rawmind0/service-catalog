@@ -216,9 +216,4 @@ services:
       unhealthy_threshold: 3
       interval: 5000
       strategy: recreate
-    metadata:
-      traefik:
-        ssl_key: |
-          ${ssl_key}
-        ssl_crt: |
-          ${ssl_crt}
+
