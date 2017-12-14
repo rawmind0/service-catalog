@@ -110,17 +110,17 @@ services:
 volumes:
   registry-db:
     driver: host
-      driver_opts:
-        source: ${DIR}/db
+    driver_opts:
+      source: ${DIR}/db
   registry-certs:
     driver: host
-      driver_opts:
-        source: ${DIR}/certs
+    driver_opts:
+      source: ${DIR}/certs
   registry-proxy:
     driver: host
-      driver_opts:
-        source: ${DIR}/proxy
+    driver_opts:
+      source: ${DIR}/proxy
   registry-data:
     driver: host
-      driver_opts:
-        source: ${DIR}/data
+    driver_opts:
+      source: ${DIR}/data
