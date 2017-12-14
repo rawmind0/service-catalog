@@ -1,7 +1,7 @@
 version: '2'
 services:
   grafana:
-    image: grafana/grafana:4.3.1
+    image: grafana/grafana:4.6.3
     environment:
       GF_SECURITY_ADMIN_PASSWORD: ${admin_password}
       GF_SECURITY_ADMIN_USER: ${admin_username}
@@ -52,4 +52,3 @@ services:
 volumes:
   grafana-volume:
     driver: local
-    per_container: true
