@@ -1,0 +1,111 @@
+.catalog:
+  name: "Grafana"
+  version: "4.3.1-rancher1"
+  description: |
+      Grafana: Beautiful metric & analytic dashboards
+  questions:
+    - variable: http_protocol
+      description: "Protocol to access Grafana"
+      label: "Protocol"
+      required: true
+      default: "http"
+      type: "enum"
+      options:
+        - http
+        - https
+    - variable: http_port
+      description: "Exposed port to access Grafana"
+      label: "Port"
+      required: true
+      default: "80"
+      type: "int"
+    - variable: http_host
+      description: "Name to publish Grafana"
+      label: "Publish ame"
+      required: true
+      default: "grafana.demo"
+      type: "string"
+    - variable: ssl_cert
+      description: "ssl certificate. Mandatory if Protocol = https"
+      label: "SSL cert"
+      required: false
+      default: ""
+      type: "certificate"
+    - variable: admin_username
+      description: "Grafana admin username"
+      label: "Admin Username"
+      required: true
+      default: "admin"
+      type: "string"
+    - variable: admin_password
+      description: "Grafana admin password"
+      label: "Admin Password"
+      required: true
+      default: "password"
+      type: "string"
+    - variable: secret_key
+      description: "Signing secret key"
+      label: "Secret Key"
+      required: true
+      default: "su2Tong2zoocie"
+      type: "string"
+    - variable: default_role
+      description: "Default role to new users"
+      label: "Default user role"
+      required: true
+      default: "Admin"
+      type: "enum"
+      options:
+        - Admin
+        - Editor
+        - Read Only Editor
+    - variable: github_auth
+      description: "Github auth integration"
+      label: "Github auth"
+      required: true
+      type: "enum"
+      default: false
+      options:
+        - true
+        - false
+    - variable: github_app_id
+      description: "Github app id"
+      label: "Github app id"
+      required: false
+      type: "string"
+      default: ""
+    - variable: github_app_secret
+      description: "Github app secret"
+      label: "Github app secret"
+      required: false
+      type: "string"
+      default: ""
+    - variable: github_org
+      description: "Github allowed organization names. space-delimited"
+      label: "Github org"
+      required: false
+      type: "string"
+      default: ""
+version: '2'
+services:
+  grafana:
+    scale: 1
+    start_on_create: true
+  grafana-lb:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      port_rules:
+      - priority: 1
+        protocol: ${http_protocol}
+        service: grafana
+        source_port: ${http_port}
+        target_port: 3000
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 42
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      reinitializing_timeout: 60000
