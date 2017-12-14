@@ -9,6 +9,8 @@ db:
   stdin_open: true
   volumes:
   - ${DIR}-db:/var/lib/mysql
+  labels:
+    registry.portus.db: 1
 sslproxy:
   image: nginx:1.9.9
   tty: true
@@ -18,8 +20,10 @@ sslproxy:
   volumes:
   - ${DIR}-certs:/etc/nginx/certs:ro
   - ${DIR}-proxy:/etc/nginx/conf.d:ro
+  labels:
+    io.rancher.scheduler.affinity:container_label_soft: registry.portus.db=1
 registry:
-  image: registry:2.1
+  image: registry:2.3.1
   environment:
     REGISTRY_LOG_LEVEL: warn
     REGISTRY_STORAGE_DELETE_ENABLED: true
@@ -42,7 +46,7 @@ registry:
   links:
   - portus:portus
   volumes:
-  - ${DIR}-certs:/certs:ro
+  - ${DIR}-certs:/certs
   - ${DIR}-data:/var/lib/registry
 lb:
   image: rancher/load-balancer-service
@@ -56,11 +60,12 @@ lb:
     io.rancher.loadbalancer.target.registry: ${RPORT}=5000
     io.rancher.scheduler.global: 'true'
     io.rancher.scheduler.affinity:not_host_label: lb=0
+    io.rancher.scheduler.affinity:not_host_label: registry.enabled=false
   links:
   - registry:registry
   - sslproxy:sslproxy
 portus:
-  image: sshipway/portus:2.0.3
+  image: sshipway/portus:2.0.5
   environment: 
     PORTUS_MACHINE_FQDN: ${DOMAIN}
     PORTUS_PRODUCTION_HOST: db
@@ -78,7 +83,7 @@ portus:
     PORTUS_LDAP_PORT: ${LDAPPORT}
     PORTUS_LDAP_METHOD: ${LDAPTLS}
     PORTUS_LDAP_BASE: ${LDAPBASE}
-    PORTUS_LDAP_UID: cn
+    PORTUS_LDAP_UID: ${LDAPBINDUID} 
     PORTUS_LDAP_AUTHENTICATION_ENABLED: ${LDAPBIND}
     PORTUS_LDAP_AUTHENTICATION_BIND_DN: ${LDAPBINDDN}
     PORTUS_LDAP_AUTHENTICATION_PASSWORD: ${LDAPBINDPASS}
@@ -98,3 +103,5 @@ portus:
   - db:db
   labels:
     io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:container_label_soft: registry.portus.db=1
+    registry.portus.app: 1

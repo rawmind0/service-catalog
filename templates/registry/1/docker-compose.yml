@@ -19,7 +19,7 @@ sslproxy:
   - ${DIR}-certs:/etc/nginx/certs:ro
   - ${DIR}-proxy:/etc/nginx/conf.d:ro
 registry:
-  image: registry:2.1
+  image: registry:2.3.1
   environment:
     REGISTRY_LOG_LEVEL: warn
     REGISTRY_STORAGE_DELETE_ENABLED: true
@@ -42,7 +42,7 @@ registry:
   links:
   - portus:portus
   volumes:
-  - ${DIR}-certs:/certs:ro
+  - ${DIR}-certs:/certs
   - ${DIR}-data:/var/lib/registry
 lb:
   image: rancher/load-balancer-service
@@ -60,7 +60,7 @@ lb:
   - registry:registry
   - sslproxy:sslproxy
 portus:
-  image: sshipway/portus:2.0.3
+  image: sshipway/portus:2.0.4
   environment: 
     PORTUS_MACHINE_FQDN: ${DOMAIN}
     PORTUS_PRODUCTION_HOST: db

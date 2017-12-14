@@ -1,8 +1,7 @@
-name: registry
+name: Registry
 description: |
-  Docker registry
-version: 2.3.0-rancher1
-category: clustering
-release by: Raul Sanchez
-requires: rancher-0.47.0
-license: 
+  Secure Docker registry.  Web based administration.  Optional LDAP authentication.
+version: v2.3.1-3.1
+category: Applications
+maintainer: Steve Shipway <s.shipway@auckland.ac.nz>
+
