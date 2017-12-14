@@ -9,7 +9,10 @@ services:
       GF_SERVER_DOMAIN: ${http_host}
       GF_SERVER_ROOT_URL: ${http_protocol}://${http_host}
       GF_USERS_AUTO_ASSIGN_ORG_ROLE: ${default_role}
-      {{- if eq .Values.github_auth "true"}}
+    {{- if ne .Values.install_plugins ""}}
+      GF_INSTALL_PLUGINS: ${install_plugins}
+    {{end}}
+    {{- if eq .Values.github_auth "true"}}
       GF_AUTH_GITHUB_ENABLED: ${github_auth}
       GF_AUTH_GITHUB_AUTH_URL: https://github.com/login/oauth/authorize
       GF_AUTH_GITHUB_TOKEN_URL: https://github.com/login/oauth/access_token
@@ -19,11 +22,13 @@ services:
       GF_AUTH_GITHUB_CLIENT_SECRET: ${github_app_secret}
       GF_AUTH_GITHUB_ALLOWED_ORGANIZATIONS: ${github_org}
       GF_AUTH_GITHUB_ALLOW_SIGN_UP: 'true'
-      {{end}}
+    {{end}}
     labels: 
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
       io.rancher.sidekicks: grafana-volume
+    volumes_from:
+      - grafana-volume
   grafana-lb:
     image: rancher/lb-service-haproxy:v0.7.1
     ports:

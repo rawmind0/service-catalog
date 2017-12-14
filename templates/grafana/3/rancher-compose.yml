@@ -21,7 +21,7 @@
       type: "int"
     - variable: http_host
       description: "Name to publish Grafana"
-      label: "Publish ame"
+      label: "Publish name"
       required: true
       default: "grafana.demo"
       type: "string"
@@ -59,6 +59,12 @@
         - Admin
         - Editor
         - Read Only Editor
+    - variable: install_plugins
+      description: "Include/Install Grafana Plugins (comma-separated plugin-ids)"
+      label: "Install Plugins"
+      required: false
+      default: "grafana-clock-panel"
+      type: "string"
     - variable: github_auth
       description: "Github auth integration"
       label: "Github auth"
