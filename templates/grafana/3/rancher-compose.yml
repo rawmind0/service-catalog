@@ -101,6 +101,8 @@ services:
     scale: 1
     start_on_create: true
     lb_config:
+      certs: []
+      default_cert: "${ssl_cert}"
       port_rules:
       - priority: 1
         protocol: ${http_protocol}

@@ -1,4 +1,4 @@
 name: "Grafana"
 description: "Visualization dashboard"
-version: "4.6.3-rancher2"
+version: "4.6.3-rancher1"
 category: Monitoring
