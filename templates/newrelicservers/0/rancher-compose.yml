@@ -1,0 +1,28 @@
+.catalog:
+  name: "New Relic"
+  version: "2.3.0.132"
+  description: "Performance management solution enabling developers to diagnose and fix application performance problems in real time"
+  questions:
+  - variable: "NEW_RELIC_LICENSE_KEY"
+    label: "New Relic license key"
+    description: "Specify your New Relic license key. You can get it by clicking on 'Add more' on the servers view of newrelic."
+    type: "string"
+    default: ""
+    required: true
+  - variable: "VERSION"
+    label: "New Relic version"
+    description: "Specify a version of the newrelic container to pull (default will pull latest stable version)."
+    type: "string"
+    default: "latest"
+    required: true
+  - variable: "HOST_EXCLUDE_LABEL"
+    label: "Host exclude label"
+    description: "Specify a host label here that can be used to exclude deployment of the newrelic container on any given host. Eg: newrelic.exclude_newrelic=true (you could then add the label 'newrelic.exclude_newrelic=true' to any host to exclude newrelic from that host)."
+    type: "string"
+    default: "newrelic.exclude_newrelic=true"
+    required: true
+  - variable: "FORWARD_PROXY"
+    label: "Forward Proxy"
+    description: "Optional, a forward proxy to use (in format, user:password@hostname:port)."
+    type: "string"
+    required: false

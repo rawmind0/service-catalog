@@ -1,0 +1,5 @@
+name: New Relic Servers
+description: |
+  New Relic Servers for Linux allows you to view and analyze critical system metrics, including CPU usage, physical memory, network activity, processes, and disk I/O utilization and capacity.
+version: 2.3.0.132
+category: Monitoring
