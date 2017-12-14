@@ -18,7 +18,7 @@ database:
   volumes_from:
     - database-data
   labels:
-    io.rancher.sidekicks: setup-get-db-script
+    io.rancher.sidekicks: setup-get-db-script,database-data
 setup-get-db-script:
   image: glyptodon/guacamole:0.9.10-incubating
   net: none
@@ -30,7 +30,6 @@ setup-get-db-script:
   - /opt/guacamole/bin/initdb.sh --mysql > /docker-entrypoint-initdb.d/initdb.sql
   labels:
     io.rancher.container.start_once: 'true'
-    io.rancher.sidekicks: database-data
 guacd:
   image: glyptodon/guacd:0.9.10-incubating
 guacamole:
