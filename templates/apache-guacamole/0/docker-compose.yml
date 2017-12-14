@@ -30,6 +30,7 @@ setup-get-db-script:
   - /opt/guacamole/bin/initdb.sh --mysql > /docker-entrypoint-initdb.d/initdb.sql
   labels:
     io.rancher.container.start_once: 'true'
+    io.rancher.sidekicks: database-data
 guacd:
   image: glyptodon/guacd:0.9.10-incubating
 guacamole:
