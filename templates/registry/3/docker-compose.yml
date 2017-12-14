@@ -109,16 +109,16 @@ volumes:
   registry-db:
     driver: host
       driver_opts:
-         source: ${DIR}/db
+        source: ${DIR}/db
   registry-certs:
     driver: host
       driver_opts:
-         source: ${DIR}/certs
+        source: ${DIR}/certs
   registry-proxy:
     driver: host
       driver_opts:
-         source: ${DIR}/proxy
+        source: ${DIR}/proxy
   registry-data:
     driver: host
       driver_opts:
-         source: ${DIR}/data
+        source: ${DIR}/data
