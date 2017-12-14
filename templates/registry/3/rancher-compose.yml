@@ -1,4 +1,5 @@
-.catalog:
+version: '2'
+catalog:
   name: "Registry"
   version: "v2.3.1-3.1"
   description: "Docker Registry"
@@ -99,20 +100,21 @@
       options:
         - cn
         - sAMAccountName
-db:
-  scale: 1
-sslproxy:
-  scale: 1
-lb:
-  load_balancer_config:
-    haproxy_config: {}
-  health_check:
-    port: 42
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-registry:
-  scale: 1
-portus:
-  scale: 1
+services:
+  db:
+    scale: 1
+  sslproxy:
+    scale: 1
+  lb:
+    load_balancer_config:
+      haproxy_config: {}
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  registry:
+    scale: 1
+  portus:
+    scale: 1
