@@ -2,7 +2,7 @@ version: '2'
 services:
   minio-server:
     tty: true
-    image: webcenter/alpine-minio:2017-03-16_4
+    image: webcenter/alpine-minio:2017-10-27_1
     volumes:
       - minio-scheduler-setting:/opt/scheduler
     {{- if eq (printf "%.1s" .Values.VOLUME_DRIVER) "/" }}
@@ -15,8 +15,8 @@ services:
       {{- end}}
     {{- end}}
     environment:
-      - MINIO_CONFIG_minio.access.key=${MINIO_ACCESS_KEY}
-      - MINIO_CONFIG_minio.secret.key=${MINIO_SECRET_KEY}
+      - MINIO_CONFIG_accesskey=${MINIO_ACCESS_KEY}
+      - MINIO_CONFIG_secretkey=${MINIO_SECRET_KEY}
       - CONFD_BACKEND=${CONFD_BACKEND}
       - CONFD_NODES=${CONFD_NODES}
       - CONFD_PREFIX_KEY=${CONFD_PREFIX}
@@ -42,7 +42,7 @@ services:
       - minio-scheduler-setting:/opt/scheduler
   {{- if eq .Values.DEPLOY_LB "true"}}
   lb:
-    image: rancher/lb-service-haproxy:v0.6.2
+    image: rancher/lb-service-haproxy:v0.7.15
     {{- if .Values.PUBLISH_PORT}}
     ports:
       - ${PUBLISH_PORT}:9000/tcp
