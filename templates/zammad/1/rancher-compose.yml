@@ -55,6 +55,7 @@ services:
   zammad-nginx:
     scale: 1
     start_on_create: true
+    drain_timeout_ms: 10000
 
   zammad-lb:
     scale: 1
