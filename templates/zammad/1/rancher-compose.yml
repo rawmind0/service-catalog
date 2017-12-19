@@ -13,10 +13,7 @@ catalog:
         WARN: If set true, host param vm.max_map_count will be update to 262144.
       default: "false"
       required: true
-      type: enum
-      options:
-        - false
-        - true
+      type: string
 
 services:
   zammad-backup:
