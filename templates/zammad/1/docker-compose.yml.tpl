@@ -116,7 +116,7 @@ services:
   {{- end}}
 
   zammad-lb:
-    image: rancher/lb-service-haproxy:v0.7.15
+    image: rancher/lb-service-haproxy:v0.7.9
     ports:
       - 9797:9797/tcp
 
