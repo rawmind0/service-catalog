@@ -117,10 +117,6 @@ services:
     image: rancher/lb-service-haproxy:v0.7.15
     ports:
       - 9797:9797/tcp
-    labels:
-      io.rancher.container.agent.role: environmentAdmin,agent
-      io.rancher.container.agent_service.drain_provider: 'true'
-      io.rancher.container.create_agent: 'true'
 
 volumes:
   elasticsearch-data:
