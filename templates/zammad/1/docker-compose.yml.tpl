@@ -104,13 +104,13 @@ services:
   {{- if eq .Values.UPDATE_SYSCTL "true" }}
   zammad-es-sysctl:
     labels:
-        io.rancher.container.start_once: true
+      io.rancher.container.start_once: true
     network_mode: none
     image: rawmind/alpine-sysctl:0.1
     privileged: true
     environment:
-        - "SYSCTL_KEY=vm.max_map_count"
-        - "SYSCTL_VALUE=262144"
+      - "SYSCTL_KEY=vm.max_map_count"
+      - "SYSCTL_VALUE=262144"
   {{- end}}
 
   zammad-lb:
