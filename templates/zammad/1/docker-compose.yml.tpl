@@ -101,17 +101,7 @@ services:
     volumes:
       - zammad-data:/opt/zammad
 
-  {{- if eq .Values.UPDATE_SYSCTL "true" }}
-  zammad-es-sysctl:
-    labels:
-      io.rancher.container.start_once: true
-    network_mode: none
-    image: rawmind/alpine-sysctl:0.1
-    privileged: true
-    environment:
-      - "SYSCTL_KEY=vm.max_map_count"
-      - "SYSCTL_VALUE=262144"
-  {{- end}}
+
 
   zammad-lb:
     image: rancher/lb-service-haproxy:v0.7.15
