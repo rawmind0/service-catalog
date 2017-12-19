@@ -18,7 +18,7 @@ services:
   zammad-elasticsearch:
     image: zammad/zammad-docker-compose:zammad-elasticsearch-2.2.0-12
     labels:
-      io.rancher.sidekicks: {{- if eq .Values.UPDATE_SYSCTL true -}}zammad-es-sysctl{{- end}}
+      io.rancher.sidekicks: {{- if eq .Values.UPDATE_SYSCTL "true" -}}zammad-es-sysctl{{- end}}
     restart: always
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
@@ -101,7 +101,7 @@ services:
     volumes:
       - zammad-data:/opt/zammad
 
-  {{- if eq .Values.UPDATE_SYSCTL true }}
+  {{- if eq .Values.UPDATE_SYSCTL "true" }}
   zammad-es-sysctl:
     labels:
         io.rancher.container.start_once: true
