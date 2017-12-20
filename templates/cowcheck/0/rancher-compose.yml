@@ -7,8 +7,7 @@ catalog:
   questions:
     - variable: POLL_INTERVAL
       label: POLL_INTERVAL
-      description: | 
-        Frequency in seconds to run checks
+      description: Frequency in seconds to run checks
       type: string
       default: 1.24
     - variable: ENABLE_STORAGE_CHECK
@@ -19,8 +18,7 @@ catalog:
       default: false
     - variable: DATA_SPACE_THRESHOLD
       label: DATA_SPACE_THRESHOLD
-      description: | 
-        Minimum amount of free Docker Data Storage space in bytes
+      description: Minimum amount of free Docker Data Storage space in bytes
       type: string
       default: 1.24
     - variable: METADATA_SPACE_THRESHOLD
