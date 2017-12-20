@@ -1,0 +1,56 @@
+version: 2
+catalog:
+  name: Mattermost
+  version: v4.3.0
+  description: |
+    Open source, private cloud Slack-alternative, Workplace messaging for web, PCs and phones
+  minimum_rancher_version: v0.51.0
+  maintainer: "Thanh Phan <thanhpv.102@gmail.com>"
+  uuid: mattermost-0
+  questions:
+    - variable: domain
+      description: "Domain name for server"
+      label: "domain"
+      required: true
+      default: "example.com"
+      type: "string"
+    - variable: mm_dbname
+      description: "Mattermost database name"
+      label: "MM_DBNAME"
+      required: true
+      default: "mattermost"
+      type: "string"
+    - variable: mm_username
+      description: "Mattermost db user name"
+      label: "MM_USERNAME"
+      required: true
+      default: "mmpostgres"
+      type: "string"
+    - variable: mm_password
+      description: "Mattermost db password"
+      label: "MM_PASSWORD"
+      required: true
+      type: "password"
+      default: "mmpassword"
+
+services:
+  mattermost:
+    scale: 1
+    start_on_create: true
+  mattermostdb:
+    scale: 1
+    start_on_create: true
+  mattermostlb:
+    scale: 1
+    lb_config:
+      port_rules:
+      - hostname: ${domain}
+        source_port: 80
+        target_port: 80
+        service: mattermost
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000

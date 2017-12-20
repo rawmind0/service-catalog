@@ -1,0 +1,26 @@
+version: '2'
+services:
+  mattermost:
+    image: thanhpv102/mattermost-team:4.3.0
+    environment:
+      - MM_DBNAME=${mm_dbname}
+      - MM_PASSWORD=${mm_password}
+      - MM_USERNAME=${mm_username}
+      - DB_HOST=mattermostdb
+    volumes:
+      - mattermost-data:/mattermost/data
+  mattermostdb:
+    image: mattermost/mattermost-prod-db:4.3.0
+    environment:
+      - POSTGRES_USER=${mm_username}
+      - POSTGRES_PASSWORD=${mm_password}
+      - POSTGRES_DB=${mm_dbname}
+    volumes:
+      - mattermost-db:/var/lib/postgresql/data
+  letschatlb:
+    image: rancher/lb-service-haproxy:v0.7.5
+    ports:
+      - 80
+volumes:
+  mattermost-data:
+  mattermost-db:
