@@ -3,12 +3,21 @@ services:
   nsqlookupd01:
     image: nsqio/nsq:v1.0.0-compat
     command: /nsqlookupd
+    labels:
+      io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/nsqlookupd02
+      io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/nsqlookupd03
   nsqlookupd02:
     image: nsqio/nsq:v1.0.0-compat
     command: /nsqlookupd
+    labels:
+      io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/nsqlookupd01
+      io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/nsqlookupd03
   nsqlookupd03:
     image: nsqio/nsq:v1.0.0-compat
     command: /nsqlookupd
+    labels:
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/nsqlookupd01
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/nsqlookupd02
   nsqd:
     image: nsqio/nsq:v1.0.0-compat
     command:
