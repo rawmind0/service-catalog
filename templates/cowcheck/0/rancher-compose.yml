@@ -14,7 +14,7 @@ catalog:
       label: ENABLE_STORAGE_CHECK
       description: | 
         Enable storage check
-      type: bool
+      type: boolean
       default: false
     - variable: DATA_SPACE_THRESHOLD
       label: DATA_SPACE_THRESHOLD
