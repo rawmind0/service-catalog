@@ -107,23 +107,43 @@
         E.g. for the `rancher-ebs` driver you should specify the required 'size' option like this: "size: 1".
       required: false
       type: string
+    - variable: ENVIRONMENT_SCOPED
+      label: Environment scoped storage volume
+      description: |
+        If the storage volume is existing and environment scoped, this must be set.
+      required: true
+      type: boolean
+      default: false
     - variable: PROVIDER
       label: Domain Validation Method
       description: Select a DNS provider to use for domain validation. Use 'HTTP' if your domain is hosted elsewhere.
       required: true
       type: enum
       options:
+        - Aurora
+        - Azure
         - CloudFlare
         - DigitalOcean
         - DNSimple
         - Dyn
         - Gandi
+        - NS1
         - Ovh
         - Route53
         - Vultr
         - HTTP
-        - Azure
-        - NS1
+    - variable: AURORA_USER_ID
+      label: Aurora User ID
+      type: string
+      required: false
+    - variable: AURORA_KEY
+      label: Aurora Key
+      type: string
+      required: false
+    - variable: AURORA_ENDPOINT
+      label: Aurora Endpoint URL (Optional)
+      type: string
+      required: false
     - variable: AWS_ACCESS_KEY
       label: AWS Route53 Access Key Id
       description: Enter the Access Key Id for your AWS account.
@@ -203,6 +223,10 @@
       label: Gandi API Key
       description: Enter the API key for your Gandi account.
       type: password
+      required: false
+    - variable: NS1_API_KEY
+      label: NS1 API Key
+      type: string
       required: false
     - variable: OVH_APPLICATION_KEY
       label: OVH Application Key
