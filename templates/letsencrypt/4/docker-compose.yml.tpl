@@ -59,7 +59,7 @@ volumes:
       {{.Values.STORAGE_DRIVER_OPT}}
     {{- end }}
     {{- end }}
-    {{- if .Values.ENVIRONMENT_SCOPED}}
+    {{- if eq .Values.ENVIRONMENT_SCOPED "true" }}
     external: true
     {{- end }}
 {{- end }}
