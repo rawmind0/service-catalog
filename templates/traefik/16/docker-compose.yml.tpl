@@ -21,7 +21,7 @@ services:
         {{- end -}}
     {{- end}}
       io.rancher.container.hostname_override: container_name
-    image: rawmind/alpine-traefik:1.4.5-0
+    image: rawmind/alpine-traefik:1.4.6-0
     environment:
     - TRAEFIK_HTTP_PORT=${http_port}
     - TRAEFIK_HTTP_COMPRESSION=${compress_enable}
@@ -78,7 +78,7 @@ services:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.start_once: 'true'
-    image: rawmind/rancher-traefik:1.4.4-3
+    image: rawmind/rancher-traefik:1.4.4-4
     network_mode: none
     volumes:
       - tools-volume:/opt/tools
