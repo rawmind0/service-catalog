@@ -4,7 +4,9 @@ services:
     ports:
     - ${admin_port}:8000/tcp
     - ${http_port}:${http_port}/tcp
+  {{- if ne .Values.https_enable "false"}}
     - ${https_port}:${https_port}/tcp
+  {{- end}}
     labels:
       io.rancher.scheduler.global: 'true'
       io.rancher.scheduler.affinity:host_label: ${host_label}
