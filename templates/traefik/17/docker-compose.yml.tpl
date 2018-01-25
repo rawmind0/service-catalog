@@ -45,7 +45,6 @@ services:
   {{- end}}
     - TRAEFIK_INSECURE_SKIP=${insecure_skip}
     - TRAEFIK_ADMIN_ENABLE=true
-    - TRAEFIK_ADMIN_READ_ONLY=${admin_readonly}
     - TRAEFIK_ADMIN_STATISTICS=${admin_statistics}
     - TRAEFIK_ADMIN_AUTH_METHOD=${admin_auth_method}
     - TRAEFIK_ADMIN_AUTH_USERS=${admin_users}
