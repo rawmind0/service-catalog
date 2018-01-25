@@ -27,6 +27,13 @@ catalog:
       required: true
       default: false 
       type: "boolean"
+    - variable: "usage_enable"
+      description: | 
+        Enable/disable send anonymous usage collection to Traefik. See https://docs.traefik.io/basics/#collected-data
+      label: "Traefik send anonymous usage:"
+      required: true
+      default: false 
+      type: "boolean"
     - variable: "constraints"
       description: |
         Traefik constraints for rancher provider. Eg: "tag==api"
