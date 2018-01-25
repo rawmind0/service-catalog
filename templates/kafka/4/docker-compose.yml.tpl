@@ -27,7 +27,7 @@ services:
       io.rancher.scheduler.affinity:host_label: ${host_label}
     {{- end}}
   broker-conf:
-    net: none
+    network_mode: none
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
@@ -39,7 +39,7 @@ services:
     volumes:
       - brokerconfig:/opt/tools
   broker-volume:
-    net: none
+    network_mode: none
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
