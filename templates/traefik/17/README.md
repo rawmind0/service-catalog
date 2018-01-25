@@ -15,6 +15,7 @@
 - http_port = 8080  # Port exposed to get access to the published services.
 - https_port = 8443  # Port exposed to get secured access to the published services. 
 - admin_port = 8000  # Port exposed to get admin access to the traefik service.
+- admin_ssl = false  # Enable/Disable ssl on api, rest, ping and webui using  `ssl_key` and `ssl_crt` 
 - https_enable = <false | true | only>
   - false: Enable http enpoints and disable https ones.
   - true: Enable http and https endpoints.

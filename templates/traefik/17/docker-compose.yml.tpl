@@ -27,7 +27,7 @@ services:
         {{- end -}}
     {{- end}}
       io.rancher.container.hostname_override: container_name
-    image: rawmind/alpine-traefik:1.5.0-4
+    image: rawmind/alpine-traefik:1.5.0-5
     environment:
     - TRAEFIK_HTTP_PORT=${http_port}
     - TRAEFIK_HTTP_COMPRESSION=${compress_enable}
@@ -46,6 +46,7 @@ services:
   {{- end}}
     - TRAEFIK_INSECURE_SKIP=${insecure_skip}
     - TRAEFIK_ADMIN_ENABLE=true
+    - TRAEFIK_ADMIN_SSL=${admin_ssl}
     - TRAEFIK_ADMIN_STATISTICS=${admin_statistics}
     - TRAEFIK_ADMIN_AUTH_METHOD=${admin_auth_method}
     - TRAEFIK_ADMIN_AUTH_USERS=${admin_users}
