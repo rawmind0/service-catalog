@@ -182,11 +182,10 @@ catalog:
     - variable: "metrics_exporter"
       description: "Traefik metrics exporter."
       label: "Metrics exporter:"
-      required: true
-      default: ""
+      required: false
+      default: 
       type: enum
       options: # List of options if using type of `enum`
-        - 
         - prometheus
         - datadog
         - statsd
@@ -194,20 +193,20 @@ catalog:
     - variable: "metrics_push"
       description: "Traefik metrics exporter push interval. Apply on datadog, statsd and influxdb."
       label: "Metrics push interval (s):"
-      required: true
+      required: false
       default: 10 
       type: "int"
     - variable: "metrics_address"
       description: "Traefik metrics exporter address to push. Apply on datadog, statsd and influxdb."
       label: "Metrics address:"
-      required: true
+      required: false
       default: ""
       type: "string"
     - variable: "metrics_prometheus_buckets"
       description: "Traefik metrics buckets for prometheus."
       label: "Metrics prometheus buckets"
       default: "[0.1,0.3,1.2,5.0]"
-      required: true
+      required: false
       type: "string"
 services:
   traefik:
