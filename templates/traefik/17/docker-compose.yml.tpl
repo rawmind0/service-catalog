@@ -9,6 +9,10 @@ services:
       io.rancher.scheduler.global: 'true'
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+    {{- if eq .Values.rancher_integration "api"}}
+      io.rancher.container.agent.role: environment
+      io.rancher.container.create_agent: 'true'
+    {{- end}}
     {{- if or (eq .Values.rancher_integration "external") (eq .Values.acme_enable "true")}}
       io.rancher.sidekicks: 
         {{- if eq .Values.rancher_integration "external"}} traefik-conf
@@ -21,7 +25,7 @@ services:
         {{- end -}}
     {{- end}}
       io.rancher.container.hostname_override: container_name
-    image: rawmind/alpine-traefik:1.4.6-0
+    image: rawmind/alpine-traefik:1.5.0-2
     environment:
     - TRAEFIK_HTTP_PORT=${http_port}
     - TRAEFIK_HTTP_COMPRESSION=${compress_enable}
@@ -46,7 +50,8 @@ services:
   {{- if eq .Values.acme_enable "true"}}
     - TRAEFIK_ACME_ENABLE=${acme_enable}
     - TRAEFIK_ACME_EMAIL=${acme_email}
-    - TRAEFIK_ACME_ONDEMAND=${acme_ondemand}
+    - TRAEFIK_ACME_CHALLENGE=${acme_challenge}
+    - TRAEFIK_ACME_CHALLENGE_HTTP_ENTRYPOINT=http
     - TRAEFIK_ACME_ONHOSTRULE=${acme_onhostrule}
     - TRAEFIK_ACME_CASERVER=${acme_caserver}
   {{- end}}
@@ -56,17 +61,15 @@ services:
     - TRAEFIK_CONSTRAINTS=${constraints}
     - TRAEFIK_RANCHER_HEALTHCHECK=${rancher_healthcheck}
     - TRAEFIK_RANCHER_MODE=${rancher_integration}
-    {{- if eq .Values.rancher_integration "api"}}
-    - CATTLE_URL=${cattle_url}
-    - CATTLE_ACCESS_KEY=${cattle_access_key}
-    - CATTLE_SECRET_KEY=${cattle_secret_key}
-    {{- end}}
   {{- else}}
     - TRAEFIK_FILE_ENABLE=true
   {{- end}}
-  {{- if eq .Values.prometheus_enable "true"}}
-    - TRAEFIK_PROMETHEUS_ENABLE=${prometheus_enable}
-    - TRAEFIK_PROMETHEUS_BUCKETS=${prometheus_buckets}
+  {{- if eq .Values.metrics_enable "true"}}
+    - TRAEFIK_METRICS_ENABLE=${metrics_enable}
+    - TRAEFIK_METRICS_EXPORTER=${metrics_exporter}
+    - TRAEFIK_METRICS_PUSH=${metrics_push}
+    - TRAEFIK_METRICS_ADDRESS=${metrics_address}
+    - TRAEFIK_METRICS_PROMETHEUS_BUCKETS=${metrics_prometheus_buckets}
   {{- end}}
   {{- if or (eq .Values.rancher_integration "external") (eq .Values.acme_enable "true")}}
     volumes_from:
@@ -84,7 +87,7 @@ services:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.start_once: 'true'
-    image: rawmind/rancher-traefik:1.4.4-6
+    image: rawmind/rancher-traefik:1.5.0-0
     network_mode: none
     volumes:
       - tools-volume:/opt/tools
