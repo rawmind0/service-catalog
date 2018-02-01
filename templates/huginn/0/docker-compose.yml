@@ -12,7 +12,6 @@ services:
       POSTGRES_DB: ${DB_NAME}
       http_proxy: ds
       https_proxy: ds
-
   huginn-web:
     image: huginn/huginn-single-process:fc1daf8b91398929cedd72895cc95647e3ed7b6a
     restart: always
@@ -42,7 +41,6 @@ services:
       ADDITIONAL_GEMS: ${ADDITIONAL_GEMS}
       http_proxy: ds
       https_proxy: ds
-
   huginn-agent-runner:
     image: huginn/huginn-single-process:fc1daf8b91398929cedd72895cc95647e3ed7b6a
     restart: always
@@ -73,7 +71,6 @@ services:
       http_proxy: ds
       https_proxy: ds
     command: /scripts/init bin/agent_runner.rb
-
   huginn-delayed-job:
     image: huginn/huginn-single-process:fc1daf8b91398929cedd72895cc95647e3ed7b6a
     restart: always
@@ -104,7 +101,6 @@ services:
       http_proxy: ds
       https_proxy: ds
     command: /scripts/init script/delayed_job run
-
 volumes:
   postgres-data:
     driver: ${STORAGE_DRIVER}
