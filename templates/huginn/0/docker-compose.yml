@@ -49,8 +49,8 @@ services:
     external_links:
       - postgres: postgres
     environment:
-      DATABASE_ADAPTER: postgresql
-      POSTGRES_PORT_5432_TCP_ADDR: postgres
+      DATABASE_ADAPTER: "postgresql"
+      POSTGRES_PORT_5432_TCP_ADDR: "postgres"
       POSTGRES_PORT_5432_TCP_PORT: 5432
       DATABASE_NAME: ${DB_NAME}
       DATABASE_USERNAME: ${DB_USER}
