@@ -10,8 +10,8 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_DB: ${DB_NAME}
-      http_proxy:
-      https_proxy:
+      http_proxy: ds
+      https_proxy: ds
 
   huginn-web:
     image: huginn/huginn-single-process:fc1daf8b91398929cedd72895cc95647e3ed7b6a
@@ -40,8 +40,8 @@ services:
       USE_EVERNOTE_SANDBOX: false
       EMAIL_FROM_ADDRESS: ${EMAIL_FROM_ADDRESS}
       ADDITIONAL_GEMS: ${ADDITIONAL_GEMS}
-      http_proxy:
-      https_proxy:
+      http_proxy: ds
+      https_proxy: ds
 
   huginn-agent-runner:
     image: huginn/huginn-single-process:fc1daf8b91398929cedd72895cc95647e3ed7b6a
@@ -49,7 +49,7 @@ services:
     external_links:
       - postgres: postgres
     environment:
-      DATABASE_ADAPTER: "postgresql"
+      DATABASE_ADAPTER: postgresql
       POSTGRES_PORT_5432_TCP_ADDR: "postgres"
       POSTGRES_PORT_5432_TCP_PORT: 5432
       DATABASE_NAME: ${DB_NAME}
@@ -70,8 +70,8 @@ services:
       USE_EVERNOTE_SANDBOX: false
       EMAIL_FROM_ADDRESS: ${EMAIL_FROM_ADDRESS}
       ADDITIONAL_GEMS: ${ADDITIONAL_GEMS}
-      http_proxy:
-      https_proxy:
+      http_proxy: ds
+      https_proxy: ds
     command: /scripts/init bin/agent_runner.rb
 
   huginn-delayed-job:
@@ -101,8 +101,8 @@ services:
       USE_EVERNOTE_SANDBOX: false
       EMAIL_FROM_ADDRESS: ${EMAIL_FROM_ADDRESS}
       ADDITIONAL_GEMS: ${ADDITIONAL_GEMS}
-      http_proxy:
-      https_proxy:
+      http_proxy: ds
+      https_proxy: ds
     command: /scripts/init script/delayed_job run
 
 volumes:
