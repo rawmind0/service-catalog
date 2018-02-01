@@ -12,7 +12,7 @@ services:
       POSTGRES_DB: ${DB_NAME}
       http_proxy: ds
       https_proxy: ds
-  huginn:
+  huginn-web:
     image: huginn/huginn-single-process:fc1daf8b91398929cedd72895cc95647e3ed7b6a
     restart: always
     external_links:
