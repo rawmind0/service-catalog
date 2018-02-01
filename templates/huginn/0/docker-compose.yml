@@ -1,6 +1,11 @@
 version: '2'
 
 services:
+  huginn-web:
+    image: huginn/huginn-single-process:fc1daf8b91398929cedd72895cc95647e3ed7b6a
+    restart: always
+    external_links:
+      - postgres: postgres
   postgres:
     image: postgres:9.5
     restart: always
@@ -12,11 +17,6 @@ services:
       POSTGRES_DB: ${DB_NAME}
       http_proxy: ds
       https_proxy: ds
-  huginn-web:
-    image: huginn/huginn-single-process:fc1daf8b91398929cedd72895cc95647e3ed7b6a
-    restart: always
-    external_links:
-      - postgres: postgres
 volumes:
   postgres-data:
     driver: ${STORAGE_DRIVER}
