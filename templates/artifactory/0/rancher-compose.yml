@@ -30,6 +30,12 @@ catalog:
       required: true
       type: "string"
       default: "artifactory.local"
+    - variable: "DEPLOY_LB"
+      description: "Deploy Loadbalancer"
+      label: "Deploy Loadbalancer"
+      required: true
+      type: boolean
+      default: true
     - variable: "PUBLISH_PORT"
       label: "Publish port"
       description: |
