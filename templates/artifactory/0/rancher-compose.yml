@@ -62,7 +62,6 @@ catalog:
       default: "local"
       required: true
 services:
-  {{- if eq .Values.DEPLOY_LB "true"}}
   artifactory-lb:
     scale: 1
     lb_config:
@@ -78,7 +77,6 @@ services:
       healthy_threshold: 2
       port: 42
       unhealthy_threshold: 3
-  {{- end}}
   artifactory-rp:
     scale: 1
     retain_ip: true
