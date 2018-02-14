@@ -1,0 +1,76 @@
+version: '2'
+services:
+  cloud9-sdk:
+    command: "--listen 0.0.0.0 --port ${cloud9_port} -w /workspace --collab --auth ${cloud9_user}:${cloud9_pass}"
+    image: "rawmind/cloud9-sdk:0.3.0-2"
+    restart: "always"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/usr/local/bin/docker:/bin/docker"
+      - "/workspace"
+    environment:
+      GIT_REPO: ${cloud9_repo}
+    labels:
+      traefik.domain: ${cloud9_domain}
+      traefik.port: ${cloud9_port}
+      traefik.enable: ${cloud9_publish}
+    scale: 1
+    retain_ip: true
+    health_check:
+      port: ${cloud9_port}
+      interval: 5000
+      unhealthy_threshold: 3
+      request_line: ''
+      healthy_threshold: 2
+      response_timeout: 5000
+catalog:
+  name: Cloud9
+  description: |
+    (Experimental) Cloud 9 SDK 
+  version: 3.0-rancher2
+  minimum_rancher_version: v1.0.0
+  maintainer: "Raul Sanchez <rawmind@gmail.com>"
+  uuid: cloud9-0
+  questions:
+    - variable: "cloud9_user"
+      description: |
+        Username. 
+      label: "Username:"
+      default: "test"
+      required: true
+      type: "string"
+    - variable: "cloud9_pass"
+      description: |
+        Password. 
+      label: "Password:"
+      default: "test1234"
+      required: true
+      type: "string"
+    - variable: "cloud9_port"
+      description: "Port to listen"
+      label: "Port:"
+      required: true
+      default: "8080"
+      type: "int"
+    - variable: "cloud9_repo"
+      description: "Git repo to sync"
+      label: "Git repo:"
+      required: false
+      default: ""
+      type: "string"
+    - variable: "cloud9_publish"
+      label: "Publish:"
+      description: "Publish service to traefik."
+      default: stack
+      required: true
+      type: enum
+      options:
+        - false
+        - true
+        - stack
+    - variable: "cloud9_domain"
+      description: "Publish service domain"
+      label: "Publish domain:"
+      required: true
+      default: "dev.local"
+      type: "string"

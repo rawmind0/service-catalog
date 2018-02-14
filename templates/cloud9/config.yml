@@ -1,7 +1,7 @@
 name: Cloud9
 description: |
   (Experimental) Cloud 9 SDK 
-version: 3.0-rancher1
+version: 3.0-rancher2
 category: Agile
 maintainer: "Raul Sanchez <rawmind@gmail.com>"
 license: 
