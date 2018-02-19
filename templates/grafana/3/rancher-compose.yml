@@ -1,4 +1,5 @@
-.catalog:
+version: '2'
+catalog:
   name: "Grafana"
   version: "4.6.3-rancher1"
   description: |
@@ -92,7 +93,6 @@
       required: false
       type: "string"
       default: ""
-version: '2'
 services:
   grafana:
     scale: 1
