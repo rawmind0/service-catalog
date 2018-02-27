@@ -1,7 +1,7 @@
 version: '2'
 services:
   imagepuller:
-    image: superseb/imagepuller:0.1.1
+    image: superseb/imagepuller:0.1.5
     {{- if eq .Values.PRIVILEGED "true"}}
     privileged: true
     {{- end}}
@@ -22,5 +22,4 @@ services:
       io.rancher.container.agent.role: environment
       io.rancher.container.start_once: 'true'
       io.rancher.container.create_agent: 'true'
-      io.rancher.container.pull_image: always
       io.rancher.scheduler.global: 'true'
