@@ -2,7 +2,7 @@ version: '2'
 services:
   traefik:
     ports:
-    - ${admin_port}:8000/tcp
+    - ${admin_port}:${admin_port}/tcp
     - ${http_port}:${http_port}/tcp
   {{- if ne .Values.https_enable "false"}}
     - ${https_port}:${https_port}/tcp
@@ -49,6 +49,7 @@ services:
   {{- end}}
     - TRAEFIK_INSECURE_SKIP=${insecure_skip}
     - TRAEFIK_ADMIN_ENABLE=true
+    - TRAEFIK_ADMIN_PORT=${admin_port}
     - TRAEFIK_ADMIN_SSL=${admin_ssl}
     - TRAEFIK_ADMIN_STATISTICS=${admin_statistics}
     - TRAEFIK_ADMIN_AUTH_METHOD=${admin_auth_method}
