@@ -12,6 +12,7 @@ services:
     volumes_from:
       - data
   data:
+    network_mode: none
     image: zhenyangzhao/coredns-file:v0.8.0
     labels:
       io.rancher.container.start_once: 'true'
@@ -35,9 +36,7 @@ services:
     entrypoint:
       - confd 
       - -backend 
-      - rancher 
-      - -prefix 
-      - /2015-12-19
+      - env
       - -onetime
 volumes:
   coredns_data:
