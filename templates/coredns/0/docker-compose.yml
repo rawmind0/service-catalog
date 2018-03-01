@@ -12,11 +12,16 @@ services:
     volumes_from:
       - data
   data:
-    network_mode: none
     image: zhenyangzhao/coredns-file:v0.8.0
     labels:
       io.rancher.container.start_once: 'true'
       io.rancher.container.pull_image: always
+    network_mode: none
+    entrypoint:
+      - confd
+      - -backend
+      - env
+      - -onetime
     environment:
       PLUGIN_ZONES: ${ZONES}
       PLUGIN_ROOT_PATH: ${ROOT_PATH}
@@ -33,11 +38,6 @@ services:
       PUBLISH_PORT: ${PUBLISH_PORT}
     volumes:
       - coredns_data:/etc/coredns
-    entrypoint:
-      - confd 
-      - -backend 
-      - env
-      - -onetime
 volumes:
   coredns_data:
     driver: local
