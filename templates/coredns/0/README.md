@@ -20,9 +20,10 @@ The Dockerfile source is under below:
 
 ## Parameters
 
+- Publish port: Port to publish coredns service. (eg. 53)
 - DNS zone names: you can put multiple zone names.（eg. rancher.io,rancher.io,172.in-addr.arpa）
 - Etcd root path: etcd root path which is used to save records. (eg. /skydns)
-- Etcd endpoints: etcd service endpoints，this catalog don't include etcd service,please use external etcd service. (eg. http://localhost:2379)
+- Etcd endpoints: etcd service endpoints，this catalog don't include etcd service,please use external etcd service. (eg. http://localhost:2379, endpoints2, ...)
 - UpStream for dns: upstream configuration for dns server. (eg. /etc/resolv.conf)
 - Forward addresses: the address which to be forwarded DNS query. (eg. 8.8.8.8:53,8.8.4.4:53)
 - Prometheus plugin support: whether to enable prometheus plugin.
