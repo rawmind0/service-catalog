@@ -93,7 +93,7 @@ Use this labels if you choose extenal rancher integration.
 
 WARNING: Only services with healthy state are added to traefik, so health checks are mandatory.
 
-More info [rancher-traefik](rancher-traefik)
+More info [rancher-traefik][rancher-traefik]
 
 ### Usage:
 
@@ -112,11 +112,11 @@ Note: To access the services, you need to create A or CNAMES dns entries for eve
 #### Setup Traefik for a custom domain
 
 You must set these labels for the service your want to expose:
+- traefik.enable = true
 - traefik.port = 8080
 - traefik.acme = true
 - traefik.frontend.rule = Host:MyCustoDomain.com (`api` or `metadata` rancher integration)
 - traefik.domain = MyCustoDomain.com (`external` rancher integration)
-- traefik.enable = true
 
 ### F.A.Q
 
@@ -124,15 +124,13 @@ You must set these labels for the service your want to expose:
 
 Depending on traefik rancher integration, available labels are differents.
 - [api and metadata][traefik rancher backend]
-- [external](rancher-traefik)
+- [external][rancher-traefik]
 
 #### Q: Traefik doesn't expose my service
 
 Depending on Traefik configuration we can diffenciate two cases:
 - If you configured Traefik with label *rancher_healthcheck=true* -> ensure your service has a healthcheck
 - If you configured Traefik without healthcheck, then check the Traefik log. Some times Traefik fails when try to load an invalid config and, before that, doesn't load new services -> restart Traefik should fix that
-
-### References
 
 [traefik rancher backend]: https://docs.traefik.io/configuration/backends/rancher/#labels-overriding-default-behaviour
 [rancher-traefik]: https://github.com/rawmind0/rancher-traefik
