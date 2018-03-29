@@ -8,7 +8,7 @@ services:
       INFOBLOX_URL: ${INFOBLOX_URL}
       INFOBLOX_USER_NAME: ${INFOBLOX_USER_NAME}
       INFOBLOX_PASSWORD: ${INFOBLOX_PASSWORD}
-      INFOBLOX_SECRET: '/run/secrets/${INFOBLOX_SECRET}'
+      INFOBLOX_SECRET: '/run/secrets/infoblox-pass'
       ROOT_DOMAIN: ${ROOT_DOMAIN}
       SSL_VERIFY: ${SSL_VERIFY}
       USE_COOKIES: ${USE_COOKIES}
@@ -16,7 +16,7 @@ services:
     labels:
       io.rancher.container.create_agent: "true"
       io.rancher.container.agent.role: "external-dns"
-{{- if eq .Values.INFOBLOX_SECRET ""}}
+{{- if ne .Values.INFOBLOX_PASSWORD ""}}
     command: -provider=infoblox
 {{- else}}
     entrypoint:
@@ -27,9 +27,9 @@ services:
       - mode: '0444'
         uid: '0'
         gid: '0'
-        source: '${INFOBLOX_SECRET}'
+        source: 'infoblox-pass'
         target: ''
 secrets:
-  ${INFOBLOX_SECRET}:
+  infoblox-pass:
     external: 'true' 
 {{- end}}

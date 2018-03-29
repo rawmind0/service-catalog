@@ -33,6 +33,14 @@ You can specify a custom name template used to construct the subdomain part (lef
 * `%{{stack_name}}`
 * `%{{environment_name}}`
 
+##### Using Rancher Secrets for infloblox Password
+
+Optionally, you can use the Rancher Secrets to pass infloblox password instead of using environment variable.
+1. Run the Rancher Secrets service before deploying this provider stack.
+2. Create a secret named "infoblox-pass".
+3. Deploy this stack, emptying `Infoblox password` field.
+
+
 **Example:**
 
 `%{{stack_name}}-%{{service_name}}.statictext`
