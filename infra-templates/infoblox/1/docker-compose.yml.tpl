@@ -30,6 +30,6 @@ services:
         source: '${INFOBLOX_SECRET}'
         target: ''
 secrets:
-  my-pass:
+  ${INFOBLOX_SECRET}:
     external: 'true' 
 {{- end}}
