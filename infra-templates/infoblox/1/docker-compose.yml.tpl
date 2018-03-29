@@ -16,9 +16,9 @@ services:
     labels:
       io.rancher.container.create_agent: "true"
       io.rancher.container.agent.role: "external-dns"
-    {{- if eq .Values.INFOBLOX_SECRET ""}}
+{{- if eq .Values.INFOBLOX_SECRET ""}}
     command: -provider=infoblox
-    {{- else}}
+{{- else}}
     entrypoint:
       - bash
       - -c
@@ -30,6 +30,6 @@ services:
         source: '${INFOBLOX_SECRET}'
         target: ''
 secrets:
-  ${INFOBLOX_SECRET}:
+  my-pass:
     external: 'true' 
-  {{- end}}
+{{- end}}
