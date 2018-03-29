@@ -25,7 +25,7 @@ infoblox:
     - mode: '0444'
       uid: '0'
       gid: '0'
-      source: ${INFOBLOX_SECRET}
+      source: '${INFOBLOX_SECRET}'
       target: ''
 secrets:
   ${INFOBLOX_SECRET}:
