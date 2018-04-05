@@ -4,7 +4,7 @@ services:
         labels:
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.container.hostname_override: container_name
-            io.rancher.sidekicks: es-storage{{- if eq .Values.UPDATE_SYSCTL "true" -}},es-sysctl{{- end}}
+            io.rancher.sidekicks: es-storage-master{{- if eq .Values.UPDATE_SYSCTL "true" -}},es-sysctl{{- end}}
         image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
         environment:
             - "cluster.name=${cluster_name}"
@@ -28,13 +28,25 @@ services:
         cap_add:
             - IPC_LOCK
         volumes_from:
-            - es-storage
+            - es-storage-master
+
+    es-storage-master:
+        labels:
+            io.rancher.container.start_once: true
+        network_mode: none
+        image: rawmind/alpine-volume:0.0.2-1
+        environment:
+            - SERVICE_UID=1000
+            - SERVICE_GID=1000
+            - SERVICE_VOLUME=/usr/share/elasticsearch/data
+        volumes:
+            - es-storage-volume:/usr/share/elasticsearch/data
 
     es-data:
         labels:
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.container.hostname_override: container_name
-            io.rancher.sidekicks: es-storage{{- if eq .Values.UPDATE_SYSCTL "true" -}},es-sysctl{{- end}}
+            io.rancher.sidekicks: es-storage-data{{- if eq .Values.UPDATE_SYSCTL "true" -}},es-sysctl{{- end}}
         image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
         environment:
             - "cluster.name=${cluster_name}"
@@ -57,15 +69,27 @@ services:
         cap_add:
             - IPC_LOCK
         volumes_from:
-            - es-storage
+            - es-storage-data
         depends_on:
             - es-master
+
+    es-storage-data:
+        labels:
+            io.rancher.container.start_once: true
+        network_mode: none
+        image: rawmind/alpine-volume:0.0.2-1
+        environment:
+            - SERVICE_UID=1000
+            - SERVICE_GID=1000
+            - SERVICE_VOLUME=/usr/share/elasticsearch/data
+        volumes:
+            - es-storage-volume:/usr/share/elasticsearch/data
 
     es-client:
         labels:
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.container.hostname_override: container_name
-            io.rancher.sidekicks: es-storage{{- if eq .Values.UPDATE_SYSCTL "true" -}},es-sysctl{{- end}}
+            io.rancher.sidekicks: es-storage-client{{- if eq .Values.UPDATE_SYSCTL "true" -}},es-sysctl{{- end}}
         image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
         environment:
             - "cluster.name=${cluster_name}"
@@ -88,11 +112,11 @@ services:
         cap_add:
             - IPC_LOCK
         volumes_from:
-            - es-storage
+            - es-storage-client
         depends_on:
             - es-master
 
-    es-storage:
+    es-storage-client:
         labels:
             io.rancher.container.start_once: true
         network_mode: none
