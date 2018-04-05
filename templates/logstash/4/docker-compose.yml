@@ -6,7 +6,7 @@ logstash-indexer-config:
 redis:
   restart: always
   tty: true
-  image: redis:3.0.7
+  image: redis:3.2.6-alpine
   stdin_open: true
   labels:
     io.rancher.container.hostname_override: container_name
@@ -19,7 +19,7 @@ logstash-indexer:
   - logstash
   - -f
   - /etc/logstash
-  image: logstash:1.5.6-1
+  image: docker.elastic.co/logstash/logstash:6.2.3
   links:
   - redis:redis
   external_links:
@@ -47,7 +47,7 @@ logstash-collector:
   - logstash
   - -f
   - /etc/logstash
-  image: logstash:1.5.6-1
+  image: docker.elastic.co/logstash/logstash:6.2.3
   stdin_open: true
   labels:
     io.rancher.sidekicks: logstash-collector-config

@@ -1,6 +1,6 @@
 .catalog:
   name: "Logstash"
-  version: "5.1.1-rancher1"
+  version: "2.4.1-rancher1"
   description: "Logstash: Process Any Data, From Any Source"
   questions:
     - variable: "collector_inputs"

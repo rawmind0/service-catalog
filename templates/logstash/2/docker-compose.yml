@@ -19,7 +19,7 @@ logstash-indexer:
   - logstash
   - -f
   - /etc/logstash
-  image: logstash:5.1.1-alpine
+  image: logstash:2.4.1-alpine
   links:
   - redis:redis
   external_links:
@@ -47,7 +47,7 @@ logstash-collector:
   - logstash
   - -f
   - /etc/logstash
-  image: logstash:5.1.1-alpine
+  image: logstash:2.4.1-alpine
   stdin_open: true
   labels:
     io.rancher.sidekicks: logstash-collector-config
