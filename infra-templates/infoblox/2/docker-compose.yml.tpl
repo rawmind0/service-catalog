@@ -2,7 +2,7 @@ version: '2'
 services:
   infoblox:
     image: rancher/external-dns:v0.7.10
-    command: -provider=infoblox
+    command: -provider=infoblox{{- if eq .Values.DEBUG_MODE "true" -}} -debug{{- end}}
     expose:
      - 1000
     environment:

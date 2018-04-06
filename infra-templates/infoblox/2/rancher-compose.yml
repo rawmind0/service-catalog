@@ -20,6 +20,12 @@
       description: "Infoblox password for your Infoblox service"
       type: "password"
       required: false
+    - variable: "DEBUG_MODE"
+      label: "Debug mode"
+      description: "Activate debug mode"
+      type: "boolean"
+      required: true
+      default: false
     - variable: "SSL_VERIFY"
       label: "Ssl verify"
       description: "Infoblox Ssl verify for your Infoblox service"
