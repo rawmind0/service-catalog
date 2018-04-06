@@ -34,6 +34,23 @@
       description: "The DNS zone name (root domain) managed by Infoblox. DNS entries will be created for <service>.<stack>.<environment>.<domain>"
       type: "string"
       required: true
+    - variable: "NAME_TEMPLATE"
+      label: "DNS Name Template"
+      description: |
+        Name template used to construct the subdomain part (left of the domain) of the DNS record names.
+        Supported placeholders: %{{service_name}}, %{{stack_name}}, %{{environment_name}}.
+        By default DNS entries will be named '<service>.<stack>.<environment>.<domain>'.
+      type: "string"
+      default: "%{{service_name}}.%{{stack_name}}.%{{environment_name}}"
+      required: true
+    - variable: "TTL"
+      label: "TTL"
+      description: "The resource record cache time to live (TTL), in seconds"
+      type: "int"
+      default: 600
+      min: 1
+      max: 86400
+      required: true
     - variable: "DEBUG_MODE"
       label: "Debug mode"
       description: "Activate debug mode"
@@ -50,24 +67,6 @@
       description: "Uses cookies if specified, re-creating the request and falling back to basic auth if a cookie is not present"
       type: "boolean"
       required: true
-    - variable: "TTL"
-      label: "TTL"
-      description: "The resource record cache time to live (TTL), in seconds"
-      type: "int"
-      default: 600
-      min: 1
-      max: 86400
-      required: false
-    - variable: "NAME_TEMPLATE"
-      label: "DNS Name Template"
-      description: |
-        Name template used to construct the subdomain part (left of the domain) of the DNS record names.
-        Supported placeholders: %{{service_name}}, %{{stack_name}}, %{{environment_name}}.
-        By default DNS entries will be named '<service>.<stack>.<environment>.<domain>'.
-      type: "string"
-      default: "%{{service_name}}.%{{stack_name}}.%{{environment_name}}"
-      required: false
-
 infoblox:
   health_check:
     port: 1000
