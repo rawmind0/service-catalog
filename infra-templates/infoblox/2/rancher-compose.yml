@@ -24,7 +24,8 @@
       label: "Infoblox secret"
       description: "Infoblox secret for your Infoblox service"
       type: "string"
-      required: false
+      required: true
+      default: infoblox-pass
     - variable: "ROOT_DOMAIN"
       label: "Infoblox zone"
       description: "The DNS zone name (root domain) managed by Infoblox. DNS entries will be created for <service>.<stack>.<environment>.<domain>"
