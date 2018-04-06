@@ -25,6 +25,6 @@ services:
         source: '${INFOBLOX_SECRET}'
         target: ''
 secrets:
-  ${INFOBLOX_SECRET}:
+  {{- .Values.INFOBLOX_SECRET}}:
     external: 'true' 
 {{- end}}
