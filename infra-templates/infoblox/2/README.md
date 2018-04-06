@@ -6,14 +6,14 @@ Rancher External DNS service powered by Infoblox DNS
 
 ##### Infloblox Password
 
-Infoblox password is provided setting `Infoblox password` field. This generates an enviroment variable inside container, `INFOBLOX_PASSWORD`, that contains the password in CLEAR.
+Infoblox password could be provided in 2 ways, depending what you set at `Infoblox password type` enum:
 
-Optionally, you can use the Rancher Secrets to secure your infloblox password.
-1. Deploy Rancher Secrets service (library catalog) before deploying this provider stack.
-2. Create a secret with infoblox password. Default name "infoblox-pass".
-3. Deploy this stack, emptying `Infoblox password` field and setting `Infoblox secret` to your secret name if required.
+- `env` by environment var. Infoblox password is provided at `Infoblox password | secret` field. This generates an enviroment variable inside container, `INFOBLOX_PASSWORD`, that contains the password in CLEAR.
 
-NOTE: Rancher secret is used only if you let empty `Infoblox password` field.
+- `secret` by rancher secret. Infoblox password is provided by a Rancher Secret to secure it. You should do previous steps to use secrets:
+1. Deploy Rancher Secrets service from library catalog, before deploying this  stack.
+2. Create a rancher secret with your infoblox password. From ui, `Infrastructure -> Secrets`.
+3. Deploy this stack, setting `Infoblox password type` enum to `secret`  and setting `Infoblox password | secret` field to previously created secret name.
 
 ##### Supported host labels
 

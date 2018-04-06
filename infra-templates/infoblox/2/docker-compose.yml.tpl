@@ -5,26 +5,28 @@ services:
     command: -provider=infoblox {{if eq .Values.DEBUG_MODE "true" -}}-debug{{- end}}
     expose:
      - 1000
+    labels:
+      io.rancher.container.create_agent: "true"
+      io.rancher.container.agent.role: "external-dns"
     environment:
       INFOBLOX_URL: ${INFOBLOX_URL}
       INFOBLOX_USER_NAME: ${INFOBLOX_USER_NAME}
-      INFOBLOX_PASSWORD: ${INFOBLOX_PASSWORD}
-      INFOBLOX_SECRET: '/run/secrets/${INFOBLOX_SECRET}'
       ROOT_DOMAIN: ${ROOT_DOMAIN}
       SSL_VERIFY: ${SSL_VERIFY}
       USE_COOKIES: ${USE_COOKIES}
       TTL: ${TTL}
-    labels:
-      io.rancher.container.create_agent: "true"
-      io.rancher.container.agent.role: "external-dns"
-{{- if eq .Values.INFOBLOX_PASSWORD ""}}
+{{- if eq .Values.INFOBLOX_PASSWORD_TYPE "env"}}
+      INFOBLOX_PASSWORD: ${INFOBLOX_PASSWORD}
+{{- else}}
+      INFOBLOX_PASSWORD: ''
+      INFOBLOX_SECRET: '/run/secrets/${INFOBLOX_PASSWORD}'
     secrets:
       - mode: '0444'
         uid: '0'
         gid: '0'
-        source: '${INFOBLOX_SECRET}'
+        source: '${INFOBLOX_PASSWORD}'
         target: ''
 secrets:
-  {{- .Values.INFOBLOX_SECRET}}:
+  {{- .Values.INFOBLOX_PASSWORD}}:
     external: 'true' 
 {{- end}}

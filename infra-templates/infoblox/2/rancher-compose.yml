@@ -15,17 +15,20 @@
       description: "Infoblox user name for your Infoblox service"
       type: "string"
       required: true
+    - variable: "INFOBLOX_PASSWORD_TYPE"
+      label: "Infoblox password type"
+      description: "How infoblox password is provided by environment var or by rancher secret"
+      required: true
+      default: env
+      type: enum
+      options:
+        - env
+        - secret
     - variable: "INFOBLOX_PASSWORD"
-      label: "Infoblox password"
-      description: "Infoblox password for your Infoblox service"
-      type: "password"
-      required: false
-    - variable: "INFOBLOX_SECRET"
-      label: "Infoblox secret"
-      description: "Infoblox secret for your Infoblox service"
+      label: "Infoblox password | secret"
+      description: "Infoblox password or secret name for your Infoblox service "
       type: "string"
       required: true
-      default: infoblox-pass
     - variable: "ROOT_DOMAIN"
       label: "Infoblox zone"
       description: "The DNS zone name (root domain) managed by Infoblox. DNS entries will be created for <service>.<stack>.<environment>.<domain>"
