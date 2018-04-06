@@ -25,7 +25,7 @@
         - env
         - secret
     - variable: "INFOBLOX_PASSWORD"
-      label: "Infoblox password | secret"
+      label: "Infoblox password | secret name"
       description: "Infoblox password or secret name for your Infoblox service "
       type: "string"
       required: true

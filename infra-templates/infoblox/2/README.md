@@ -10,16 +10,16 @@ Infoblox password could be provided in 2 ways, depending what you set at `Infobl
 
 - `env` by environment var.
 
-  Infoblox password is provided at `Infoblox password | secret` field. This generates an enviroment variable inside container, `INFOBLOX_PASSWORD`, that contains the password in CLEAR.
+  Infoblox password is provided at `Infoblox password | secret name` field. This generates an enviroment variable inside container, `INFOBLOX_PASSWORD`, that contains the password in CLEAR.
 
 - `secret` by rancher secret. 
 
-  Infoblox password is provided by a Rancher Secret to secure it. Secret name is provided at `Infoblox password | secret` field. 
+  Infoblox password is provided by a Rancher Secret to secure it. Secret name is provided at `Infoblox password | secret name` field. 
   
   Previous steps are required to use rancher secrets:
   1. Deploy Rancher Secrets service from library catalog, before deploying this  stack.
   2. Create a rancher secret with your infoblox password. From ui, `Infrastructure -> Secrets`.
-  3. Deploy this stack, setting `Infoblox password type` enum to `secret`  and setting `Infoblox password | secret` field to previously created secret name.
+  3. Deploy this stack, setting `Infoblox password type` enum to `secret`  and setting `Infoblox password | secret name` field to previously created secret name.
 
 ##### Supported host labels
 
