@@ -9,7 +9,7 @@ services:
       INFOBLOX_URL: ${INFOBLOX_URL}
       INFOBLOX_USER_NAME: ${INFOBLOX_USER_NAME}
       INFOBLOX_PASSWORD: ${INFOBLOX_PASSWORD}
-      INFOBLOX_SECRET: '/run/secrets/infoblox-pass'
+      INFOBLOX_SECRET: '/run/secrets/${INFOBLOX_SECRET}'
       ROOT_DOMAIN: ${ROOT_DOMAIN}
       SSL_VERIFY: ${SSL_VERIFY}
       USE_COOKIES: ${USE_COOKIES}
@@ -22,9 +22,9 @@ services:
       - mode: '0444'
         uid: '0'
         gid: '0'
-        source: 'infoblox-pass'
+        source: '${INFOBLOX_SECRET}'
         target: ''
 secrets:
-  infoblox-pass:
+  ${INFOBLOX_SECRET}:
     external: 'true' 
 {{- end}}
