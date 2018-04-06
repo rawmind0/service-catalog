@@ -2,6 +2,7 @@ version: '2'
 services:
   infoblox:
     image: rancher/external-dns:v0.7.10
+    command: -provider=infoblox
     expose:
      - 1000
     environment:
