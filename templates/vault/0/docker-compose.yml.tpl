@@ -25,7 +25,11 @@ services:
       VAULT_REDIRECT_INTERFACE: "eth0"
       VAULT_CLUSTER_INTERFACE: "eth0"
       VAULT_LOCAL_CONFIG: |
-        { "backend": "{{.Values.VAULT_BACKEND}}": { {{.Values.BACKEND_CONFIGURATION}} },"listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}, "cluster_name":"{{.Values.VAULT_CLUSTER_NAME}}" }
+        { 
+          "storage": {"${VAULT_BACKEND}": {${BACKEND_CONFIGURATION}}},
+          "listener": {"tcp": {"address": "0.0.0.0:8200", "tls_disable": 1}},
+          "cluster_name": "{{.Values.VAULT_CLUSTER_NAME}}" 
+        }
 {{- if .Values.VAULT_BACKEND }}
     external_links:
     - ${VAULT_BACKEND}:SERVICE
@@ -35,4 +39,3 @@ services:
     - vault-config:/vault/config
     command:
     - server
-
