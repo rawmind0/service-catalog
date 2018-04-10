@@ -1,0 +1,79 @@
+version: '2'
+catalog:
+  name: Vault
+  version: 1.0-rancher1
+  description: |
+    Installs a Vault container, internal (Rancher) load-balancer, and allows connection to a Consul cluster
+  uuid: vault-rac-0
+  questions:
+    - variable: VAULT_LOCAL_CONFIG
+      label: Provide a default config?
+      description: |
+        This is the embedded JSON format config file that vault will use at startup
+      type: multiline
+      default: |
+        {"backend":{"consul":{"address":"consul:8500", "path":"vault"}}, "listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}, "cluster_name": "myCluster" }
+    - variable: VAULT_LISTEN_PORT
+      label: Vault Listen Port
+      description:
+        This is the port number you want Vault to listen on.  Actually, Vault ALWAYS listens on port 8200, but it isn't exposed, so you can set the port you want the LoadBalancer to listen on.
+      default: 8200
+      type: int
+    - variable: VAULT_CLUSTER_PORT
+      label: Vault Cluster Port
+      description:
+        Similar to the Vault Listen Port, this is the VAULT CLUSTER listen port to use.
+      default: 8201
+      type: int
+    - variable: USE_CONSUL
+      label: Would you like to back Vault with Consul?
+      description: |
+        Selecting yes or no allows you to back your vault repoository with a pre-installed
+        Consul cluster/server
+      default: false
+      type: boolean
+    - variable: CONSUL_SERVICE
+      label: Specify the Consul service to connect to
+      description: |
+        The pre-installed Consul server to back to
+      default: "select"
+      type: service
+    - variable: VOLUME_DRIVER
+      label: Driver for volumes
+      description: |
+        How/Where to store your vault config and logs
+      default: local
+      type: enum
+      options:
+        - local
+        - rancher-nfs
+        - rancher-efs
+        - rancher-ebs
+services:
+  vault-lb:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      certs: []
+      port_rules:
+      - priority: 1
+        protocol: tcp
+        service: vault
+        source_port: ${VAULT_LISTEN_PORT}
+        target_port: 8200
+      - priority: 2
+        protocol: tcp
+        service: vault
+        source_port: ${VAULT_CLUSTER_PORT}
+        target_port: 8201
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 42
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      reinitializing_timeout: 60000
+  vault:
+    scale: 1
+    start_on_create: true
