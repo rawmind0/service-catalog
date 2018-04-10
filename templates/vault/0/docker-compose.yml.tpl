@@ -1,4 +1,5 @@
-{{if eq .Values.VAULT_BACKEND "consul" $storage:='{"consul":{"address":"consul:8500", "path":"vault"}}'}}
+{{$storageConsul:='{"consul":{"address":"consul:8500", "path":"vault"}}'}}
+{{$storageFile:='{"file": {"path": "/vault/file"}}'}}
 
 version: '2'
 volumes:
@@ -24,7 +25,7 @@ services:
     environment:
       VAULT_LOCAL_CONFIG: |
         { 
-          "storage":{{$storage}},
+          "storage":{{if eq .Values.VAULT_BACKEND "consul"}}{{$storageConsul}}{{else}}{{$storageFile}}{{end}},
           "listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}, 
           "cluster_name":"{{.Values.VAULT_CLUSTER_NAME}}" 
         }
