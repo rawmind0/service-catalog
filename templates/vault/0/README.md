@@ -24,13 +24,13 @@ This catalog item uses these two main containers:
 This field is for specifying your backend configuration values in json format, `"name": "value"`
 
 For example:
+- Configuration for etcd
 ```
 "address": "http://locahost:2379", "etcd_api": "v3"
 ```
-would be a valid configuration for Etcd and
+- Configuration for Amazon S3 buckets
 ```
 "access_key": "abcd1234", "secret_key": "defg5678", "bucket": "my-bucket"
 ```
-would be valid for Amazon S3 buckets.
 
 More info at [Vault storage configuration](https://www.vaultproject.io/docs/configuration/storage)
