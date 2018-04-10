@@ -20,9 +20,8 @@ services:
     - IPC_LOCK
     image: vault:0.9.6
     environment:
-      VAULT_LOCAL_CONFIG: ${VAULT_LOCAL_CONFIG}
       VAULT_LOCAL_CONFIG: |
-        { {{if eq .Values.USE_CONSUL "true"}}"backend":{"consul":{"address":"consul:8500", "path":"vault"}},{{end}} "listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}, "cluster_name":"{{.Values.VAULT_CLUSTER_NAME}}" }
+        { "backend":{{if eq .Values.USE_CONSUL "true"}}{"consul":{"address":"consul:8500", "path":"vault"}},{{else}}{"file": {"path": "/vault/file"}},{{end}} "listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}, "cluster_name":"{{.Values.VAULT_CLUSTER_NAME}}" }
       VAULT_REDIRECT_INTERFACE: eth0
       VAULT_REDIRECT_INTERFACE: "eth0"
       VAULT_CLUSTER_INTERFACE: "eth0"
