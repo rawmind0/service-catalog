@@ -7,30 +7,37 @@ catalog:
   uuid: vault-rac-0
   questions:
     - variable: VAULT_CLUSTER_NAME
-      label: Provide vault cluster name?
+      label: Vault cluster name
       description: |
         This is vault cluster name.
       type: string
       default: myCluster
+      equired: true
     - variable: VAULT_LISTEN_PORT
       label: Vault Listen Port
       description: |
         This is the port number you want Vault to listen on.  Actually, Vault ALWAYS listens on port 8200, but it isn't exposed, so you can set the port you want the LoadBalancer to listen on.
       default: 8200
       type: int
+      required: true
     - variable: VAULT_CLUSTER_PORT
       label: Vault Cluster Port
       description: |
         Similar to the Vault Listen Port, this is the VAULT CLUSTER listen port to use.
       default: 8201
       type: int
-    - variable: USE_CONSUL
-      label: Would you like to back Vault with Consul?
+      required: true
+    - variable: VAULT_BACKEND
+      label: Vault backend
       description: |
-        Selecting yes or no allows you to back your vault repoository with a pre-installed
+        Select file or consul to allow you to back your vault repository with a pre-installed
         Consul cluster/server
-      default: false
-      type: boolean
+      default: file
+      type: enum
+      required: true
+      options:
+        - file
+        - consul
     - variable: CONSUL_SERVICE
       label: Specify the Consul service to connect to
       description: |
