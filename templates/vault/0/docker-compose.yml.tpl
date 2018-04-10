@@ -21,7 +21,13 @@ services:
     image: vault:0.9.6
     environment:
       VAULT_LOCAL_CONFIG: |
-        { "storage":{{if eq .Values.VAULT_BACKEND "consul"}}{"consul":{"address":"consul:8500", "path":"vault"}},{{else}}{"file": {"path": "/vault/file"}},{{end}} "listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}, "cluster_name":"{{.Values.VAULT_CLUSTER_NAME}}" }
+        { "storage":
+          {{if eq .Values.VAULT_BACKEND "consul"}}{"consul":{"address":"consul:8500", "path":"vault"}},
+          {{else}}{"file": {"path": "/vault/file"}},
+          {{end}}
+          "listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}, 
+          "cluster_name":"{{.Values.VAULT_CLUSTER_NAME}}" 
+        }
       VAULT_REDIRECT_INTERFACE: eth0
       VAULT_REDIRECT_INTERFACE: "eth0"
       VAULT_CLUSTER_INTERFACE: "eth0"
