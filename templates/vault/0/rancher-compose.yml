@@ -41,7 +41,7 @@ catalog:
         - couchdb
         - dynamodb
         - etcd
-        - filesystem
+        - file
         - gcs
         - inmem
         - manta
