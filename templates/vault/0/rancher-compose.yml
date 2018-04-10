@@ -27,6 +27,12 @@ catalog:
       default: 8201
       type: int
       required: true
+    - variable: "HOST_LABEL"
+      description: "Host label where to run vault lb service."
+      label: "Host label:"
+      required: true
+      default: "lbhost=true" 
+      type: "string"
     - variable: VAULT_BACKEND
       label: Vault backend
       description: |
