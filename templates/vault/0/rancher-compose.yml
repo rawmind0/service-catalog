@@ -15,13 +15,13 @@ catalog:
         {"backend":{"consul":{"address":"consul:8500", "path":"vault"}}, "listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}, "cluster_name": "myCluster" }
     - variable: VAULT_LISTEN_PORT
       label: Vault Listen Port
-      description:
+      description: |
         This is the port number you want Vault to listen on.  Actually, Vault ALWAYS listens on port 8200, but it isn't exposed, so you can set the port you want the LoadBalancer to listen on.
       default: 8200
       type: int
     - variable: VAULT_CLUSTER_PORT
       label: Vault Cluster Port
-      description:
+      description: |
         Similar to the Vault Listen Port, this is the VAULT CLUSTER listen port to use.
       default: 8201
       type: int
