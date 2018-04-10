@@ -21,15 +21,16 @@ This catalog item uses these two main containers:
 6. Enjoy!
 
 ## Backend Configuration
-This field is for specifying your backend configuration values.  You enter them in a name=value pair format with each separate element being on its own line.  For example:
+This field is for specifying your backend configuration values.  Must be in json format, "name": "value".  
+
+For example:
 ```
-address = "http://locahost:2379"
-etcd_api = "v3"
+"address": "http://locahost:2379", "etcd_api": "v3"
 ```
 would be a valid configuration for Etcd and
 ```
-access_key = "abcd1234"
-secret_key = "defg5678"
-bucket     = "my-bucket"
+"access_key": "abcd1234", "secret_key": "defg5678", "bucket": "my-bucket"
 ```
 would be valid for Amazon S3 buckets.
+
+More info at [Vault storage configuration](https://www.vaultproject.io/docs/configuration/storage)

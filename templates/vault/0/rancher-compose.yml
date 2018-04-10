@@ -59,7 +59,8 @@ catalog:
       default: "select"
       type: service
     - variable: BACKEND_CONFIGURATION
-      label: Specify the backend configuration in name=value format
+      label: |
+        Specify the backend configuration in json format. Ex. `"name": "value", "name2": "value2"`
       default: '"path": "/vault/file"'
       required: true
       description: |
