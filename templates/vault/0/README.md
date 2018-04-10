@@ -25,12 +25,8 @@ This field is for specifying your backend configuration values in json format, `
 
 For example:
 - Configuration for etcd
-```
-"address": "http://locahost:2379", "etcd_api": "v3"
-```
+  `"address": "http://locahost:2379", "etcd_api": "v3"`
 - Configuration for Amazon S3 buckets
-```
-"access_key": "abcd1234", "secret_key": "defg5678", "bucket": "my-bucket"
-```
+  `"access_key": "abcd1234", "secret_key": "defg5678", "bucket": "my-bucket"`
 
 More info at [Vault storage configuration](https://www.vaultproject.io/docs/configuration/storage)
