@@ -12,7 +12,7 @@ catalog:
         This is vault cluster name.
       type: string
       default: myCluster
-      equired: true
+      required: true
     - variable: VAULT_LISTEN_PORT
       label: Vault Listen Port
       description: |
