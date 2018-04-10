@@ -65,7 +65,7 @@ catalog:
       required: true
       description: |
         Enter the configuration block for the backend (Refer to Vault documentation for valid backend configuration elements) put each item on a separate line
-      type: multiline
+      type: string
     - variable: HOST_LABEL
       label: Optional Host label to bind LoadBalancer to
       description: |

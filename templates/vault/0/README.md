@@ -21,7 +21,7 @@ This catalog item uses these two main containers:
 6. Enjoy!
 
 ## Backend Configuration
-This field is for specifying your backend configuration values.  Must be in json format, "name": "value".  
+This field is for specifying your backend configuration values in json format, `"name": "value"`
 
 For example:
 ```
