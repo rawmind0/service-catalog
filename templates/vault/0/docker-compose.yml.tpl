@@ -11,7 +11,7 @@ services:
     - ${VAULT_LISTEN_PORT}:8200/tcp
     - ${VAULT_CLUSTER_PORT}:8201/tcp
     labels:
-      io.rancher.scheduler.affinity:host_label: lbhost=true
+      io.rancher.scheduler.affinity:host_label: ${HOST_LABEL}
       io.rancher.container.agent.role: environmentAdmin,agent
       io.rancher.container.agent_service.drain_provider: 'true'
       io.rancher.container.create_agent: 'true'
