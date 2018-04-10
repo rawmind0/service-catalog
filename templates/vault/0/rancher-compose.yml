@@ -6,13 +6,12 @@ catalog:
     Installs a Vault container, internal (Rancher) load-balancer, and allows connection to a Consul cluster
   uuid: vault-rac-0
   questions:
-    - variable: VAULT_LOCAL_CONFIG
-      label: Provide a default config?
+    - variable: VAULT_CLUSTER_NAME
+      label: Provide vault cluster name?
       description: |
-        This is the embedded JSON format config file that vault will use at startup
-      type: multiline
-      default: |
-        {"backend":{"consul":{"address":"consul:8500", "path":"vault"}}, "listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}, "cluster_name": "myCluster" }
+        This is vault cluster name.
+      type: string
+      default: myCluster
     - variable: VAULT_LISTEN_PORT
       label: Vault Listen Port
       description: |

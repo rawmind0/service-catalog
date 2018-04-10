@@ -22,7 +22,7 @@ services:
     environment:
       VAULT_LOCAL_CONFIG: ${VAULT_LOCAL_CONFIG}
       VAULT_LOCAL_CONFIG: |
-        {"backend":{{if eq .Values.USE_CONSUL "true"}}{"consul":{"address":"consul:8500", "path":"vault"}},{{end}} "listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}, "cluster_name": "myCluster" }
+        {{{if eq .Values.USE_CONSUL "true"}}"backend":{"consul":{"address":"consul:8500", "path":"vault"}},{{end}} "listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}, "cluster_name":"{{.Values.VAULT_CLUSTER_NAME}}" }
       VAULT_REDIRECT_INTERFACE: eth0
       VAULT_REDIRECT_INTERFACE: "eth0"
       VAULT_CLUSTER_INTERFACE: "eth0"
