@@ -21,6 +21,10 @@ services:
     image: vault:0.9.6
     cap_add:
     - IPC_LOCK
+{{- if .Values.BACKEND_SERVICE }}
+    external_links:
+    - ${BACKEND_SERVICE}:SERVICE
+{{- end }}
     environment:
       VAULT_REDIRECT_INTERFACE: "eth0"
       VAULT_CLUSTER_INTERFACE: "eth0"
