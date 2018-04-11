@@ -21,7 +21,7 @@ services:
     image: vault:0.9.6
     cap_add:
     - IPC_LOCK
-{{- if .Values.BACKEND_SERVICE }}
+{{- if ne .Values.BACKEND_SERVICE ""}}
     external_links:
     - ${BACKEND_SERVICE}:SERVICE
 {{- end }}
