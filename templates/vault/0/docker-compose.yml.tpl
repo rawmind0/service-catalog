@@ -30,9 +30,9 @@ services:
           "listener": {"tcp": {"address": "0.0.0.0:8200", "tls_disable": 1}},
           "cluster_name": "${VAULT_CLUSTER_NAME}" 
         }
-{{- if .Values.VAULT_BACKEND }}
+{{- if .Values.BACKEND_SERVICE }}
     external_links:
-    - ${VAULT_BACKEND}:SERVICE
+    - ${BACKEND_SERVICE}:SERVICE
 {{- end }}
     volumes:
     - vault-file:/vault/file
