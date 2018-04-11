@@ -22,8 +22,7 @@ services:
     cap_add:
     - IPC_LOCK
 {{- if ne .Values.BACKEND_SERVICE ""}}
-    external_links:
-    - ${VAULT_BACKEND}:SERVICE
+
 {{- end }}
     environment:
       VAULT_REDIRECT_INTERFACE: "eth0"
