@@ -23,7 +23,7 @@ services:
     - IPC_LOCK
 {{- if ne .Values.BACKEND_SERVICE ""}}
     external_links:
-    - eo:SERVICE
+    - ${VAULT_BACKEND}:SERVICE
 {{- end }}
     environment:
       VAULT_REDIRECT_INTERFACE: "eth0"
