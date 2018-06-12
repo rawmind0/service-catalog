@@ -20,6 +20,10 @@ services:
       - KAFKA_OFFSET_RETENTION_MINUTES=${kafka_offset_retention_minutes}
     external_links:
       - ${zk_link}:zk
+  {{- if .Values.kafka_pub_ip}}
+    ports:
+      - ${kafka_pub_ip}:${kafka_pub_ip}/tcp
+  {{- end}}
     labels: 
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
