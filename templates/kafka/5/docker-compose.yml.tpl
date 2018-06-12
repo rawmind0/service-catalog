@@ -21,7 +21,7 @@ services:
       - KAFKA_OFFSET_RETENTION_MINUTES=${kafka_offset_retention_minutes}
     external_links:
       - ${zk_link}:zk
-  {{- if .Values.kafka_pub_ip}}
+  {{- if eq .Values.kafka_pub_ip "true"}}
     ports:
       - ${kafka_pub_ip}:${kafka_pub_ip}/tcp
   {{- end}}
