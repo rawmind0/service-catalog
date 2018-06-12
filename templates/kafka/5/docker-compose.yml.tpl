@@ -23,7 +23,7 @@ services:
       - ${zk_link}:zk
   {{- if eq .Values.kafka_pub_ip "true"}}
     ports:
-      - ${kafka_pub_ip}:${kafka_pub_ip}/tcp
+      - ${kafka_adv_port}:${kafka_adv_port}/tcp
   {{- end}}
     labels: 
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
