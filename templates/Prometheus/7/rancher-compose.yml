@@ -16,6 +16,19 @@
     description: "tag version of Cadvisor , if you have centos as host please use v0.27.3 tag  "
     default: "latest"
     required: true
+    type: enum
+    options:
+      - latest
+      - v0.27.3
+  - variable: "CADVISOR_TAG"
+    label: "Cadvisor Tag version"
+    description: "tag version of Cadvisor , if you have centos as host please use v0.27.3 tag  "
+    default: "latest"
+    required: true
+    type: enum
+    options:
+      - v0.16.0
+      - v0.15.2
   - variable: "VOLUME_DRIVER"
     description: "The VOLUME driver to associate with this server"
     label: "VOLUME Driver"
