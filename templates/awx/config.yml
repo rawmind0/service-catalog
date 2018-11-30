@@ -1,7 +1,9 @@
 name: AWX
 description: |
   AWX provides a web-based user interface, REST API, and task engine built on top of Ansible. It is the upstream project for Tower, a commercial derivative of AWX.
-version: 1.0-rancher1
+  
+  1.0.7 is a breaking change from 1.0.6 and must be installed new.
+version: 1.0.7-rancher1
 category: Platform
 maintainer: Randal Cobb <randy.cobb@nordstrom.com>
 
