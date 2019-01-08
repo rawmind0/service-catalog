@@ -29,6 +29,7 @@
 - acme_caserver = "https://acme-v01.api.letsencrypt.org/directory"          # acme caServer parameter.
 - acme_vol_name = "traefik_acme_vol"    # Volume name to user by acme sidekick
 - acme_vol_driver = "local"   # Volume driver to user by acme sidekick
+- acme_keytype = "RSA4096"   # acme keytype to use [acme keytype](https://docs.traefik.io/configuration/acme/)
 - ssl_key # Paste your ssl key. *Required if you enable https
 - ssl_crt # Paste your ssl crt. *Required if you enable https
 - insecure_skip = false # Enable InsecureSkipVerify param.
