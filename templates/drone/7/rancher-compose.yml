@@ -1,22 +1,16 @@
 version: 2
 catalog:
   name: Drone
-  version: 0.8.0-rc.1-rancher1
-  upgrade_from: 0.5-rancher1
+  version: 1.0-rancher1
   description: |
-    Drone CI Server ref http://readme.drone.io/admin/installation-guide/
+    Drone CI Server
+    https://docs.drone.io/installation/
   questions:
     - variable: drone_host
       label: Drone Host URL
-      description: Intended URL Drone will be hosted on, e.g. http://drone.mycompany.com.
+      description: Intended URL Drone will be hosted on, e.g. drone.mycompany.com.
       required: true
       type: string
-    - variable: host_port
-      label: Drone Server Host Port
-      description: Public port that will be exposed on service creation.
-      required: true
-      default: 8000
-      type: int
     - variable: agent_scale
       label: Drone Agent Scale
       description: Drone agent scale to deploy
@@ -25,7 +19,7 @@ catalog:
       type: int
     - variable: drone_secret
       label: Server and Agents Secret
-      description: Server and agents secret to be communicate. http://readme.drone.io/admin/user-registration/
+      description: Server and agents secret to be communicate
       type: password
       required: true
     - variable: gin_mode
@@ -37,24 +31,18 @@ catalog:
         - "release"
         - "debug"
       required: true
-    - variable: drone_open
-      label: Open Registration
+    - variable: drone_user_create
+      label: Drone Create User
       description: |
-        Users self register. http://readme.drone.io/admin/user-registration/
-      required: true
-      default: true
-      type: enum
-      options:
-        - true
-        - false
-    - variable: drone_admin
-      label: Drone Admin
-      description: List of admins for drone comma seperated. http://readme.drone.io/admin/user-admins/
+        User account that should be created on startup.
+        https://docs.drone.io/reference/server/drone-user-create/
       type: string
       required: false
-    - variable: drone_orgs
-      label: Organizations
-      description: Comman seperated list of org that can access drone. http://readme.drone.io/admin/user-registration/
+    - variable: drone_user_filter
+      label: Drone user filter
+      description: |
+        Registration is limited to users or users that are members of organizations included in this list.
+        https://docs.drone.io/reference/server/drone-user-filter/
       type: string
       required: false
     - variable: "drone_driver"
@@ -62,7 +50,7 @@ catalog:
       required: true
       label: "Remote Driver"
       default: "GitHub"
-      description: "Remote Git and Auth scheme. ref http://readme.drone.io/admin"
+      description: "Remote Git and Auth scheme"
       options:
         - GitHub
         - GitLab
@@ -96,18 +84,16 @@ catalog:
       required: false
     - variable: drone_server
       label: Drone Server
-      description: "Drone sever identifier. Used by the agent to connect to the server (does not require change)."
+      description: "Drone server identifier. Used by the agent to connect to the server (does not require change)."
       type: string
-      default: "drone:9000"
+      default: "http://drone:80"
     - variable: drone_version
       label: Drone Version
       description: "Drone version/Docker tag used for the Drone container images."
       type: enum
-      default: "0.8.0-rc.1"
+      default: "1.0"
       options:
-        - 0.8.0-rc.1
-        - 0.8.0
-        - '0.8'
+        - "1.0"
         - latest
     - variable: database_driver
       label: Database Driver
@@ -122,7 +108,7 @@ catalog:
     - variable: "database_source"
       type: "string"
       label: "Database source"
-      description: "Database datasource. Required if database driver is mysql or postgres, http://readme.drone.io/admin/database-engines/"
+      description: "Database datasource. Required if database driver is mysql or postgres, https://docs.drone.io/administration/server/database/"
       required: false
     - variable: "http_proxy"
       type: string
@@ -162,7 +148,7 @@ services:
     scale: 1
     start_on_create: true
     health_check:
-      port: 8000
+      port: 80
       interval: 2000
       unhealthy_threshold: 3
       strategy: recreate
@@ -177,8 +163,8 @@ services:
       - priority: 1
         protocol: http
         service: server
-        source_port: ${host_port}
-        target_port: 8000
+        source_port: 80
+        target_port: 80
     health_check:
       healthy_threshold: 2
       response_timeout: 2000

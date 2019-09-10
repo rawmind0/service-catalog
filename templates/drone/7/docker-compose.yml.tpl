@@ -3,8 +3,8 @@ services:
   agent:
     image: drone/agent:${drone_version}
     environment:
-      DRONE_SERVER: ${drone_server}
-      DRONE_SECRET: ${drone_secret}
+      DRONE_RPC_SERVER: ${drone_server}
+      DRONE_RPC_SECRET: ${drone_secret}
 {{- if (.Values.http_proxy)}}
       HTTP_PROXY: ${http_proxy}
       http_proxy: ${http_proxy}
@@ -29,46 +29,47 @@ services:
   server:
     image: drone/drone:${drone_version}
     environment:
-      DRONE_HOST: ${drone_host}
+      DRONE_AGENTS_ENABLED: true
+      DRONE_SERVER_HOST: ${drone_host}
+      DRONE_SERVER_PROTO: https
       GIN_MODE: ${gin_mode}
 {{- if (.Values.drone_debug)}}
-      DRONE_DEBUG: '${drone_debug}'
+      DRONE_LOGS_DEBUG: '${drone_debug}'
 {{- end}}
-      DRONE_SECRET: ${drone_secret}
-      DRONE_OPEN: ${drone_open}
-{{- if (.Values.drone_admin)}}
-      DRONE_ADMIN: ${drone_admin}
+      DRONE_RPC_SECRET: ${drone_secret}
+{{- if (.Values.drone_user_create)}}
+      DRONE_USER_CREATE: "username:${drone_user_create},admin:true"
 {{- end}}
-{{- if (.Values.drone_orgs)}}
-      DRONE_ORGS: ${drone_orgs}
+{{- if (.Values.drone_user_filter)}}
+      DRONE_USER_FILTER: ${drone_user_filter}
 {{- end}}
 {{- if eq .Values.drone_driver "GitHub"}}
-      DRONE_GITHUB: true
-      DRONE_GITHUB_CLIENT: ${drone_driver_client}
-      DRONE_GITHUB_SECRET: ${drone_driver_secret}
+      DRONE_GITHUB_SERVER: https://github.com
+      DRONE_GITHUB_CLIENT_ID: ${drone_driver_client}
+      DRONE_GITHUB_CLIENT_SECRET: ${drone_driver_secret}
 {{- end}}
 {{- if eq .Values.drone_driver "Bitbucket Cloud"}}
       DRONE_BITBUCKET: true
-      DRONE_BITBUCKET_CLIENT: ${drone_driver_client}
-      DRONE_BITBUCKET_SECRET: ${drone_driver_secret}
+      DRONE_BITBUCKET_CLIENT_ID: ${drone_driver_client}
+      DRONE_BITBUCKET_CLIENT_SECRET: ${drone_driver_secret}
 {{- end}}
 {{- if eq .Values.drone_driver "Bitbucket Server"}}
       DRONE_STASH: true
-      DRONE_STASH_GIT_USERNAME: ${drone_driver_user}
-      DRONE_STASH_GIT_PASSWORD: ${drone_driver_password}
+      DRONE_GIT_USERNAME: ${drone_driver_user}
+      DRONE_GIT_PASSWORD: ${drone_driver_password}
       DRONE_STASH_CONSUMER_KEY: ${drone_driver_client}
-      DRONE_STASH_CONSUMER_RSA_STRING: ${drone_driver_secret}
-      DRONE_STASH_URL: ${drone_driver_url}
+      DRONE_STASH_PRIVATE_KEY: ${drone_driver_secret}
+      DRONE_STASH_SERVER: ${drone_driver_url}
 {{- end}}
 {{- if eq .Values.drone_driver "GitLab"}}
       DRONE_GITLAB: true
-      DRONE_GITLAB_CLIENT: ${drone_driver_client}
-      DRONE_GITLAB_SECRET: ${drone_driver_secret}
-      DRONE_GITLAB_URL: ${drone_driver_url}
+      DRONE_GITLAB_CLIENT_ID: ${drone_driver_secret}
+      DRONE_GITLAB_CLIENT_SECRET: ${drone_driver_secret}
+      DRONE_GITLAB_SERVER: ${drone_driver_url}
 {{- end}}
 {{- if eq .Values.drone_driver "Gogs"}}
       DRONE_GOGS: true
-      DRONE_GOGS_URL: ${drone_driver_url}
+      DRONE_GOGS_SERVER: ${drone_driver_url}
 {{- end}}
 {{- if ne .Values.database_driver "sqlite"}}
       DRONE_DATABASE_DRIVER: ${database_driver}
@@ -108,9 +109,9 @@ services:
       io.rancher.container.hostname_override: container_name
 {{- end}}
   lb:
-    image: rancher/lb-service-haproxy:v0.6.4
+    image: rancher/lb-service-haproxy:v0.7.15
     ports:
-      - ${host_port}:${host_port}
+      - 80:80
     labels:
       io.rancher.scheduler.global: 'true'
       io.rancher.scheduler.affinity:host_label_soft: ${drone_lb_host_label}
